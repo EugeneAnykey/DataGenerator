@@ -22,7 +22,9 @@ namespace EugeneAnykey.Project.DataGenerator
 		#region field
 		static int idGen;
 
-		static string[] engWords = WordsParser.MakeWords( new[] { "../../data/words.txt" });
+		static string[] engWords =
+			WordsHolder.EngWords;
+			//WordsParser.MakeWords( new[] { "../../data/words.txt" });
 
 		Random r = new Random((int)DateTime.UtcNow.Ticks);
 		#endregion
@@ -36,9 +38,22 @@ namespace EugeneAnykey.Project.DataGenerator
 		static void Parse()
 		{
 			// parsing words from texts:
+			/*
 			File.WriteAllLines(
 				"placeHere.txt",
 				WordsParser.MakeWords( new[] { "../../data/file1.txt", "../../data/file2.txt" })
+			);
+			*/
+
+			File.WriteAllText(
+				"placeHere.txt",
+				string.Join(
+					" ",
+					WordsParser.MakeWords(new[] {
+						"../../data/words.txt",
+						//"../../data/file2.txt",
+					})
+				)
 			);
 		}
 		#endregion
