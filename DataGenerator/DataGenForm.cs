@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator
@@ -60,10 +61,15 @@ namespace EugeneAnykey.Project.DataGenerator
 		{
 			labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
 		}
+
+		void ShowElapsed(float percents)
+		{
+			labelElapsed.Text = $"Done: {100*percents:N2}%.\nElapsed: {watch.Elapsed}.";
+		}
 		#endregion
 
 		#region events handlers
-		private void buttonGenFile_Click(object sender, EventArgs e)
+		private async void ButtonGenFile_Click(object sender, EventArgs e)
 		{
 			var rows = GetRowsCount();
 			var cols = (int)numericUpDownColumns.Value;
@@ -79,10 +85,19 @@ namespace EugeneAnykey.Project.DataGenerator
 			watch.Start();
 
 			string[] types = gen.GenerateTypes(true, cols);
-			gen.GenerateFile(saveFileDialog1.FileName, rows, types);
+			//gen.GenerateFile(saveFileDialog1.FileName, rows, types);
+
+			var progress = new Progress<float>( v => ShowElapsed(v) );
+
+			await Task.Run(() => DoWork(filename, rows, types, progress));
 
 			watch.Stop();
 			ShowElapsed();
+		}
+
+		public void DoWork(string filename, int rows, string[] types, IProgress<float> progress)
+		{
+			gen.GenerateFile(saveFileDialog1.FileName, rows, types, progress);
 		}
 		#endregion
 	}

@@ -48,7 +48,7 @@
 			this.buttonGenFile.TabIndex = 0;
 			this.buttonGenFile.Text = "Generate file...";
 			this.buttonGenFile.UseVisualStyleBackColor = true;
-			this.buttonGenFile.Click += new System.EventHandler(this.buttonGenFile_Click);
+			this.buttonGenFile.Click += new System.EventHandler(this.ButtonGenFile_Click);
 			// 
 			// numericUpDownRows
 			// 

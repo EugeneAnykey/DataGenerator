@@ -31,7 +31,7 @@ namespace EugeneAnykey.Project.DataGenerator
 
 		public DataGen() { }
 
-		#region Gen file
+		#region gen file
 		public void GenerateFile(string filename, int totalRows, string[] types)
 		{
 			using (File.Create(filename)) { }
@@ -46,6 +46,27 @@ namespace EugeneAnykey.Project.DataGenerator
 				IEnumerable<string> lines = GetLines(nowRows, types);
 				File.AppendAllLines(filename, lines);
 				rowsDone += rowsPortion;
+			}
+		}
+		
+		public void GenerateFile(string filename, int totalRows, string[] types, IProgress<float> progress)
+		{
+			using (File.Create(filename)) { }
+
+			int rowsDone = 0;
+
+			idGen = 0;
+
+			while (totalRows - rowsDone > 0)
+			{
+				int nowRows = totalRows - rowsDone > rowsPortion ? rowsPortion : totalRows - rowsDone;
+
+				IEnumerable<string> lines = GetLines(nowRows, types);
+				File.AppendAllLines(filename, lines);
+				rowsDone += nowRows;
+
+				if (progress != null)
+					progress.Report((float)rowsDone / totalRows);
 			}
 		}
 		#endregion
@@ -104,7 +125,7 @@ namespace EugeneAnykey.Project.DataGenerator
 		}
 		#endregion
 
-		#region Gen lines
+		#region gen lines
 		IEnumerable<string> GetLines(int rows, string[] types)
 		{
 			var res = new List<string>();
