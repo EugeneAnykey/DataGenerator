@@ -29,34 +29,7 @@ namespace EugeneAnykey.Project.DataGenerator
 		Random r = new Random((int)DateTime.UtcNow.Ticks);
 		#endregion
 
-		#region init
-		public DataGen()
-		{
-			//Parse();
-		}
-
-		static void Parse()
-		{
-			// parsing words from texts:
-			/*
-			File.WriteAllLines(
-				"placeHere.txt",
-				WordsParser.MakeWords( new[] { "../../data/file1.txt", "../../data/file2.txt" })
-			);
-			*/
-
-			File.WriteAllText(
-				"placeHere.txt",
-				string.Join(
-					" ",
-					WordsParser.MakeWords(new[] {
-						"../../data/words.txt",
-						//"../../data/file2.txt",
-					})
-				)
-			);
-		}
-		#endregion
+		public DataGen() { }
 
 		#region Gen file
 		public void GenerateFile(string filename, int totalRows, string[] types)
