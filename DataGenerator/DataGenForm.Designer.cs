@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGenForm));
 			this.buttonGenFile = new System.Windows.Forms.Button();
 			this.numericUpDownRows = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDownColumns = new System.Windows.Forms.NumericUpDown();
@@ -36,6 +37,7 @@
 			this.labelElapsed = new System.Windows.Forms.Label();
 			this.labelRows = new System.Windows.Forms.Label();
 			this.labelColumns = new System.Windows.Forms.Label();
+			this.buttonAbout = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).BeginInit();
 			this.SuspendLayout();
@@ -103,11 +105,21 @@
 			this.labelColumns.TabIndex = 7;
 			this.labelColumns.Text = "Columns:";
 			// 
+			// buttonAbout
+			// 
+			this.buttonAbout.Location = new System.Drawing.Point(246, 185);
+			this.buttonAbout.Name = "buttonAbout";
+			this.buttonAbout.Size = new System.Drawing.Size(26, 23);
+			this.buttonAbout.TabIndex = 8;
+			this.buttonAbout.Text = "?";
+			this.buttonAbout.UseVisualStyleBackColor = true;
+			// 
 			// DataGenForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(283, 224);
+			this.Controls.Add(this.buttonAbout);
 			this.Controls.Add(this.labelColumns);
 			this.Controls.Add(this.labelRows);
 			this.Controls.Add(this.labelElapsed);
@@ -115,6 +127,7 @@
 			this.Controls.Add(this.numericUpDownColumns);
 			this.Controls.Add(this.numericUpDownRows);
 			this.Controls.Add(this.buttonGenFile);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DataGenForm";
 			this.Text = "Form1";
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
@@ -134,6 +147,7 @@
 		private System.Windows.Forms.Label labelElapsed;
 		private System.Windows.Forms.Label labelRows;
 		private System.Windows.Forms.Label labelColumns;
+		private System.Windows.Forms.Button buttonAbout;
 	}
 }
 

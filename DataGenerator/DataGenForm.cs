@@ -7,6 +7,19 @@ namespace EugeneAnykey.Project.DataGenerator
 {
 	public partial class DataGenForm : Form
 	{
+		#region inner Helper: ShowAbout.
+		void ShowAbout(object sender, EventArgs e)
+		{
+			var date = "2019-04-15";
+			MessageBox.Show(
+				$"{Application.ProductName}\n version: {Application.ProductVersion} from {date}\n Copyright (c) 2019 Eugene Anykey Software.\nAll Rights Reserved.",
+				"About " + Application.ProductName,
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information
+			);
+		}
+		#endregion
+
 		#region field
 		DataGen gen = new DataGen();
 		Stopwatch watch = new Stopwatch();
@@ -19,6 +32,7 @@ namespace EugeneAnykey.Project.DataGenerator
 			Text = Application.ProductName;
 
 			Init();
+			InitEvent();
 		}
 
 		void Init()
@@ -28,6 +42,7 @@ namespace EugeneAnykey.Project.DataGenerator
 
 			comboBoxRowsMult.Items.Clear();
 			comboBoxRowsMult.Items.AddRange(new[] { "", "k", "M" });
+			comboBoxRowsMult.SelectedIndex = 1;
 
 			numericUpDownRows.Minimum = 1;
 			numericUpDownRows.Maximum = 999;
@@ -36,6 +51,11 @@ namespace EugeneAnykey.Project.DataGenerator
 			numericUpDownColumns.Minimum = 1;
 			numericUpDownColumns.Maximum = 999;
 			numericUpDownColumns.Value = 20;
+		}
+
+		private void InitEvent()
+		{
+			buttonAbout.Click += ShowAbout;
 		}
 		#endregion
 
@@ -74,7 +94,7 @@ namespace EugeneAnykey.Project.DataGenerator
 			var rows = GetRowsCount();
 			var cols = (int)numericUpDownColumns.Value;
 
-			saveFileDialog1.FileName = $"a_r{GetRowsCountShort()}_c{cols}.txt";
+			saveFileDialog1.FileName = $"random_r{GetRowsCountShort()}_c{cols}.txt";
 
 			var filename = string.Empty;
 			if (DialogResult.OK != saveFileDialog1.ShowDialog())
@@ -85,7 +105,6 @@ namespace EugeneAnykey.Project.DataGenerator
 			watch.Start();
 
 			string[] types = gen.GenerateTypes(true, cols);
-			//gen.GenerateFile(saveFileDialog1.FileName, rows, types);
 
 			var progress = new Progress<float>( v => ShowElapsed(v) );
 
