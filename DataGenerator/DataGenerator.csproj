@@ -64,7 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ColumnGeneratorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnGeneratorForm.Designer.cs">
+      <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generators\AlphabeticalGenerator.cs" />
+    <Compile Include="Randomizer.cs" />
+    <Compile Include="_empty.cs" />
+    <Compile Include="SeparatorItem.cs" />
     <Compile Include="WordsHolder.cs" />
     <Compile Include="DataGen.cs" />
     <Compile Include="DataGenForm.cs">
@@ -77,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DataGenForm.resx">
       <DependentUpon>DataGenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColumnGeneratorForm.resx">
+      <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

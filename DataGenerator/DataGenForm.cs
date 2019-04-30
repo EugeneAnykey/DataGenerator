@@ -20,10 +20,13 @@ namespace EugeneAnykey.Project.DataGenerator
 		}
 		#endregion
 
-		#region field
+
+
+		// field
 		DataGen gen = new DataGen();
 		Stopwatch watch = new Stopwatch();
-		#endregion
+
+
 
 		#region init
 		public DataGenForm()
@@ -55,9 +58,14 @@ namespace EugeneAnykey.Project.DataGenerator
 
 		private void InitEvent()
 		{
+			menuExit.Click += (_,__) => Close();
+			menuFormsColumnGenerator.Click += (_,__) => new Forms.ColumnGeneratorForm().ShowDialog();
+			menuAbout.Click += ShowAbout;
 			buttonAbout.Click += ShowAbout;
 		}
 		#endregion
+
+
 
 		#region private: GetRowsCount (+Short), ShowElapsed.
 		int GetRowsCount()
@@ -72,21 +80,14 @@ namespace EugeneAnykey.Project.DataGenerator
 			return rows;
 		}
 
-		string GetRowsCountShort()
-		{
-			return $"{(int)numericUpDownRows.Value}{comboBoxRowsMult.Text}";
-		}
-
-		void ShowElapsed()
-		{
-			labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
-		}
-
-		void ShowElapsed(float percents)
-		{
-			labelElapsed.Text = $"Done: {100*percents:N2}%.\nElapsed: {watch.Elapsed}.";
-		}
+		string GetRowsCountShort() => $"{(int)numericUpDownRows.Value}{comboBoxRowsMult.Text}";
+		
+		void ShowElapsed() => labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
+		
+		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100*percents:N2}%.\nElapsed: {watch.Elapsed}.";
 		#endregion
+
+
 
 		#region events handlers
 		private async void ButtonGenFile_Click(object sender, EventArgs e)

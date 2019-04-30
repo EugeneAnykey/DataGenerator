@@ -6,7 +6,7 @@ namespace EugeneAnykey.Project.DataGenerator
 {
 	public class DataGen
 	{
-		#region const
+		// const
 		const int rowsPortion = 2460;
 
 		const string idName = "id";
@@ -17,19 +17,20 @@ namespace EugeneAnykey.Project.DataGenerator
 		const string dateName = "date";
 		const string timeName = "time";
 		const string dateTimeName = "datetime";
-		#endregion
 
-		#region field
+
+
+		// field
 		static int idGen;
 
-		static string[] engWords =
-			WordsHolder.EngWords;
-			//WordsParser.MakeWords( new[] { "../../data/words.txt" });
+		static string[] engWords = WordsHolder.EngWords;
 
-		Random r = new Random((int)DateTime.UtcNow.Ticks);
-		#endregion
 
+
+		// init
 		public DataGen() { }
+
+
 
 		#region gen file
 		public void GenerateFile(string filename, int totalRows, string[] types)
@@ -71,6 +72,8 @@ namespace EugeneAnykey.Project.DataGenerator
 		}
 		#endregion
 
+
+
 		#region gen types
 		public string[] GenerateTypes(bool needId, int cols)
 		{
@@ -83,7 +86,7 @@ namespace EugeneAnykey.Project.DataGenerator
 
 			for (int i = start; i < cols; i++)
 			{
-				switch (r.Next(1, 6))
+				switch (Randomizer.R.Next(1, 6))
 				{
 					case 1:
 					case 2:
@@ -107,16 +110,18 @@ namespace EugeneAnykey.Project.DataGenerator
 		}
 		#endregion
 
+
+
 		#region gen data
-		int GenerateNum(int min, int max) => r.Next(min, max);
+		int GenerateNum(int min, int max) => Randomizer.R.Next(min, max);
 
-		float GenerateFloat(int max) => r.Next(max) / 100.0f;
+		float GenerateFloat(int max) => Randomizer.R.Next(max) / 100.0f;
 
-		string GenerateString() => engWords[r.Next(engWords.Length)];
+		string GenerateString() => engWords[Randomizer.R.Next(engWords.Length)];
 
 		string GenerateString(int maxLength)
 		{
-			var s = engWords[r.Next(engWords.Length)];
+			var s = engWords[Randomizer.R.Next(engWords.Length)];
 			if (s.Length > maxLength)
 			{
 				s = s.Substring(0, maxLength);
@@ -124,6 +129,8 @@ namespace EugeneAnykey.Project.DataGenerator
 			return s;
 		}
 		#endregion
+
+
 
 		#region gen lines
 		IEnumerable<string> GetLines(int rows, string[] types)
