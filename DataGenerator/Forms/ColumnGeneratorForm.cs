@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
@@ -7,15 +6,17 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 	public partial class ColumnGeneratorForm : Form
 	{
 		// const
-		readonly SeparatorItem defaultSeparator = new SeparatorItem("default", ' ');
+		static readonly SeparatorItem commaSeparator = new SeparatorItem("Comma — [,]", ',');
+		static readonly SeparatorItem spaceSeparator = new SeparatorItem("Space — [ ]", ' ');
+		static readonly SeparatorItem defaultSeparator = spaceSeparator;
 
 		// field
 		string[] resultLines;
-		
+
 		int linesCount = 30;
 
 		SeparatorItem[] separators;
-		
+
 
 
 		// init
@@ -24,13 +25,14 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			InitializeComponent();
 
 			separators = new[]{
-				new SeparatorItem("Comma — [,]", ',' ),
-				new SeparatorItem("Semicolon — [;]", ';' ),
-				new SeparatorItem("Space — [ ]", ' ' ),
-				new SeparatorItem("Tab — [\t]", '\t' ),
-				new SeparatorItem("Vertical bar — [|]", '|' ),
-				new SeparatorItem("Period — [.]", '.' ),
-				new SeparatorItem("Colon — [:]", ':' ),
+				spaceSeparator,
+				commaSeparator,
+				new SeparatorItem("Period — [.]", '.'),
+				new SeparatorItem("Colon — [:]", ':'),
+				new SeparatorItem("Semicolon — [;]", ';'),
+				new SeparatorItem("New line — [\n]", '\n'),
+				new SeparatorItem("Tab — [\t]", '\t'),
+				new SeparatorItem("Vertical bar — [|]", '|'),
 			};
 
 			comboBoxItemsSeparator.Items.Clear();
@@ -40,11 +42,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			buttonClose.Click += (_, __) => Close();
 			buttonCopyColumns.Click += (_, __) => Copy();
 			buttonGenerate.Click += (_, __) => Generate();
+			buttonFastExample.Click += (_, __) => FastExample();
 		}
 
 
 
-		private void Copy()
+		void Copy()
 		{
 			Clipboard.SetText(
 				string.Join("\r\n", resultLines),
@@ -52,9 +55,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			);
 		}
 
-		
 
-		private void Generate()
+
+		void Generate()
 		{
 			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? defaultSeparator;
 
@@ -71,9 +74,21 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 
 			this.resultLines = lines.ToArray();
-			
+
 			listBoxResultedColumns.Items.Clear();
 			listBoxResultedColumns.Items.AddRange(resultLines);
+		}
+
+
+
+		void FastExample()
+		{
+			comboBoxItemsSeparator.SelectedItem = commaSeparator;
+			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? commaSeparator;
+
+			var example = new[] { "a", "bc", "def", "uvwx" };
+
+			textBoxItems.Text = string.Join(sep.Separators[0].ToString(), example);
 		}
 	}
 }

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ColumnGeneratorForm));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.buttonCopyColumns = new System.Windows.Forms.Button();
 			this.buttonClose = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.comboBoxItemsSeparator = new System.Windows.Forms.ComboBox();
 			this.labelItemsSeparator = new System.Windows.Forms.Label();
+			this.buttonFastExample = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			this.groupBoxColumns.SuspendLayout();
 			this.groupBoxItems.SuspendLayout();
@@ -128,6 +130,7 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.buttonFastExample);
 			this.panel2.Controls.Add(this.comboBoxItemsSeparator);
 			this.panel2.Controls.Add(this.labelItemsSeparator);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -153,6 +156,15 @@
 			this.labelItemsSeparator.TabIndex = 5;
 			this.labelItemsSeparator.Text = "Items Separator:";
 			// 
+			// buttonFastExample
+			// 
+			this.buttonFastExample.Location = new System.Drawing.Point(230, 6);
+			this.buttonFastExample.Name = "buttonFastExample";
+			this.buttonFastExample.Size = new System.Drawing.Size(110, 23);
+			this.buttonFastExample.TabIndex = 7;
+			this.buttonFastExample.Text = "Fast Example";
+			this.buttonFastExample.UseVisualStyleBackColor = true;
+			// 
 			// ColumnGeneratorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -162,7 +174,10 @@
 			this.Controls.Add(this.groupBoxItems);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.panel2);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MinimumSize = new System.Drawing.Size(300, 400);
 			this.Name = "ColumnGeneratorForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Column Generator";
 			this.panel1.ResumeLayout(false);
 			this.groupBoxColumns.ResumeLayout(false);
@@ -187,5 +202,6 @@
 		private System.Windows.Forms.ComboBox comboBoxItemsSeparator;
 		private System.Windows.Forms.Label labelItemsSeparator;
 		private System.Windows.Forms.Button buttonCopyColumns;
+		private System.Windows.Forms.Button buttonFastExample;
 	}
 }

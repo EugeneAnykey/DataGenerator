@@ -41,9 +41,9 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuForms = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuFormsColumnGenerator = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -133,39 +133,39 @@
 			this.menuStrip1.TabIndex = 9;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// fileToolStripMenuItem
+			// menuFile
 			// 
 			this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuExit});
-			this.menuFile.Name = "fileToolStripMenuItem";
+			this.menuFile.Name = "menuFile";
 			this.menuFile.Size = new System.Drawing.Size(37, 20);
 			this.menuFile.Text = "&File";
 			// 
-			// closeToolStripMenuItem
+			// menuExit
 			// 
-			this.menuExit.Name = "closeToolStripMenuItem";
-			this.menuExit.Size = new System.Drawing.Size(180, 22);
+			this.menuExit.Name = "menuExit";
+			this.menuExit.Size = new System.Drawing.Size(92, 22);
 			this.menuExit.Text = "&Exit";
 			// 
-			// aboutToolStripMenuItem
-			// 
-			this.menuAbout.Name = "aboutToolStripMenuItem";
-			this.menuAbout.Size = new System.Drawing.Size(52, 20);
-			this.menuAbout.Text = "&About";
-			// 
-			// formsToolStripMenuItem
+			// menuForms
 			// 
 			this.menuForms.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFormsColumnGenerator});
-			this.menuForms.Name = "formsToolStripMenuItem";
+			this.menuForms.Name = "menuForms";
 			this.menuForms.Size = new System.Drawing.Size(52, 20);
 			this.menuForms.Text = "F&orms";
 			// 
-			// columnGeneratorToolStripMenuItem
+			// menuFormsColumnGenerator
 			// 
-			this.menuFormsColumnGenerator.Name = "columnGeneratorToolStripMenuItem";
+			this.menuFormsColumnGenerator.Name = "menuFormsColumnGenerator";
 			this.menuFormsColumnGenerator.Size = new System.Drawing.Size(181, 22);
 			this.menuFormsColumnGenerator.Text = "&Column Generator...";
+			// 
+			// menuAbout
+			// 
+			this.menuAbout.Name = "menuAbout";
+			this.menuAbout.Size = new System.Drawing.Size(52, 20);
+			this.menuAbout.Text = "&About";
 			// 
 			// DataGenForm
 			// 
@@ -181,9 +181,11 @@
 			this.Controls.Add(this.numericUpDownRows);
 			this.Controls.Add(this.buttonGenFile);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "DataGenForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).EndInit();
