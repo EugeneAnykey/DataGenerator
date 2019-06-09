@@ -24,6 +24,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			InitializeComponent();
 
+			Text = "Column Generator ( . Y . )";
+
 			separators = new[]{
 				spaceSeparator,
 				commaSeparator,

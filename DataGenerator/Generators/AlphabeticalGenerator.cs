@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Text;
 
-namespace EugeneAnykey.Project.DataGenerator
+namespace EugeneAnykey.Project.DataGenerator.Generators
 {
+	[Obsolete]
 	public static class AlphabeticalGenerator
 	{
 		// const
@@ -62,7 +63,7 @@ namespace EugeneAnykey.Project.DataGenerator
 			if (array.Length == 0) return noElements;
 
 			if (string.IsNullOrEmpty(separator)) separator = defaultSeparator;
-			
+
 			var res = string.Join(
 				separator,
 				array.Where(x => x != null).Select(x => x.ToString())

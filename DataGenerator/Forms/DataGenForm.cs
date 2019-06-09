@@ -2,28 +2,16 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EugeneAnykey.Project.DataGenerator.Generators;
 
-namespace EugeneAnykey.Project.DataGenerator
+namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class DataGenForm : Form
 	{
-		#region inner Helper: ShowAbout.
-		void ShowAbout(object sender, EventArgs e)
-		{
-			var date = "2019-04-15";
-			MessageBox.Show(
-				$"{Application.ProductName}\n version: {Application.ProductVersion} from {date}\n Copyright (c) 2019 Eugene Anykey Software.\nAll Rights Reserved.",
-				"About " + Application.ProductName,
-				MessageBoxButtons.OK,
-				MessageBoxIcon.Information
-			);
-		}
-		#endregion
-
-
-
 		// field
-		DataGen gen = new DataGen();
+		//DataGen gen = new DataGen();
+		DataGenNew gen = new DataGenNew();
+		FileGen fileGen = new FileGen();
 		Stopwatch watch = new Stopwatch();
 
 
@@ -32,7 +20,8 @@ namespace EugeneAnykey.Project.DataGenerator
 		public DataGenForm()
 		{
 			InitializeComponent();
-			Text = Application.ProductName;
+			
+			Text = "Data Generator ( . Y . )";
 
 			Init();
 			InitEvent();
@@ -58,10 +47,6 @@ namespace EugeneAnykey.Project.DataGenerator
 
 		private void InitEvent()
 		{
-			menuExit.Click += (_,__) => Close();
-			menuFormsColumnGenerator.Click += (_,__) => new Forms.ColumnGeneratorForm().ShowDialog();
-			menuAbout.Click += ShowAbout;
-			buttonAbout.Click += ShowAbout;
 		}
 		#endregion
 
@@ -84,7 +69,7 @@ namespace EugeneAnykey.Project.DataGenerator
 		
 		void ShowElapsed() => labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
 		
-		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100*percents:N2}%.\nElapsed: {watch.Elapsed}.";
+		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100 * percents:N2}%.\nElapsed: {watch.Elapsed}.";
 		#endregion
 
 
@@ -117,7 +102,7 @@ namespace EugeneAnykey.Project.DataGenerator
 
 		public void DoWork(string filename, int rows, string[] types, IProgress<float> progress)
 		{
-			gen.GenerateFile(saveFileDialog1.FileName, rows, types, progress);
+			fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, gen.GetLines, progress);
 		}
 		#endregion
 	}

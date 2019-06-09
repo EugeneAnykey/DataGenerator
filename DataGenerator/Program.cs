@@ -10,7 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new DataGenForm());
+			Application.Run(new Forms.CenteredForm());
 		}
 	}
 }

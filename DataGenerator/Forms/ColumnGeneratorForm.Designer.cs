@@ -38,13 +38,16 @@
 			this.groupBoxItems = new System.Windows.Forms.GroupBox();
 			this.textBoxItems = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.buttonFastExample = new System.Windows.Forms.Button();
 			this.comboBoxItemsSeparator = new System.Windows.Forms.ComboBox();
 			this.labelItemsSeparator = new System.Windows.Forms.Label();
-			this.buttonFastExample = new System.Windows.Forms.Button();
+			this.labelRows = new System.Windows.Forms.Label();
+			this.numericUpDownRows = new System.Windows.Forms.NumericUpDown();
 			this.panel1.SuspendLayout();
 			this.groupBoxColumns.SuspendLayout();
 			this.groupBoxItems.SuspendLayout();
 			this.panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -92,9 +95,9 @@
 			// 
 			this.groupBoxColumns.Controls.Add(this.listBoxResultedColumns);
 			this.groupBoxColumns.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBoxColumns.Location = new System.Drawing.Point(0, 131);
+			this.groupBoxColumns.Location = new System.Drawing.Point(0, 157);
 			this.groupBoxColumns.Name = "groupBoxColumns";
-			this.groupBoxColumns.Size = new System.Drawing.Size(352, 257);
+			this.groupBoxColumns.Size = new System.Drawing.Size(352, 231);
 			this.groupBoxColumns.TabIndex = 6;
 			this.groupBoxColumns.TabStop = false;
 			this.groupBoxColumns.Text = "Resulted Columns:";
@@ -105,14 +108,14 @@
 			this.listBoxResultedColumns.FormattingEnabled = true;
 			this.listBoxResultedColumns.Location = new System.Drawing.Point(3, 16);
 			this.listBoxResultedColumns.Name = "listBoxResultedColumns";
-			this.listBoxResultedColumns.Size = new System.Drawing.Size(346, 238);
+			this.listBoxResultedColumns.Size = new System.Drawing.Size(346, 212);
 			this.listBoxResultedColumns.TabIndex = 0;
 			// 
 			// groupBoxItems
 			// 
 			this.groupBoxItems.Controls.Add(this.textBoxItems);
 			this.groupBoxItems.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxItems.Location = new System.Drawing.Point(0, 39);
+			this.groupBoxItems.Location = new System.Drawing.Point(0, 65);
 			this.groupBoxItems.Name = "groupBoxItems";
 			this.groupBoxItems.Size = new System.Drawing.Size(352, 92);
 			this.groupBoxItems.TabIndex = 7;
@@ -130,14 +133,25 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.labelRows);
+			this.panel2.Controls.Add(this.numericUpDownRows);
 			this.panel2.Controls.Add(this.buttonFastExample);
 			this.panel2.Controls.Add(this.comboBoxItemsSeparator);
 			this.panel2.Controls.Add(this.labelItemsSeparator);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(352, 39);
+			this.panel2.Size = new System.Drawing.Size(352, 65);
 			this.panel2.TabIndex = 8;
+			// 
+			// buttonFastExample
+			// 
+			this.buttonFastExample.Location = new System.Drawing.Point(230, 6);
+			this.buttonFastExample.Name = "buttonFastExample";
+			this.buttonFastExample.Size = new System.Drawing.Size(110, 23);
+			this.buttonFastExample.TabIndex = 7;
+			this.buttonFastExample.Text = "Fast Example";
+			this.buttonFastExample.UseVisualStyleBackColor = true;
 			// 
 			// comboBoxItemsSeparator
 			// 
@@ -156,14 +170,21 @@
 			this.labelItemsSeparator.TabIndex = 5;
 			this.labelItemsSeparator.Text = "Items Separator:";
 			// 
-			// buttonFastExample
+			// labelRows
 			// 
-			this.buttonFastExample.Location = new System.Drawing.Point(230, 6);
-			this.buttonFastExample.Name = "buttonFastExample";
-			this.buttonFastExample.Size = new System.Drawing.Size(110, 23);
-			this.buttonFastExample.TabIndex = 7;
-			this.buttonFastExample.Text = "Fast Example";
-			this.buttonFastExample.UseVisualStyleBackColor = true;
+			this.labelRows.AutoSize = true;
+			this.labelRows.Location = new System.Drawing.Point(9, 36);
+			this.labelRows.Name = "labelRows";
+			this.labelRows.Size = new System.Drawing.Size(37, 13);
+			this.labelRows.TabIndex = 9;
+			this.labelRows.Text = "Rows:";
+			// 
+			// numericUpDownRows
+			// 
+			this.numericUpDownRows.Location = new System.Drawing.Point(99, 34);
+			this.numericUpDownRows.Name = "numericUpDownRows";
+			this.numericUpDownRows.Size = new System.Drawing.Size(71, 20);
+			this.numericUpDownRows.TabIndex = 8;
 			// 
 			// ColumnGeneratorForm
 			// 
@@ -185,6 +206,7 @@
 			this.groupBoxItems.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -203,5 +225,7 @@
 		private System.Windows.Forms.Label labelItemsSeparator;
 		private System.Windows.Forms.Button buttonCopyColumns;
 		private System.Windows.Forms.Button buttonFastExample;
+		private System.Windows.Forms.Label labelRows;
+		private System.Windows.Forms.NumericUpDown numericUpDownRows;
 	}
 }

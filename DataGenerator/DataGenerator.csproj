@@ -48,22 +48,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>datagen-icon.ico</ApplicationIcon>
+    <ApplicationIcon>_data\datagen-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CenteredForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CenteredForm.Designer.cs">
+      <DependentUpon>CenteredForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ColumnGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,20 +72,32 @@
       <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Generators\AlphabeticalGenerator.cs" />
-    <Compile Include="Randomizer.cs" />
+    <Compile Include="Generators\DataGenNew.cs" />
+    <Compile Include="Generators\IGen.cs" />
+    <Compile Include="Generators\FileGen.cs" />
+    <Compile Include="Generators\FixedStringsGen.cs" />
+    <Compile Include="Generators\IdsGen.cs" />
+    <Compile Include="Generators\StringsGen.cs" />
+    <Compile Include="Generators\IntegersGen.cs" />
+    <Compile Include="Generators\FloatsGen.cs" />
+    <Compile Include="Misc\FormUtils.cs" />
+    <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
-    <Compile Include="SeparatorItem.cs" />
-    <Compile Include="WordsHolder.cs" />
-    <Compile Include="DataGen.cs" />
-    <Compile Include="DataGenForm.cs">
+    <Compile Include="_root\SeparatorItem.cs" />
+    <Compile Include="_data\WordsHolder.cs" />
+    <Compile Include="Generators\DataGen.cs" />
+    <Compile Include="Forms\DataGenForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataGenForm.Designer.cs">
+    <Compile Include="Forms\DataGenForm.Designer.cs">
       <DependentUpon>DataGenForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DataGenForm.resx">
+    <EmbeddedResource Include="Forms\CenteredForm.resx">
+      <DependentUpon>CenteredForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DataGenForm.resx">
       <DependentUpon>DataGenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ColumnGeneratorForm.resx">
@@ -104,8 +117,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="datagen-032b.ico" />
-    <Content Include="datagen-icon.ico" />
+    <Content Include="_data\datagen-032b.ico" />
+    <Content Include="_data\datagen-icon.ico" />
+    <EmbeddedResource Include="_data\engWords.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
