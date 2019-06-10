@@ -47,6 +47,8 @@
 			this.comboBoxType = new System.Windows.Forms.ComboBox();
 			this.labelName = new System.Windows.Forms.Label();
 			this.textBoxName = new System.Windows.Forms.TextBox();
+			this.groupBoxFixedStrings = new System.Windows.Forms.GroupBox();
+			this.fixedStringsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.FixedStringsParamsControl();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -56,6 +58,7 @@
 			this.groupBoxDoublesParams.SuspendLayout();
 			this.groupBoxIntsParams.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.groupBoxFixedStrings.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -74,6 +77,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.groupBoxFixedStrings);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBoxIdsParams);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBoxDoublesParams);
 			this.splitContainer1.Panel2.Controls.Add(this.groupBoxIntsParams);
@@ -255,6 +259,26 @@
 			this.textBoxName.Size = new System.Drawing.Size(170, 20);
 			this.textBoxName.TabIndex = 3;
 			// 
+			// groupBoxFixedStrings
+			// 
+			this.groupBoxFixedStrings.Controls.Add(this.fixedStringsParamsControl1);
+			this.groupBoxFixedStrings.Dock = System.Windows.Forms.DockStyle.Top;
+			this.groupBoxFixedStrings.Location = new System.Drawing.Point(4, 381);
+			this.groupBoxFixedStrings.Name = "groupBoxFixedStrings";
+			this.groupBoxFixedStrings.Size = new System.Drawing.Size(284, 230);
+			this.groupBoxFixedStrings.TabIndex = 12;
+			this.groupBoxFixedStrings.TabStop = false;
+			this.groupBoxFixedStrings.Text = "Fixed Strings Parameters";
+			// 
+			// fixedStringsParamsControl1
+			// 
+			this.fixedStringsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.fixedStringsParamsControl1.Location = new System.Drawing.Point(3, 16);
+			this.fixedStringsParamsControl1.Name = "fixedStringsParamsControl1";
+			this.fixedStringsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.fixedStringsParamsControl1.Size = new System.Drawing.Size(278, 211);
+			this.fixedStringsParamsControl1.TabIndex = 0;
+			// 
 			// ColumnsEditControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +298,7 @@
 			this.groupBoxIntsParams.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.groupBoxFixedStrings.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -299,5 +324,7 @@
 		private IntsParamsControl intsParamsControl1;
 		private IdsParamsControl idsParamsControl1;
 		private DoublesParamsControl doublesParamsControl1;
+		private System.Windows.Forms.GroupBox groupBoxFixedStrings;
+		private FixedStringsParamsControl fixedStringsParamsControl1;
 	}
 }

@@ -11,8 +11,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		enum GeneratorsTypes { Nothing, Id, Integer, Double, String, FixedString, Unknown };
 
 		// field
-		GeneratorsTypes[] types = new GeneratorsTypes[(int)GeneratorsTypes.Unknown];
+		GeneratorsTypes[] types = new GeneratorsTypes[(int)GeneratorsTypes.Unknown + 1];
 		GeneratorsTypes selected = GeneratorsTypes.Unknown;
+		Control[] groupBoxes;
 
 		// init
 		public ColumnsEditControl()
@@ -25,7 +26,14 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void Init()
 		{
-			for (GeneratorsTypes type = GeneratorsTypes.Nothing; type < GeneratorsTypes.Unknown; type++)
+			groupBoxes = new[] {
+				groupBoxIntsParams,
+				groupBoxDoublesParams,
+				groupBoxIdsParams,
+				groupBoxFixedStrings
+			};
+
+			for (GeneratorsTypes type = GeneratorsTypes.Nothing; type <= GeneratorsTypes.Unknown; type++)
 			{
 				types[(int)type] = type;
 			}
@@ -49,86 +57,108 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		void PrepareGen()
 		{
 			selected = (GeneratorsTypes)comboBoxType.SelectedIndex;
-			
+
 			switch (selected)
 			{
 				case GeneratorsTypes.Nothing:
 					gen = new NothingGen();
+					ShowNothing();
 					break;
 				case GeneratorsTypes.Id:
 					gen = new IdsGen(1, 1);
+					ShowId();
 					break;
 				case GeneratorsTypes.Integer:
 					gen = new IntegersGen(1, 10);
+					ShowInteger();
 					break;
 				case GeneratorsTypes.Double:
 					gen = new DoublesGen(10, 20, 1);
+					ShowDouble();
 					break;
 				case GeneratorsTypes.String:
 					gen = new StringsGen(exampleLines);
+					ShowString();
 					break;
 				case GeneratorsTypes.FixedString:
 					gen = new FixedStringsGen(exampleLines, 3);
+					ShowFixedString();
 					break;
 				case GeneratorsTypes.Unknown:
 					gen = null;
+					ShowUnknown();
 					break;
 				default:
 					gen = new NothingGen();
+					ShowUnknown();
 					break;
 			}
 
-			textBoxName.Text = gen.Name;
-			HideControls();
+			textBoxName.Text = gen == null ? string.Empty : gen.Name;
 		}
 
 
 
 		// show
-		void ShowNothing() { }
+		void ShowNothing() { HideControls(); }
 
 		void ShowId()
 		{
-			ToggleControl(groupBoxIdsParams, true);
+			ShowOnlyControls(groupBoxIdsParams);
 		}
 
 		void ShowInteger()
 		{
-			ToggleControl(groupBoxIntsParams, true);
+			ShowOnlyControls(groupBoxIntsParams);
 		}
 
 		void ShowDouble()
 		{
-			ToggleControl(groupBoxDoublesParams, true);
+			ShowOnlyControls(groupBoxDoublesParams);
 		}
 
 		void ShowString()
 		{
-
+			ShowOnlyControls(groupBoxFixedStrings);
+			fixedStringsParamsControl1.MaxLengthEnabled = false;
 		}
 
 		void ShowFixedString()
 		{
-
+			ShowOnlyControls(groupBoxFixedStrings);
+			fixedStringsParamsControl1.MaxLengthEnabled = true;
 		}
 
-		void ShowUnknown() { }
+		void ShowUnknown() { HideControls(); }
+
+
+
 
 		#region controls
+		void ShowOnlyControls(Control control)
+		{
+			foreach (var c in groupBoxes)
+			{
+				ToggleControl(c, c == control);
+			}
+		}
+
 		void HideControls()
 		{
 			ToggleControl(groupBoxIntsParams, false);
 			ToggleControl(groupBoxDoublesParams, false);
 			ToggleControl(groupBoxIdsParams, false);
+			ToggleControl(groupBoxFixedStrings, false);
 		}
 
 		void ToggleControl(Control control, bool enable)
 		{
+			if (control == null)
+				return;
+
 			control.Enabled = enable;
 			control.Visible = enable;
 		}
-
-
 		#endregion
 	}
 }

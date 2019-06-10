@@ -15,6 +15,18 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		// field
 		SeparatorItem[] separators;
 
+		bool maxLengthEnabled;
+		public bool MaxLengthEnabled
+		{
+			get => maxLengthEnabled;
+			set
+			{
+				maxLengthEnabled = value;
+				panelMaxLength.Enabled = value;
+				panelMaxLength.Visible = value;
+			}
+		}
+
 
 
 		// init
