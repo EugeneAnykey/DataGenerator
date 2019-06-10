@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class FixedStringsGen : IGen<string>
+	public class FixedStringsGen : BaseGen, IGen<string>, IStringOutputer
 	{
 		// field
 		readonly string[] lines;
 		readonly int maxLength;
 		readonly int max;
+
+		public override string Name { get; set; } = "Fixed Strings Gen";
+
+		public string[] Latest { get; private set; } = new string[0];
 
 
 
@@ -24,29 +27,21 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 		// private: GetFixed
 		string GetFixed(string s, int maxLength) => s.Length <= maxLength ? s : s.Substring(0, maxLength);
-		
+
 		string GetFixed(string s) => s.Length <= maxLength ? s : s.Substring(0, maxLength);
 
 
 
 		// Generate
-		public string Generate() => GetFixed(lines[Randomizer.R.Next(max)]);
+		public string Generate() => GetFixed(lines[R.Next(max)]);
+
+		public IEnumerable<string> Generate(int count) => Fill<string>(count, () => GetFixed(lines[R.Next(max)]));
 
 
 
-		public IEnumerable<string> Generate(int count)
-		{
-			if (count < 0)
-				throw new ArgumentException("Should be more than 0");
+		// Output
+		public string Output() => Generate();
 
-			var res = new string[count];
-
-			for (int i = 0; i < count; i++)
-			{
-				res[i] = GetFixed(lines[Randomizer.R.Next(max)]);
-			}
-
-			return res;
-		}
+		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => GetFixed(lines[R.Next(max)]))) as string[];
 	}
 }

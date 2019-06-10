@@ -3,11 +3,15 @@ using System.Collections.Generic;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class IdsGen : IGen<int>
+	public class IdsGen : BaseGen, IGen<int>, IStringOutputer
 	{
 		// field
 		int current;
 		readonly int step;
+
+		public override string Name { get; set; } = "Ids Gen";
+
+		public string[] Latest { get; private set; }
 
 
 
@@ -16,6 +20,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		{
 			this.current = start - step;
 			this.step = step;
+			Latest = new string[0];
 		}
 
 
@@ -23,22 +28,13 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		// Generate
 		public int Generate() => current += step;
 
+		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => current += step);
 
 
-		public IEnumerable<int> Generate(int count)
-		{
-			if (count < 0)
-				throw new ArgumentException("Should be more than 0");
 
-			var res = new int[count];
+		// Output
+		public string Output() => Generate().ToString();
 
-			for (int i = 0; i < count; i++)
-			{
-				res[i] = current += step;
-			}
-
-			return res;
-		}
-
+		public IEnumerable<string> Output(int count) => Latest = Fill<string>(count, () => (current += step).ToString()) as string[];
 	}
 }

@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class IntegersGen : IGen<int>
+	public class IntegersGen : BaseGen, IGen<int>, IStringOutputer
 	{
 		// field
 		readonly int min;
 		readonly int max;
+
+		public override string Name { get; set; } = "Integers Gen";
+
+		public string[] Latest { get; private set; } = new string[0];
 
 
 
@@ -21,24 +24,15 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 		// Generate
-		public int Generate() => Randomizer.R.Next(min, max);
+		public int Generate() => R.Next(min, max);
+
+		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => R.Next(min, max));
 
 
 
-		public IEnumerable<int> Generate(int count)
-		{
-			if (count < 0)
-				throw new ArgumentException("Should be more than 0");
+		// Output
+		public string Output() => Generate().ToString();
 
-			var res = new int[count];
-
-			for (int i = 0; i < count; i++)
-			{
-				res[i] = Randomizer.R.Next(min, max);
-			}
-
-			return res;
-		}
-
+		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => R.Next(min, max).ToString())) as string[];
 	}
 }

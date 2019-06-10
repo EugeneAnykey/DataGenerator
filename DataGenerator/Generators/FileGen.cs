@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
@@ -47,10 +48,40 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		// gen file with IGen types
-		public void GenerateFile<T>(string filename, int totalRows, IGen<T>[] types, Func<int, IGen<T>[], IEnumerable<string>> getLinesFunc, IProgress<float> progress)
+		// TEST
+		public static void Test(IProgress<float> progress)
 		{
-			// getLinesFunc is Func<int, string[], IEnumerable<string>> for 'count', 'types' that returns newLines.
+			const string testFilename = "1.txt";
+			const int countOfLines = 1000000;
+
+			var gens = new BaseGen[] {
+				new IdsGen(1, 1),
+				new IntegersGen(10, 60),
+				new DoublesGen(10, 60, 1),
+				new DoublesGen(70, 80, 2),
+				new IntegersGen(7, 9),
+				new IdsGen(18, 3),
+				new FixedStringsGen(WordsHolder.EngWords, 5),
+				new StringsGen(WordsHolder.EngWords),
+			};
+
+			//IStringOutputer outputer = gens is BaseGen[] ? GetStringOutputers(gens as BaseGen[]) : gens;
+			var outputers = GetStringOutputers(gens);
+			GenFile(testFilename, countOfLines, outputers, progress);
+		}
+
+		static IStringOutputer[] GetStringOutputers(BaseGen[] gens)
+		{
+			var outputers = new IStringOutputer[gens.Length];
+			for (int i = 0; i < gens.Length; i++)
+			{
+				outputers[i] = gens[i] as IStringOutputer;
+			}
+			return outputers;
+		}
+
+		static void GenFile(string filename, int totalRows, IStringOutputer[] outputers, IProgress<float> progress)
+		{
 			using (File.Create(filename)) { }
 
 			int rowsDone = 0;
@@ -59,13 +90,57 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			{
 				int currentRowsPortion = totalRows - rowsDone > defaultRowsPortion ? defaultRowsPortion : totalRows - rowsDone;
 
-				//IEnumerable<string> lines = getLinesFunc(currentRowsPortion, types);
-				IEnumerable<string> lines = new string[0];
+				IEnumerable<string> lines = MakeNewLinesPortion(currentRowsPortion, outputers);
 				File.AppendAllLines(filename, lines);
 				rowsDone += currentRowsPortion;
 
 				if (progress != null)
 					progress.Report((float)rowsDone / totalRows);
+			}
+		}
+
+
+
+		static string MakeSingleLine(int index, IStringOutputer[] outputers)
+		{
+			const string separator = "\t";
+			
+			var res = new string[outputers.Length];
+			
+			for (int i = 0; i < outputers.Length; i++)
+			{
+				res[i] = outputers[i].Latest[index];
+			}
+
+			return string.Join(separator, res);
+		}
+
+
+
+		static IEnumerable<string> MakeNewLinesPortion(int count, IStringOutputer[] outputers)
+		{
+			if (outputers == null)
+			{
+				throw new ArgumentNullException(nameof(outputers));
+			}
+
+			var res = new string[count];
+
+			GenerateNewPortion(count, outputers);
+
+			for (int i = 0; i < count; i++)
+			{
+				res[i] = MakeSingleLine(i, outputers);
+			}
+
+			return res;
+		}
+
+		static void GenerateNewPortion(int count, IStringOutputer[] outputers)
+		{
+			for (int i = 0; i < outputers.Length; i++)
+			{
+				outputers[i].Output(count);
 			}
 		}
 	}

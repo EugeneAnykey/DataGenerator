@@ -57,6 +57,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\CenteredForm.cs">
@@ -71,21 +72,59 @@
     <Compile Include="Forms\ColumnGeneratorForm.Designer.cs">
       <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ColumnsEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\ColumnsEditControl.Designer.cs">
+      <DependentUpon>ColumnsEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IdsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\IdsParamsControl.Designer.cs">
+      <DependentUpon>IdsParamsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DoublesParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DoublesParamsControl.Designer.cs">
+      <DependentUpon>DoublesParamsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FixedStringsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\FixedStringsParamsControl.Designer.cs">
+      <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IntsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\IntsParamsControl.Designer.cs">
+      <DependentUpon>IntsParamsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RowsCountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\RowsCountControl.Designer.cs">
+      <DependentUpon>RowsCountControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generators\AlphabeticalGenerator.cs" />
-    <Compile Include="Generators\DataGenNew.cs" />
+    <Compile Include="Generators\DataGen.cs" />
+    <Compile Include="Generators\DoublesGen.cs" />
+    <Compile Include="Generators\IdsGen.cs" />
     <Compile Include="Generators\IGen.cs" />
     <Compile Include="Generators\FileGen.cs" />
+    <Compile Include="Generators\BaseGen.cs" />
+    <Compile Include="Generators\NothingGen.cs" />
+    <Compile Include="Generators\IStringOutputer.cs" />
     <Compile Include="Generators\FixedStringsGen.cs" />
-    <Compile Include="Generators\IdsGen.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />
-    <Compile Include="Generators\FloatsGen.cs" />
     <Compile Include="Misc\FormUtils.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />
     <Compile Include="_data\WordsHolder.cs" />
-    <Compile Include="Generators\DataGen.cs" />
     <Compile Include="Forms\DataGenForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,11 +136,29 @@
     <EmbeddedResource Include="Forms\CenteredForm.resx">
       <DependentUpon>CenteredForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ColumnsEditControl.resx">
+      <DependentUpon>ColumnsEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DataGenForm.resx">
       <DependentUpon>DataGenForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ColumnGeneratorForm.resx">
       <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IdsParamsControl.resx">
+      <DependentUpon>IdsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoublesParamsControl.resx">
+      <DependentUpon>DoublesParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FixedStringsParamsControl.resx">
+      <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IntsParamsControl.resx">
+      <DependentUpon>IntsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RowsCountControl.resx">
+      <DependentUpon>RowsCountControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -9,8 +9,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 	public partial class DataGenForm : Form
 	{
 		// field
-		//DataGen gen = new DataGen();
-		DataGenNew gen = new DataGenNew();
+		//Generators.DataGeneratorOld gen1 = new Generators.DataGeneratorOld();
+		Generators.DataGen generator = new Generators.DataGen();
 		FileGen fileGen = new FileGen();
 		Stopwatch watch = new Stopwatch();
 
@@ -32,14 +32,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
 			labelElapsed.Text = $"Elapsed: n/a.";
 
-			comboBoxRowsMult.Items.Clear();
-			comboBoxRowsMult.Items.AddRange(new[] { "", "k", "M" });
-			comboBoxRowsMult.SelectedIndex = 1;
-
-			numericUpDownRows.Minimum = 1;
-			numericUpDownRows.Maximum = 999;
-			numericUpDownRows.Value = 100;
-
 			numericUpDownColumns.Minimum = 1;
 			numericUpDownColumns.Maximum = 999;
 			numericUpDownColumns.Value = 20;
@@ -47,26 +39,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		private void InitEvent()
 		{
+			buttonTest.Click += (_, __) => GenTestFile();
 		}
 		#endregion
 
 
 
 		#region private: GetRowsCount (+Short), ShowElapsed.
-		int GetRowsCount()
-		{
-			var rows = (int)numericUpDownRows.Value;
-			if (comboBoxRowsMult.Text == "k")
-				rows *= (int)1e3;
-			else
-			if (comboBoxRowsMult.Text == "M")
-				rows *= (int)1e6;
-
-			return rows;
-		}
-
-		string GetRowsCountShort() => $"{(int)numericUpDownRows.Value}{comboBoxRowsMult.Text}";
-		
 		void ShowElapsed() => labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
 		
 		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100 * percents:N2}%.\nElapsed: {watch.Elapsed}.";
@@ -75,24 +54,24 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		#region events handlers
-		private async void ButtonGenFile_Click(object sender, EventArgs e)
+		async void ButtonGenFile_Click(object sender, EventArgs e)
 		{
-			var rows = GetRowsCount();
+			var rows = rowsCountControl1.RowsCount;
 			var cols = (int)numericUpDownColumns.Value;
 
-			saveFileDialog1.FileName = $"random_r{GetRowsCountShort()}_c{cols}.txt";
+			saveFileDialog1.FileName = $"random_r{rowsCountControl1.RowsCountShort}_c{cols}.txt";
 
-			var filename = string.Empty;
 			if (DialogResult.OK != saveFileDialog1.ShowDialog())
 			{
 				return;
 			}
+			var filename = saveFileDialog1.FileName;
 
-			watch.Start();
+			watch.Restart();
 
-			string[] types = gen.GenerateTypes(true, cols);
+			var progress = new Progress<float>(v => ShowElapsed(v));
 
-			var progress = new Progress<float>( v => ShowElapsed(v) );
+			string[] types = generator.GenerateTypes(true, cols);
 
 			await Task.Run(() => DoWork(filename, rows, types, progress));
 
@@ -100,10 +79,27 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			ShowElapsed();
 		}
 
+
+
 		public void DoWork(string filename, int rows, string[] types, IProgress<float> progress)
 		{
-			fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, gen.GetLines, progress);
+			fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, generator.GetLines, progress);
 		}
 		#endregion
+
+
+
+		// TEST only
+		async void GenTestFile()
+		{
+			watch.Restart();
+
+			var progress = new Progress<float>(v => ShowElapsed(v));
+
+			await Task.Run(() => FileGen.Test(progress));
+
+			watch.Stop();
+			ShowElapsed();
+		}
 	}
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	[Obsolete]
 	public class DataGen
 	{
 		// const
@@ -14,21 +12,28 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		const string numName = "numeric";
 		const string floatName = "float";
 		// not used currently:
-		const string dateName = "date";
-		const string timeName = "time";
-		const string dateTimeName = "datetime";
+		//const string dateName = "date";
+		//const string timeName = "time";
+		//const string dateTimeName = "datetime";
 
 
 
 		// field
-		static int idGen;
-
-		static string[] engWords = WordsHolder.EngWords;
+		IdsGen idsGen;
+		DoublesGen doublesGen;
+		IntegersGen intsGen;
+		FixedStringsGen strsGen;
 
 
 
 		// init
-		public DataGen() { }
+		public DataGen()
+		{
+			idsGen = new IdsGen(0, 1);
+			doublesGen = new DoublesGen(0, 100000, 2);
+			intsGen = new IntegersGen(0, 1000);
+			strsGen = new FixedStringsGen(WordsHolder.EngWords, 6);
+		}
 
 
 
@@ -72,9 +77,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		// public: gen lines
 		public IEnumerable<string> GetLines(int rows, string[] types)
 		{
-			var floatsGen = new FloatsGen(0, 100000, 2);
-			var intsGen = new IntegersGen(0, 1000);
-
 			var res = new List<string>();
 
 			int cols = types.Length;
@@ -87,43 +89,19 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 				for (int j = 0; j < cols; j++)
 				{
 					if (types[j] == idName)
-						ss[j] = idGen++.ToString();
+						ss[j] = idsGen.Generate().ToString();
 					if (types[j] == numName)
-						ss[j] = intsGen.Generate().ToString();//GenerateNum(0, 1000).ToString();
+						ss[j] = intsGen.Generate().ToString();
 					if (types[j] == floatName)
-						ss[j] = floatsGen.Generate().ToString();//GenerateFloat(100000).ToString();
+						ss[j] = doublesGen.Generate().ToString();
 					if (types[j] == strName)
-						ss[j] = GenerateString(6);
+						ss[j] = strsGen.Generate();
 				}
 
 				res.Add(string.Join("\t", ss));
 			}
 
 			return res;
-		}
-
-
-
-		// private: gen data
-		[Obsolete]
-		int GenerateNum(int min, int max) => Randomizer.R.Next(min, max);
-
-		[Obsolete]
-		float GenerateFloat(int max) => Randomizer.R.Next(max) / 100.0f;
-		
-		[Obsolete]
-		float GenerateFloat(int min, int max, float divisor) => Randomizer.R.Next(min, max) / divisor;
-
-		string GenerateString() => engWords[Randomizer.R.Next(engWords.Length)];
-
-		string GenerateString(int maxLength)
-		{
-			var s = engWords[Randomizer.R.Next(engWords.Length)];
-			if (s.Length > maxLength)
-			{
-				s = s.Substring(0, maxLength);
-			}
-			return s;
 		}
 	}
 }
