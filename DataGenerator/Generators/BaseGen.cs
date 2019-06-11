@@ -27,5 +27,10 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 			return res;
 		}
+
+
+
+		// ToString
+		public override string ToString() => Name;
 	}
 }

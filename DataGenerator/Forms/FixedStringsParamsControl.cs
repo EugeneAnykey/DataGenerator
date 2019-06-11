@@ -11,7 +11,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		public FixedStringsGen GetFixedGen() => new FixedStringsGen(Separate(), (int)numericUpDownFixed.Value);
 
-
+		public BaseGen GetGenBase()
+		{
+			if (useFixedStrings)
+				return new FixedStringsGen(Separate(), (int)numericUpDownFixed.Value);
+			else
+				return new StringsGen(Separate());
+		}
 
 		// const
 		static readonly SeparatorItem commaSeparator = new SeparatorItem("Comma — [,]", ',');
@@ -23,15 +29,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		// field
 		SeparatorItem[] separators;
 
-		bool maxLengthEnabled;
-		public bool MaxLengthEnabled
+		bool useFixedStrings;
+		public bool UseFixedStrings
 		{
-			get => maxLengthEnabled;
+			get => useFixedStrings;
 			set
 			{
-				maxLengthEnabled = value;
+				useFixedStrings = value;
 				panelMaxLength.Enabled = value;
 				panelMaxLength.Visible = value;
+				labelName.Text = value ? "Fixed Strings Parameters" : "Strings Parameters";
 			}
 		}
 

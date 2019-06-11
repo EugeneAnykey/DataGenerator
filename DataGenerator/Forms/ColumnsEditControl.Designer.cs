@@ -44,12 +44,12 @@
 			this.doublesParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.DoublesParamsControl();
 			this.groupBoxIntsParams = new System.Windows.Forms.GroupBox();
 			this.intsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.IntsParamsControl();
+			this.noParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.NoParamsControl();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.labelType = new System.Windows.Forms.Label();
 			this.comboBoxType = new System.Windows.Forms.ComboBox();
 			this.labelName = new System.Windows.Forms.Label();
 			this.textBoxName = new System.Windows.Forms.TextBox();
-			this.noParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.NoParamsControl();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -171,11 +171,11 @@
 			// 
 			this.fixedStringsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.fixedStringsParamsControl1.Location = new System.Drawing.Point(3, 16);
-			this.fixedStringsParamsControl1.MaxLengthEnabled = false;
 			this.fixedStringsParamsControl1.Name = "fixedStringsParamsControl1";
 			this.fixedStringsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
 			this.fixedStringsParamsControl1.Size = new System.Drawing.Size(278, 211);
 			this.fixedStringsParamsControl1.TabIndex = 0;
+			this.fixedStringsParamsControl1.UseFixedStrings = false;
 			// 
 			// groupBoxIdsParams
 			// 
@@ -237,6 +237,15 @@
 			this.intsParamsControl1.Size = new System.Drawing.Size(278, 70);
 			this.intsParamsControl1.TabIndex = 13;
 			// 
+			// noParamsControl1
+			// 
+			this.noParamsControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.noParamsControl1.Location = new System.Drawing.Point(4, 82);
+			this.noParamsControl1.Name = "noParamsControl1";
+			this.noParamsControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.noParamsControl1.Size = new System.Drawing.Size(284, 59);
+			this.noParamsControl1.TabIndex = 15;
+			// 
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.labelType);
@@ -281,15 +290,6 @@
 			this.textBoxName.Name = "textBoxName";
 			this.textBoxName.Size = new System.Drawing.Size(170, 20);
 			this.textBoxName.TabIndex = 3;
-			// 
-			// noParamsControl1
-			// 
-			this.noParamsControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.noParamsControl1.Location = new System.Drawing.Point(4, 82);
-			this.noParamsControl1.Name = "noParamsControl1";
-			this.noParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.noParamsControl1.Size = new System.Drawing.Size(284, 59);
-			this.noParamsControl1.TabIndex = 15;
 			// 
 			// ColumnsEditControl
 			// 
