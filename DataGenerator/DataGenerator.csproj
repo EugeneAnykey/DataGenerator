@@ -96,6 +96,12 @@
     <Compile Include="Forms\FixedStringsParamsControl.Designer.cs">
       <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NoParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\NoParamsControl.Designer.cs">
+      <DependentUpon>NoParamsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\IntsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FixedStringsParamsControl.resx">
       <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NoParamsControl.resx">
+      <DependentUpon>NoParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\IntsParamsControl.resx">
       <DependentUpon>IntsParamsControl.cs</DependentUpon>

@@ -1,10 +1,18 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Project.DataGenerator.Misc;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class FixedStringsParamsControl : UserControl
 	{
+		public StringsGen GetGen() => new StringsGen(Separate());
+
+		public FixedStringsGen GetFixedGen() => new FixedStringsGen(Separate(), (int)numericUpDownFixed.Value);
+
+
+
 		// const
 		static readonly SeparatorItem commaSeparator = new SeparatorItem("Comma — [,]", ',');
 		static readonly SeparatorItem spaceSeparator = new SeparatorItem("Space — [ ]", ' ');
@@ -56,7 +64,17 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-		// private
+		// private: Separate
+		string[] Separate()
+		{
+			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? defaultSeparator;
+
+			return textBoxItems.Text.Split(sep.Separators);
+		}
+
+
+
+		// private: FastExample
 		void FastExample()
 		{
 			comboBoxItemsSeparator.SelectedItem = commaSeparator;

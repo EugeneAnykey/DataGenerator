@@ -1,10 +1,15 @@
 ﻿using System.Windows.Forms;
+using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Project.DataGenerator.Misc;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class DoublesParamsControl : UserControl
 	{
+		public DoublesGen GetGen() => new DoublesGen((int)numericUpDownMin.Value, (int)numericUpDownMax.Value, (int)numericUpDownDecimals.Value);
+
+
+
 		public DoublesParamsControl()
 		{
 			InitializeComponent();

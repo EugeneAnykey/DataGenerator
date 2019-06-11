@@ -7,13 +7,18 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class ColumnsEditControl : UserControl
 	{
+		// const
+		readonly string[] exampleLines = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
+		
+
 		// enum
 		enum GeneratorsTypes { Nothing, Id, Integer, Double, String, FixedString, Unknown };
 
 		// field
 		GeneratorsTypes[] types = new GeneratorsTypes[(int)GeneratorsTypes.Unknown + 1];
 		GeneratorsTypes selected = GeneratorsTypes.Unknown;
-		Control[] groupBoxes;
+		Control[] paramControls;
+		BaseGen gen;
 
 		// init
 		public ColumnsEditControl()
@@ -26,7 +31,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void Init()
 		{
-			groupBoxes = new[] {
+			paramControls = new Control[] {
+				noParamsControl1,
 				groupBoxIntsParams,
 				groupBoxDoublesParams,
 				groupBoxIdsParams,
@@ -48,10 +54,41 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		private void InitEvent()
 		{
 			comboBoxType.SelectedIndexChanged += (_, __) => PrepareGen();
+			buttonAdd.Click += (_, __) => Add();
 		}
 
-		readonly string[] exampleLines = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
-		BaseGen gen;
+		void Add()
+		{
+			if (selected == GeneratorsTypes.Unknown)
+				return;
+
+			switch (selected)
+			{
+				case GeneratorsTypes.Nothing:
+					listBox1.Items.Add(new NothingGen());
+					break;
+				case GeneratorsTypes.Id:
+					listBox1.Items.Add(idsParamsControl1.GetGen());
+					break;
+				case GeneratorsTypes.Integer:
+					listBox1.Items.Add(intsParamsControl1.GetGen());
+					break;
+				case GeneratorsTypes.Double:
+					listBox1.Items.Add(doublesParamsControl1.GetGen());
+					break;
+				case GeneratorsTypes.String:
+					listBox1.Items.Add(fixedStringsParamsControl1.GetGen());
+					break;
+				case GeneratorsTypes.FixedString:
+					listBox1.Items.Add(fixedStringsParamsControl1.GetFixedGen());
+					break;
+				case GeneratorsTypes.Unknown:
+					break;
+				default:
+					break;
+			}
+		}
+
 
 		// private
 		void PrepareGen()
@@ -100,32 +137,32 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// show
-		void ShowNothing() { HideControls(); }
+		void ShowNothing() { ShowOnlyThis(noParamsControl1); }
 
 		void ShowId()
 		{
-			ShowOnlyControls(groupBoxIdsParams);
+			ShowOnlyThis(groupBoxIdsParams);
 		}
 
 		void ShowInteger()
 		{
-			ShowOnlyControls(groupBoxIntsParams);
+			ShowOnlyThis(groupBoxIntsParams);
 		}
 
 		void ShowDouble()
 		{
-			ShowOnlyControls(groupBoxDoublesParams);
+			ShowOnlyThis(groupBoxDoublesParams);
 		}
 
 		void ShowString()
 		{
-			ShowOnlyControls(groupBoxFixedStrings);
+			ShowOnlyThis(groupBoxFixedStrings);
 			fixedStringsParamsControl1.MaxLengthEnabled = false;
 		}
 
 		void ShowFixedString()
 		{
-			ShowOnlyControls(groupBoxFixedStrings);
+			ShowOnlyThis(groupBoxFixedStrings);
 			fixedStringsParamsControl1.MaxLengthEnabled = true;
 		}
 
@@ -133,11 +170,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-
 		#region controls
-		void ShowOnlyControls(Control control)
+		void ShowOnlyThis(Control control)
 		{
-			foreach (var c in groupBoxes)
+			foreach (var c in paramControls)
 			{
 				ToggleControl(c, c == control);
 			}
