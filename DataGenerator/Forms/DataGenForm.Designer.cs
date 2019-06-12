@@ -37,24 +37,31 @@
 			this.buttonGenFile = new System.Windows.Forms.Button();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageFixed = new System.Windows.Forms.TabPage();
+			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
 			this.tabPageRandom = new System.Windows.Forms.TabPage();
 			this.labelColumns = new System.Windows.Forms.Label();
 			this.numericUpDownColumns = new System.Windows.Forms.NumericUpDown();
-			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuForms = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuFormsColumnGenerator = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageFixed.SuspendLayout();
 			this.tabPageRandom.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).BeginInit();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// rowsCountControl1
 			// 
 			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.rowsCountControl1.Location = new System.Drawing.Point(0, 0);
+			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
 			this.rowsCountControl1.Name = "rowsCountControl1";
 			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.rowsCountControl1.Size = new System.Drawing.Size(442, 67);
+			this.rowsCountControl1.Size = new System.Drawing.Size(526, 67);
 			this.rowsCountControl1.TabIndex = 9;
 			// 
 			// groupBox1
@@ -63,9 +70,9 @@
 			this.groupBox1.Controls.Add(this.labelElapsed);
 			this.groupBox1.Controls.Add(this.buttonGenFile);
 			this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.groupBox1.Location = new System.Drawing.Point(0, 377);
+			this.groupBox1.Location = new System.Drawing.Point(0, 454);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(442, 97);
+			this.groupBox1.Size = new System.Drawing.Size(526, 97);
 			this.groupBox1.TabIndex = 10;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "groupBox1";
@@ -102,10 +109,10 @@
 			this.tabControl.Controls.Add(this.tabPageFixed);
 			this.tabControl.Controls.Add(this.tabPageRandom);
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl.Location = new System.Drawing.Point(0, 67);
+			this.tabControl.Location = new System.Drawing.Point(0, 91);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(442, 310);
+			this.tabControl.Size = new System.Drawing.Size(526, 363);
 			this.tabControl.TabIndex = 11;
 			// 
 			// tabPageFixed
@@ -114,10 +121,19 @@
 			this.tabPageFixed.Location = new System.Drawing.Point(4, 22);
 			this.tabPageFixed.Name = "tabPageFixed";
 			this.tabPageFixed.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageFixed.Size = new System.Drawing.Size(434, 284);
+			this.tabPageFixed.Size = new System.Drawing.Size(518, 337);
 			this.tabPageFixed.TabIndex = 0;
 			this.tabPageFixed.Text = "Fixed Columns";
 			this.tabPageFixed.UseVisualStyleBackColor = true;
+			// 
+			// columnsEditControl1
+			// 
+			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.columnsEditControl1.Location = new System.Drawing.Point(3, 3);
+			this.columnsEditControl1.Name = "columnsEditControl1";
+			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.columnsEditControl1.Size = new System.Drawing.Size(512, 331);
+			this.columnsEditControl1.TabIndex = 0;
 			// 
 			// tabPageRandom
 			// 
@@ -126,7 +142,7 @@
 			this.tabPageRandom.Location = new System.Drawing.Point(4, 22);
 			this.tabPageRandom.Name = "tabPageRandom";
 			this.tabPageRandom.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageRandom.Size = new System.Drawing.Size(434, 242);
+			this.tabPageRandom.Size = new System.Drawing.Size(518, 361);
 			this.tabPageRandom.TabIndex = 1;
 			this.tabPageRandom.Text = "Random Columns";
 			this.tabPageRandom.UseVisualStyleBackColor = true;
@@ -147,25 +163,64 @@
 			this.numericUpDownColumns.Size = new System.Drawing.Size(120, 20);
 			this.numericUpDownColumns.TabIndex = 8;
 			// 
-			// columnsEditControl1
+			// menuStrip1
 			// 
-			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.columnsEditControl1.Location = new System.Drawing.Point(3, 3);
-			this.columnsEditControl1.Name = "columnsEditControl1";
-			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.columnsEditControl1.Size = new System.Drawing.Size(428, 278);
-			this.columnsEditControl1.TabIndex = 0;
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile,
+            this.menuForms,
+            this.menuAbout});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(526, 24);
+			this.menuStrip1.TabIndex = 12;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// menuFile
+			// 
+			this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuExit});
+			this.menuFile.Name = "menuFile";
+			this.menuFile.Size = new System.Drawing.Size(37, 20);
+			this.menuFile.Text = "&File";
+			// 
+			// menuExit
+			// 
+			this.menuExit.Name = "menuExit";
+			this.menuExit.Size = new System.Drawing.Size(180, 22);
+			this.menuExit.Text = "&Exit";
+			// 
+			// menuForms
+			// 
+			this.menuForms.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFormsColumnGenerator});
+			this.menuForms.Name = "menuForms";
+			this.menuForms.Size = new System.Drawing.Size(52, 20);
+			this.menuForms.Text = "F&orms";
+			// 
+			// menuFormsColumnGenerator
+			// 
+			this.menuFormsColumnGenerator.Name = "menuFormsColumnGenerator";
+			this.menuFormsColumnGenerator.Size = new System.Drawing.Size(181, 22);
+			this.menuFormsColumnGenerator.Text = "&Column Generator...";
+			// 
+			// menuAbout
+			// 
+			this.menuAbout.Name = "menuAbout";
+			this.menuAbout.Size = new System.Drawing.Size(52, 20);
+			this.menuAbout.Text = "&About";
 			// 
 			// DataGenForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(442, 474);
+			this.ClientSize = new System.Drawing.Size(526, 551);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.rowsCountControl1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MaximumSize = new System.Drawing.Size(800, 900);
+			this.MinimumSize = new System.Drawing.Size(450, 500);
 			this.Name = "DataGenForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Form1";
@@ -176,7 +231,10 @@
 			this.tabPageRandom.ResumeLayout(false);
 			this.tabPageRandom.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).EndInit();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -193,6 +251,12 @@
 		private System.Windows.Forms.Label labelColumns;
 		private System.Windows.Forms.NumericUpDown numericUpDownColumns;
 		private ColumnsEditControl columnsEditControl1;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem menuFile;
+		private System.Windows.Forms.ToolStripMenuItem menuExit;
+		private System.Windows.Forms.ToolStripMenuItem menuForms;
+		private System.Windows.Forms.ToolStripMenuItem menuFormsColumnGenerator;
+		private System.Windows.Forms.ToolStripMenuItem menuAbout;
 	}
 }
 

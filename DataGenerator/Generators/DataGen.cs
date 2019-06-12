@@ -22,7 +22,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		IdsGen idsGen;
 		DoublesGen doublesGen;
 		IntegersGen intsGen;
-		FixedStringsGen strsGen;
+		LimitedStringsGen strsGen;
 
 
 
@@ -32,7 +32,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			idsGen = new IdsGen(0, 1);
 			doublesGen = new DoublesGen(0, 100000, 2);
 			intsGen = new IntegersGen(0, 1000);
-			strsGen = new FixedStringsGen(WordsHolder.EngWords, 6);
+			strsGen = new LimitedStringsGen(WordsHolder.EngWords, 6);
 		}
 
 

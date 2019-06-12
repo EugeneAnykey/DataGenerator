@@ -49,25 +49,10 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 		// TEST
-		public static void Test(IProgress<float> progress)
+		public static void GenerateTestFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
-			const string testFilename = "1.txt";
-			const int countOfLines = 1000000;
-
-			var gens = new BaseGen[] {
-				new IdsGen(1, 1),
-				new IntegersGen(10, 60),
-				new DoublesGen(10, 60, 1),
-				new DoublesGen(70, 80, 2),
-				new IntegersGen(7, 9),
-				new IdsGen(18, 3),
-				new FixedStringsGen(WordsHolder.EngWords, 5),
-				new StringsGen(WordsHolder.EngWords),
-			};
-
-			//IStringOutputer outputer = gens is BaseGen[] ? GetStringOutputers(gens as BaseGen[]) : gens;
 			var outputers = GetStringOutputers(gens);
-			GenFile(testFilename, countOfLines, outputers, progress);
+			GenFile(filename, rows, outputers, progress);
 		}
 
 		static IStringOutputer[] GetStringOutputers(BaseGen[] gens)

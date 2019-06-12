@@ -1,5 +1,6 @@
-﻿using EugeneAnykey.Project.DataGenerator.Generators;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using EugeneAnykey.Project.DataGenerator.Generators;
+using EugeneAnykey.Forms.Controls;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
@@ -9,14 +10,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		readonly string[] exampleLines = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
 
 
-		// enum
-		enum GeneratorsTypes { Nothing, Id, Integer, Double, String, FixedString, Unknown };
 
 		// field
-		GeneratorsTypes[] types = new GeneratorsTypes[(int)GeneratorsTypes.Unknown + 1];
-		GeneratorsTypes selected = GeneratorsTypes.Unknown;
-		Control[] paramControls;
-		BaseGen gen;
+		//BaseGen gen;
+
+		UserControl[] gens;
+		CollapsableControl[] collapsables;
 
 		// init
 		public ColumnsEditControl()
@@ -29,65 +28,60 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void Init()
 		{
-			paramControls = new Control[] {
-				noParamsControl1,
-				groupBoxIntsParams,
-				groupBoxDoublesParams,
-				groupBoxIdsParams,
-				groupBoxFixedStrings
+			collapsables = new[] {
+				collapsableNoParams,
+				collapsableIdsParams,
+				collapsableIntsParams,
+				collapsableDoublesParams,
+				collapsableStringsParams
 			};
 
-			for (GeneratorsTypes type = GeneratorsTypes.Nothing; type <= GeneratorsTypes.Unknown; type++)
-			{
-				types[(int)type] = type;
-			}
+			gens = new UserControl[] {
+				noParamsControl1,
+				idsParamsControl1,
+				intsParamsControl1,
+				doublesParamsControl1,
+				fixedStringsParamsControl1
+			};
 
-			comboBoxType.Items.Clear();
-			for (int i = 0; i < types.Length; i++)
-			{
-				comboBoxType.Items.Add(types[i]);
-			}
+			ShowOnly(collapsableNoParams);
 		}
 
-		private void InitEvent()
+		void InitEvent()
 		{
-			comboBoxType.SelectedIndexChanged += (_, __) => PrepareGen();
 			buttonAdd.Click += (_, __) => Add();
+
+			foreach (var col in collapsables)
+			{
+				col.CollapseStateChanged += (_, __) => ShowOnly(col);
+			}
+
+			checkBoxLimitedStrings.CheckedChanged += (_, __) => ToggleLimitedStrings(checkBoxLimitedStrings.Checked);
+		}
+
+
+
+		void ToggleLimitedStrings(bool enable)
+		{
+			collapsableStringsParams.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
+			fixedStringsParamsControl1.UseLimitedStrings = enable;
 		}
 
 		void Add()
 		{
-			if (selected == GeneratorsTypes.Unknown)
-				return;
-
 			BaseGen gen = null;
 
-			switch (selected)
-			{
-				case GeneratorsTypes.Nothing:
-					gen = new NothingGen();
-					break;
-				case GeneratorsTypes.Id:
-					gen = idsParamsControl1.GetGen();
-					break;
-				case GeneratorsTypes.Integer:
-					gen = intsParamsControl1.GetGen();
-					break;
-				case GeneratorsTypes.Double:
-					gen = doublesParamsControl1.GetGen();
-					break;
-				case GeneratorsTypes.String:
-					gen = fixedStringsParamsControl1.GetGenBase();
-					break;
-				case GeneratorsTypes.FixedString:
-					gen = fixedStringsParamsControl1.GetGenBase();
-					break;
-				case GeneratorsTypes.Unknown:
-					break;
-				default:
-					gen = null;
-					break;
-			}
+			gen = new NothingGen();
+			gen = idsParamsControl1.GetGen();
+			gen = intsParamsControl1.GetGen();
+			gen = doublesParamsControl1.GetGen();
+			//case GeneratorsTypes.String:
+			gen = fixedStringsParamsControl1.GetGen();
+			//case GeneratorsTypes.FixedString:
+			gen = fixedStringsParamsControl1.GetGen();
+			//case GeneratorsTypes.Unknown:
+			//default:
+			//gen = null;
 
 			if (gen == null)
 				return;
@@ -97,112 +91,24 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		}
 
 
-		// private
-		void PrepareGen()
-		{
-			selected = (GeneratorsTypes)comboBoxType.SelectedIndex;
 
-			switch (selected)
+		void ShowOnly(CollapsableControl collapsable)
+		{
+			foreach (var c in collapsables)
 			{
-				case GeneratorsTypes.Nothing:
-					gen = new NothingGen();
-					ShowNothing();
-					break;
-				case GeneratorsTypes.Id:
-					gen = new IdsGen(1, 1);
-					ShowId();
-					break;
-				case GeneratorsTypes.Integer:
-					gen = new IntegersGen(1, 10);
-					ShowInteger();
-					break;
-				case GeneratorsTypes.Double:
-					gen = new DoublesGen(10, 20, 1);
-					ShowDouble();
-					break;
-				case GeneratorsTypes.String:
-					gen = new StringsGen(exampleLines);
-					ShowString();
-					break;
-				case GeneratorsTypes.FixedString:
-					gen = new FixedStringsGen(exampleLines, 3);
-					ShowFixedString();
-					break;
-				case GeneratorsTypes.Unknown:
-					gen = null;
-					ShowUnknown();
-					break;
-				default:
-					gen = new NothingGen();
-					ShowUnknown();
-					break;
+				c.Collapsed = !(c == collapsable);
 			}
 
-			textBoxName.Text = gen == null ? string.Empty : gen.Name;
-		}
-
-
-
-		// show
-		void ShowNothing() { ShowOnlyThis(noParamsControl1); }
-
-		void ShowId()
-		{
-			ShowOnlyThis(groupBoxIdsParams);
-		}
-
-		void ShowInteger()
-		{
-			ShowOnlyThis(groupBoxIntsParams);
-		}
-
-		void ShowDouble()
-		{
-			ShowOnlyThis(groupBoxDoublesParams);
-		}
-
-		void ShowString()
-		{
-			ShowOnlyThis(groupBoxFixedStrings);
-			fixedStringsParamsControl1.UseFixedStrings = false;
-		}
-
-		void ShowFixedString()
-		{
-			ShowOnlyThis(groupBoxFixedStrings);
-			fixedStringsParamsControl1.UseFixedStrings = true;
-		}
-
-		void ShowUnknown() { HideControls(); }
-
-
-
-		#region controls
-		void ShowOnlyThis(Control control)
-		{
-			foreach (var c in paramControls)
+			if (null == collapsable)
 			{
-				ToggleControl(c, c == control);
-			}
-		}
-
-		void HideControls()
-		{
-			ShowOnlyThis(null);
-			//ToggleControl(groupBoxIntsParams, false);
-			//ToggleControl(groupBoxDoublesParams, false);
-			//ToggleControl(groupBoxIdsParams, false);
-			//ToggleControl(groupBoxFixedStrings, false);
-		}
-
-		void ToggleControl(Control control, bool enable)
-		{
-			if (control == null)
+				textBoxName.Text = "";
 				return;
+			}
 
-			control.Enabled = enable;
-			control.Visible = enable;
+			if (textBoxName.Text.Length == 0)
+			{
+				textBoxName.Text = collapsable.Caption;
+			}
 		}
-		#endregion
 	}
 }

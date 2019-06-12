@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace EugeneAnykey.Project.DataGenerator.Misc
+namespace EugeneAnykey.Forms
 {
 	public static class FormUtils
 	{
@@ -38,6 +38,8 @@ namespace EugeneAnykey.Project.DataGenerator.Misc
 			control.Maximum = max;
 			control.SetNumericUpDownValue(val);
 		}
+
+
 
 		public static void SetNumericUpDownValue(this NumericUpDown control, decimal value)
 		{

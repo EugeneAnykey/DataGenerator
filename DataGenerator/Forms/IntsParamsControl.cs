@@ -1,12 +1,14 @@
 ﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
-using EugeneAnykey.Project.DataGenerator.Misc;
+using EugeneAnykey.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class IntsParamsControl : UserControl
+	public partial class IntsParamsControl : UserControl, IGenGetter
 	{
 		public IntegersGen GetGen() => new IntegersGen((int)numericUpDownMin.Value, (int)numericUpDownMax.Value);
+
+		public BaseGen GetBaseGen() => new IntegersGen((int)numericUpDownMin.Value, (int)numericUpDownMax.Value);
 
 
 

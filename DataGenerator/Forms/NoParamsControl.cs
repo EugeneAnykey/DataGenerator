@@ -1,12 +1,13 @@
 ﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
-using EugeneAnykey.Project.DataGenerator.Misc;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class NoParamsControl : UserControl
+	public partial class NoParamsControl : UserControl, IGenGetter
 	{
 		public NothingGen GetGen() => new NothingGen();
+
+		public BaseGen GetBaseGen() => new NothingGen();
 
 
 

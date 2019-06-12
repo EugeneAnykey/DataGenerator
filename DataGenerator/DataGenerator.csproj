@@ -53,18 +53,19 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\CenteredForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="EugeneAnykey\Forms\Controls\CollapsableControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\CenteredForm.Designer.cs">
-      <DependentUpon>CenteredForm.cs</DependentUpon>
+    <Compile Include="EugeneAnykey\Forms\Controls\CollapsableControl.Designer.cs">
+      <DependentUpon>CollapsableControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="EugeneAnykey\Forms\Controls\Designers\Designer.cs" />
+    <Compile Include="EugeneAnykey\Forms\Controls\Designers\MyControlDesigner.cs" />
     <Compile Include="Forms\ColumnGeneratorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +77,12 @@
     </Compile>
     <Compile Include="Forms\ColumnsEditControl.Designer.cs">
       <DependentUpon>ColumnsEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GensListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GensListControl.Designer.cs">
+      <DependentUpon>GensListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\IdsParamsControl.cs">
       <SubType>UserControl</SubType>
@@ -89,11 +96,12 @@
     <Compile Include="Forms\DoublesParamsControl.Designer.cs">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FixedStringsParamsControl.cs">
+    <Compile Include="Forms\IGenGetter.cs" />
+    <Compile Include="Forms\LimitedStringsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\FixedStringsParamsControl.Designer.cs">
-      <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
+    <Compile Include="Forms\LimitedStringsParamsControl.Designer.cs">
+      <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NoParamsControl.cs">
       <SubType>UserControl</SubType>
@@ -122,10 +130,10 @@
     <Compile Include="Generators\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
     <Compile Include="Generators\IStringOutputer.cs" />
-    <Compile Include="Generators\FixedStringsGen.cs" />
+    <Compile Include="Generators\LimitedStringsGen.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />
-    <Compile Include="Misc\FormUtils.cs" />
+    <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />
@@ -138,8 +146,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\CenteredForm.resx">
-      <DependentUpon>CenteredForm.cs</DependentUpon>
+    <EmbeddedResource Include="EugeneAnykey\Forms\Controls\CollapsableControl.resx">
+      <DependentUpon>CollapsableControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ColumnsEditControl.resx">
       <DependentUpon>ColumnsEditControl.cs</DependentUpon>
@@ -150,14 +158,17 @@
     <EmbeddedResource Include="Forms\ColumnGeneratorForm.resx">
       <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GensListControl.resx">
+      <DependentUpon>GensListControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\IdsParamsControl.resx">
       <DependentUpon>IdsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DoublesParamsControl.resx">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FixedStringsParamsControl.resx">
-      <DependentUpon>FixedStringsParamsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LimitedStringsParamsControl.resx">
+      <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NoParamsControl.resx">
       <DependentUpon>NoParamsControl.cs</DependentUpon>

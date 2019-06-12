@@ -36,18 +36,19 @@
 			this.buttonUp = new System.Windows.Forms.Button();
 			this.buttonRemove = new System.Windows.Forms.Button();
 			this.labelCount = new System.Windows.Forms.Label();
-			this.groupBoxFixedStrings = new System.Windows.Forms.GroupBox();
-			this.fixedStringsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.FixedStringsParamsControl();
-			this.groupBoxIdsParams = new System.Windows.Forms.GroupBox();
-			this.idsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.IdsParamsControl();
-			this.groupBoxDoublesParams = new System.Windows.Forms.GroupBox();
+			this.collapsableStringsParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
+			this.fixedStringsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.LimitedStringsParamsControl();
+			this.checkBoxLimitedStrings = new System.Windows.Forms.CheckBox();
+			this.collapsableDoublesParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.doublesParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.DoublesParamsControl();
-			this.groupBoxIntsParams = new System.Windows.Forms.GroupBox();
+			this.collapsableIntsParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.intsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.IntsParamsControl();
+			this.collapsableIdsParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
+			this.doublesParamsControl2 = new EugeneAnykey.Project.DataGenerator.Forms.DoublesParamsControl();
+			this.idsParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.IdsParamsControl();
+			this.collapsableNoParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.noParamsControl1 = new EugeneAnykey.Project.DataGenerator.Forms.NoParamsControl();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.labelType = new System.Windows.Forms.Label();
-			this.comboBoxType = new System.Windows.Forms.ComboBox();
 			this.labelName = new System.Windows.Forms.Label();
 			this.textBoxName = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -55,10 +56,16 @@
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.groupBoxFixedStrings.SuspendLayout();
-			this.groupBoxIdsParams.SuspendLayout();
-			this.groupBoxDoublesParams.SuspendLayout();
-			this.groupBoxIntsParams.SuspendLayout();
+			this.collapsableStringsParams.WorkingArea.SuspendLayout();
+			this.collapsableStringsParams.SuspendLayout();
+			this.collapsableDoublesParams.WorkingArea.SuspendLayout();
+			this.collapsableDoublesParams.SuspendLayout();
+			this.collapsableIntsParams.WorkingArea.SuspendLayout();
+			this.collapsableIntsParams.SuspendLayout();
+			this.collapsableIdsParams.WorkingArea.SuspendLayout();
+			this.collapsableIdsParams.SuspendLayout();
+			this.collapsableNoParams.WorkingArea.SuspendLayout();
+			this.collapsableNoParams.SuspendLayout();
 			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -78,11 +85,11 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.groupBoxFixedStrings);
-			this.splitContainer1.Panel2.Controls.Add(this.groupBoxIdsParams);
-			this.splitContainer1.Panel2.Controls.Add(this.groupBoxDoublesParams);
-			this.splitContainer1.Panel2.Controls.Add(this.groupBoxIntsParams);
-			this.splitContainer1.Panel2.Controls.Add(this.noParamsControl1);
+			this.splitContainer1.Panel2.Controls.Add(this.collapsableStringsParams);
+			this.splitContainer1.Panel2.Controls.Add(this.collapsableDoublesParams);
+			this.splitContainer1.Panel2.Controls.Add(this.collapsableIntsParams);
+			this.splitContainer1.Panel2.Controls.Add(this.collapsableIdsParams);
+			this.splitContainer1.Panel2.Controls.Add(this.collapsableNoParams);
 			this.splitContainer1.Panel2.Controls.Add(this.panel2);
 			this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(4);
 			this.splitContainer1.Size = new System.Drawing.Size(446, 656);
@@ -156,124 +163,224 @@
 			this.labelCount.TabIndex = 1;
 			this.labelCount.Text = "Count: 0";
 			// 
-			// groupBoxFixedStrings
+			// collapsableStringsParams
 			// 
-			this.groupBoxFixedStrings.Controls.Add(this.fixedStringsParamsControl1);
-			this.groupBoxFixedStrings.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxFixedStrings.Location = new System.Drawing.Point(4, 440);
-			this.groupBoxFixedStrings.Name = "groupBoxFixedStrings";
-			this.groupBoxFixedStrings.Size = new System.Drawing.Size(284, 230);
-			this.groupBoxFixedStrings.TabIndex = 12;
-			this.groupBoxFixedStrings.TabStop = false;
-			this.groupBoxFixedStrings.Text = "Fixed Strings Parameters";
+			this.collapsableStringsParams.AllowDrop = true;
+			this.collapsableStringsParams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.collapsableStringsParams.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.collapsableStringsParams.Caption = "Strings Parameters";
+			this.collapsableStringsParams.CaptionCollapsed = "";
+			this.collapsableStringsParams.CaptionOppositeAlignment = false;
+			this.collapsableStringsParams.Collapsable = true;
+			this.collapsableStringsParams.Collapsed = false;
+			this.collapsableStringsParams.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableStringsParams.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableStringsParams.Location = new System.Drawing.Point(4, 157);
+			this.collapsableStringsParams.Name = "collapsableStringsParams";
+			this.collapsableStringsParams.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableStringsParams.Size = new System.Drawing.Size(284, 313);
+			this.collapsableStringsParams.TabIndex = 19;
+			// 
+			// collapsableStringsParams.WorkingArea
+			// 
+			this.collapsableStringsParams.WorkingArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+			this.collapsableStringsParams.WorkingArea.Controls.Add(this.fixedStringsParamsControl1);
+			this.collapsableStringsParams.WorkingArea.Controls.Add(this.checkBoxLimitedStrings);
+			this.collapsableStringsParams.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableStringsParams.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableStringsParams.WorkingArea.Name = "WorkingArea";
+			this.collapsableStringsParams.WorkingArea.Size = new System.Drawing.Size(276, 291);
+			this.collapsableStringsParams.WorkingArea.TabIndex = 2;
 			// 
 			// fixedStringsParamsControl1
 			// 
 			this.fixedStringsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.fixedStringsParamsControl1.Location = new System.Drawing.Point(3, 16);
+			this.fixedStringsParamsControl1.Location = new System.Drawing.Point(0, 17);
 			this.fixedStringsParamsControl1.Name = "fixedStringsParamsControl1";
 			this.fixedStringsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.fixedStringsParamsControl1.Size = new System.Drawing.Size(278, 211);
-			this.fixedStringsParamsControl1.TabIndex = 0;
-			this.fixedStringsParamsControl1.UseFixedStrings = false;
+			this.fixedStringsParamsControl1.Size = new System.Drawing.Size(276, 274);
+			this.fixedStringsParamsControl1.TabIndex = 1;
+			this.fixedStringsParamsControl1.UseLimitedStrings = false;
 			// 
-			// groupBoxIdsParams
+			// checkBoxLimitedStrings
 			// 
-			this.groupBoxIdsParams.Controls.Add(this.idsParamsControl1);
-			this.groupBoxIdsParams.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxIdsParams.Location = new System.Drawing.Point(4, 353);
-			this.groupBoxIdsParams.Name = "groupBoxIdsParams";
-			this.groupBoxIdsParams.Size = new System.Drawing.Size(284, 87);
-			this.groupBoxIdsParams.TabIndex = 11;
-			this.groupBoxIdsParams.TabStop = false;
-			this.groupBoxIdsParams.Text = "Ids Parameters";
+			this.checkBoxLimitedStrings.AutoSize = true;
+			this.checkBoxLimitedStrings.Dock = System.Windows.Forms.DockStyle.Top;
+			this.checkBoxLimitedStrings.Location = new System.Drawing.Point(0, 0);
+			this.checkBoxLimitedStrings.Name = "checkBoxLimitedStrings";
+			this.checkBoxLimitedStrings.Size = new System.Drawing.Size(276, 17);
+			this.checkBoxLimitedStrings.TabIndex = 2;
+			this.checkBoxLimitedStrings.Text = "Limited Strings";
+			this.checkBoxLimitedStrings.UseVisualStyleBackColor = true;
 			// 
-			// idsParamsControl1
+			// collapsableDoublesParams
 			// 
-			this.idsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.idsParamsControl1.Location = new System.Drawing.Point(3, 16);
-			this.idsParamsControl1.Name = "idsParamsControl1";
-			this.idsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.idsParamsControl1.Size = new System.Drawing.Size(278, 68);
-			this.idsParamsControl1.TabIndex = 0;
+			this.collapsableDoublesParams.AllowDrop = true;
+			this.collapsableDoublesParams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.collapsableDoublesParams.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.collapsableDoublesParams.Caption = "Doubles Parameters";
+			this.collapsableDoublesParams.CaptionCollapsed = "";
+			this.collapsableDoublesParams.CaptionOppositeAlignment = false;
+			this.collapsableDoublesParams.Collapsable = true;
+			this.collapsableDoublesParams.Collapsed = true;
+			this.collapsableDoublesParams.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableDoublesParams.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableDoublesParams.Location = new System.Drawing.Point(4, 135);
+			this.collapsableDoublesParams.Name = "collapsableDoublesParams";
+			this.collapsableDoublesParams.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableDoublesParams.Size = new System.Drawing.Size(284, 22);
+			this.collapsableDoublesParams.TabIndex = 22;
 			// 
-			// groupBoxDoublesParams
+			// collapsableDoublesParams.WorkingArea
 			// 
-			this.groupBoxDoublesParams.Controls.Add(this.doublesParamsControl1);
-			this.groupBoxDoublesParams.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxDoublesParams.Location = new System.Drawing.Point(4, 230);
-			this.groupBoxDoublesParams.Name = "groupBoxDoublesParams";
-			this.groupBoxDoublesParams.Size = new System.Drawing.Size(284, 123);
-			this.groupBoxDoublesParams.TabIndex = 4;
-			this.groupBoxDoublesParams.TabStop = false;
-			this.groupBoxDoublesParams.Text = "Doubles Gen Parameters";
+			this.collapsableDoublesParams.WorkingArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+			this.collapsableDoublesParams.WorkingArea.Controls.Add(this.doublesParamsControl1);
+			this.collapsableDoublesParams.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableDoublesParams.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableDoublesParams.WorkingArea.Name = "WorkingArea";
+			this.collapsableDoublesParams.WorkingArea.Size = new System.Drawing.Size(276, 101);
+			this.collapsableDoublesParams.WorkingArea.TabIndex = 2;
 			// 
 			// doublesParamsControl1
 			// 
 			this.doublesParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.doublesParamsControl1.Location = new System.Drawing.Point(3, 16);
+			this.doublesParamsControl1.Location = new System.Drawing.Point(0, 0);
 			this.doublesParamsControl1.Name = "doublesParamsControl1";
 			this.doublesParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.doublesParamsControl1.Size = new System.Drawing.Size(278, 104);
-			this.doublesParamsControl1.TabIndex = 0;
+			this.doublesParamsControl1.Size = new System.Drawing.Size(276, 101);
+			this.doublesParamsControl1.TabIndex = 1;
 			// 
-			// groupBoxIntsParams
+			// collapsableIntsParams
 			// 
-			this.groupBoxIntsParams.Controls.Add(this.intsParamsControl1);
-			this.groupBoxIntsParams.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxIntsParams.Location = new System.Drawing.Point(4, 141);
-			this.groupBoxIntsParams.Name = "groupBoxIntsParams";
-			this.groupBoxIntsParams.Size = new System.Drawing.Size(284, 89);
-			this.groupBoxIntsParams.TabIndex = 0;
-			this.groupBoxIntsParams.TabStop = false;
-			this.groupBoxIntsParams.Text = "Integers Parameters";
+			this.collapsableIntsParams.AllowDrop = true;
+			this.collapsableIntsParams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIntsParams.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIntsParams.Caption = "Integers Parameters";
+			this.collapsableIntsParams.CaptionCollapsed = "";
+			this.collapsableIntsParams.CaptionOppositeAlignment = false;
+			this.collapsableIntsParams.Collapsable = true;
+			this.collapsableIntsParams.Collapsed = true;
+			this.collapsableIntsParams.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableIntsParams.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableIntsParams.Location = new System.Drawing.Point(4, 113);
+			this.collapsableIntsParams.Name = "collapsableIntsParams";
+			this.collapsableIntsParams.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableIntsParams.Size = new System.Drawing.Size(284, 22);
+			this.collapsableIntsParams.TabIndex = 20;
+			// 
+			// collapsableIntsParams.WorkingArea
+			// 
+			this.collapsableIntsParams.WorkingArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIntsParams.WorkingArea.Controls.Add(this.intsParamsControl1);
+			this.collapsableIntsParams.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableIntsParams.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableIntsParams.WorkingArea.Name = "WorkingArea";
+			this.collapsableIntsParams.WorkingArea.Size = new System.Drawing.Size(276, 66);
+			this.collapsableIntsParams.WorkingArea.TabIndex = 2;
 			// 
 			// intsParamsControl1
 			// 
 			this.intsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.intsParamsControl1.Location = new System.Drawing.Point(3, 16);
+			this.intsParamsControl1.Location = new System.Drawing.Point(0, 0);
 			this.intsParamsControl1.Name = "intsParamsControl1";
 			this.intsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.intsParamsControl1.Size = new System.Drawing.Size(278, 70);
-			this.intsParamsControl1.TabIndex = 13;
+			this.intsParamsControl1.Size = new System.Drawing.Size(276, 66);
+			this.intsParamsControl1.TabIndex = 14;
+			// 
+			// collapsableIdsParams
+			// 
+			this.collapsableIdsParams.AllowDrop = true;
+			this.collapsableIdsParams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIdsParams.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIdsParams.Caption = "Ids Parameters";
+			this.collapsableIdsParams.CaptionCollapsed = "";
+			this.collapsableIdsParams.CaptionOppositeAlignment = false;
+			this.collapsableIdsParams.Collapsable = true;
+			this.collapsableIdsParams.Collapsed = true;
+			this.collapsableIdsParams.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableIdsParams.Controls.Add(this.doublesParamsControl2);
+			this.collapsableIdsParams.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableIdsParams.Location = new System.Drawing.Point(4, 91);
+			this.collapsableIdsParams.Name = "collapsableIdsParams";
+			this.collapsableIdsParams.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableIdsParams.Size = new System.Drawing.Size(284, 22);
+			this.collapsableIdsParams.TabIndex = 17;
+			// 
+			// collapsableIdsParams.WorkingArea
+			// 
+			this.collapsableIdsParams.WorkingArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+			this.collapsableIdsParams.WorkingArea.Controls.Add(this.idsParamsControl1);
+			this.collapsableIdsParams.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableIdsParams.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableIdsParams.WorkingArea.Name = "WorkingArea";
+			this.collapsableIdsParams.WorkingArea.Size = new System.Drawing.Size(276, 69);
+			this.collapsableIdsParams.WorkingArea.TabIndex = 2;
+			// 
+			// doublesParamsControl2
+			// 
+			this.doublesParamsControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.doublesParamsControl2.Location = new System.Drawing.Point(4, 4);
+			this.doublesParamsControl2.Name = "doublesParamsControl2";
+			this.doublesParamsControl2.Padding = new System.Windows.Forms.Padding(4);
+			this.doublesParamsControl2.Size = new System.Drawing.Size(276, 14);
+			this.doublesParamsControl2.TabIndex = 4;
+			// 
+			// idsParamsControl1
+			// 
+			this.idsParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.idsParamsControl1.Location = new System.Drawing.Point(0, 0);
+			this.idsParamsControl1.Name = "idsParamsControl1";
+			this.idsParamsControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.idsParamsControl1.Size = new System.Drawing.Size(276, 69);
+			this.idsParamsControl1.TabIndex = 1;
+			// 
+			// collapsableNoParams
+			// 
+			this.collapsableNoParams.AllowDrop = true;
+			this.collapsableNoParams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+			this.collapsableNoParams.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+			this.collapsableNoParams.Caption = "No Parameters";
+			this.collapsableNoParams.CaptionCollapsed = "";
+			this.collapsableNoParams.CaptionOppositeAlignment = false;
+			this.collapsableNoParams.Collapsable = true;
+			this.collapsableNoParams.Collapsed = false;
+			this.collapsableNoParams.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableNoParams.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableNoParams.Location = new System.Drawing.Point(4, 47);
+			this.collapsableNoParams.Name = "collapsableNoParams";
+			this.collapsableNoParams.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableNoParams.Size = new System.Drawing.Size(284, 44);
+			this.collapsableNoParams.TabIndex = 21;
+			// 
+			// collapsableNoParams.WorkingArea
+			// 
+			this.collapsableNoParams.WorkingArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+			this.collapsableNoParams.WorkingArea.Controls.Add(this.noParamsControl1);
+			this.collapsableNoParams.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableNoParams.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableNoParams.WorkingArea.Name = "WorkingArea";
+			this.collapsableNoParams.WorkingArea.Size = new System.Drawing.Size(276, 22);
+			this.collapsableNoParams.WorkingArea.TabIndex = 2;
 			// 
 			// noParamsControl1
 			// 
-			this.noParamsControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.noParamsControl1.Location = new System.Drawing.Point(4, 82);
+			this.noParamsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.noParamsControl1.Location = new System.Drawing.Point(0, 0);
 			this.noParamsControl1.Name = "noParamsControl1";
 			this.noParamsControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.noParamsControl1.Size = new System.Drawing.Size(284, 59);
-			this.noParamsControl1.TabIndex = 15;
+			this.noParamsControl1.Size = new System.Drawing.Size(276, 22);
+			this.noParamsControl1.TabIndex = 16;
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.labelType);
-			this.panel2.Controls.Add(this.comboBoxType);
+			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
 			this.panel2.Controls.Add(this.labelName);
 			this.panel2.Controls.Add(this.textBoxName);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(4, 4);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(284, 78);
+			this.panel2.Size = new System.Drawing.Size(284, 43);
 			this.panel2.TabIndex = 3;
-			// 
-			// labelType
-			// 
-			this.labelType.AutoSize = true;
-			this.labelType.Location = new System.Drawing.Point(13, 42);
-			this.labelType.Name = "labelType";
-			this.labelType.Size = new System.Drawing.Size(34, 13);
-			this.labelType.TabIndex = 6;
-			this.labelType.Text = "Type:";
-			// 
-			// comboBoxType
-			// 
-			this.comboBoxType.FormattingEnabled = true;
-			this.comboBoxType.Location = new System.Drawing.Point(72, 39);
-			this.comboBoxType.Name = "comboBoxType";
-			this.comboBoxType.Size = new System.Drawing.Size(170, 21);
-			this.comboBoxType.TabIndex = 5;
 			// 
 			// labelName
 			// 
@@ -305,10 +412,17 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
-			this.groupBoxFixedStrings.ResumeLayout(false);
-			this.groupBoxIdsParams.ResumeLayout(false);
-			this.groupBoxDoublesParams.ResumeLayout(false);
-			this.groupBoxIntsParams.ResumeLayout(false);
+			this.collapsableStringsParams.WorkingArea.ResumeLayout(false);
+			this.collapsableStringsParams.WorkingArea.PerformLayout();
+			this.collapsableStringsParams.ResumeLayout(false);
+			this.collapsableDoublesParams.WorkingArea.ResumeLayout(false);
+			this.collapsableDoublesParams.ResumeLayout(false);
+			this.collapsableIntsParams.WorkingArea.ResumeLayout(false);
+			this.collapsableIntsParams.ResumeLayout(false);
+			this.collapsableIdsParams.WorkingArea.ResumeLayout(false);
+			this.collapsableIdsParams.ResumeLayout(false);
+			this.collapsableNoParams.WorkingArea.ResumeLayout(false);
+			this.collapsableNoParams.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
@@ -325,19 +439,20 @@
 		private System.Windows.Forms.Button buttonDown;
 		private System.Windows.Forms.Button buttonUp;
 		private System.Windows.Forms.Button buttonRemove;
-		private System.Windows.Forms.GroupBox groupBoxIntsParams;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Label labelType;
-		private System.Windows.Forms.ComboBox comboBoxType;
 		private System.Windows.Forms.Label labelName;
 		private System.Windows.Forms.TextBox textBoxName;
-		private System.Windows.Forms.GroupBox groupBoxDoublesParams;
-		private System.Windows.Forms.GroupBox groupBoxIdsParams;
-		private IntsParamsControl intsParamsControl1;
+		private EugeneAnykey.Forms.Controls.CollapsableControl collapsableIdsParams;
+		private DoublesParamsControl doublesParamsControl2;
 		private IdsParamsControl idsParamsControl1;
+		private EugeneAnykey.Forms.Controls.CollapsableControl collapsableStringsParams;
+		private LimitedStringsParamsControl fixedStringsParamsControl1;
+		private EugeneAnykey.Forms.Controls.CollapsableControl collapsableDoublesParams;
 		private DoublesParamsControl doublesParamsControl1;
-		private System.Windows.Forms.GroupBox groupBoxFixedStrings;
-		private FixedStringsParamsControl fixedStringsParamsControl1;
+		private EugeneAnykey.Forms.Controls.CollapsableControl collapsableIntsParams;
+		private IntsParamsControl intsParamsControl1;
+		private EugeneAnykey.Forms.Controls.CollapsableControl collapsableNoParams;
 		private NoParamsControl noParamsControl1;
+		private System.Windows.Forms.CheckBox checkBoxLimitedStrings;
 	}
 }

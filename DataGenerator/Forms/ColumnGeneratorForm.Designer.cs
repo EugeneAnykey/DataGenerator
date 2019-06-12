@@ -52,20 +52,22 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.labelRows);
+			this.panel1.Controls.Add(this.numericUpDownRows);
 			this.panel1.Controls.Add(this.buttonCopyColumns);
 			this.panel1.Controls.Add(this.buttonClose);
 			this.panel1.Controls.Add(this.buttonGenerate);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panel1.Location = new System.Drawing.Point(0, 388);
+			this.panel1.Location = new System.Drawing.Point(0, 360);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(352, 36);
+			this.panel1.Size = new System.Drawing.Size(352, 64);
 			this.panel1.TabIndex = 3;
 			// 
 			// buttonCopyColumns
 			// 
 			this.buttonCopyColumns.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonCopyColumns.Location = new System.Drawing.Point(117, 3);
+			this.buttonCopyColumns.Location = new System.Drawing.Point(118, 29);
 			this.buttonCopyColumns.Name = "buttonCopyColumns";
 			this.buttonCopyColumns.Size = new System.Drawing.Size(114, 23);
 			this.buttonCopyColumns.TabIndex = 5;
@@ -75,7 +77,7 @@
 			// buttonClose
 			// 
 			this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonClose.Location = new System.Drawing.Point(264, 3);
+			this.buttonClose.Location = new System.Drawing.Point(265, 29);
 			this.buttonClose.Name = "buttonClose";
 			this.buttonClose.Size = new System.Drawing.Size(75, 23);
 			this.buttonClose.TabIndex = 4;
@@ -84,7 +86,7 @@
 			// 
 			// buttonGenerate
 			// 
-			this.buttonGenerate.Location = new System.Drawing.Point(12, 3);
+			this.buttonGenerate.Location = new System.Drawing.Point(13, 29);
 			this.buttonGenerate.Name = "buttonGenerate";
 			this.buttonGenerate.Size = new System.Drawing.Size(75, 23);
 			this.buttonGenerate.TabIndex = 3;
@@ -95,9 +97,9 @@
 			// 
 			this.groupBoxColumns.Controls.Add(this.listBoxResultedColumns);
 			this.groupBoxColumns.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBoxColumns.Location = new System.Drawing.Point(0, 157);
+			this.groupBoxColumns.Location = new System.Drawing.Point(0, 133);
 			this.groupBoxColumns.Name = "groupBoxColumns";
-			this.groupBoxColumns.Size = new System.Drawing.Size(352, 231);
+			this.groupBoxColumns.Size = new System.Drawing.Size(352, 227);
 			this.groupBoxColumns.TabIndex = 6;
 			this.groupBoxColumns.TabStop = false;
 			this.groupBoxColumns.Text = "Resulted Columns:";
@@ -108,14 +110,14 @@
 			this.listBoxResultedColumns.FormattingEnabled = true;
 			this.listBoxResultedColumns.Location = new System.Drawing.Point(3, 16);
 			this.listBoxResultedColumns.Name = "listBoxResultedColumns";
-			this.listBoxResultedColumns.Size = new System.Drawing.Size(346, 212);
+			this.listBoxResultedColumns.Size = new System.Drawing.Size(346, 208);
 			this.listBoxResultedColumns.TabIndex = 0;
 			// 
 			// groupBoxItems
 			// 
 			this.groupBoxItems.Controls.Add(this.textBoxItems);
 			this.groupBoxItems.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupBoxItems.Location = new System.Drawing.Point(0, 65);
+			this.groupBoxItems.Location = new System.Drawing.Point(0, 41);
 			this.groupBoxItems.Name = "groupBoxItems";
 			this.groupBoxItems.Size = new System.Drawing.Size(352, 92);
 			this.groupBoxItems.TabIndex = 7;
@@ -133,15 +135,13 @@
 			// 
 			// panel2
 			// 
-			this.panel2.Controls.Add(this.labelRows);
-			this.panel2.Controls.Add(this.numericUpDownRows);
 			this.panel2.Controls.Add(this.buttonFastExample);
 			this.panel2.Controls.Add(this.comboBoxItemsSeparator);
 			this.panel2.Controls.Add(this.labelItemsSeparator);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(352, 65);
+			this.panel2.Size = new System.Drawing.Size(352, 41);
 			this.panel2.TabIndex = 8;
 			// 
 			// buttonFastExample
@@ -173,18 +173,18 @@
 			// labelRows
 			// 
 			this.labelRows.AutoSize = true;
-			this.labelRows.Location = new System.Drawing.Point(9, 36);
+			this.labelRows.Location = new System.Drawing.Point(96, 3);
 			this.labelRows.Name = "labelRows";
 			this.labelRows.Size = new System.Drawing.Size(37, 13);
-			this.labelRows.TabIndex = 9;
+			this.labelRows.TabIndex = 11;
 			this.labelRows.Text = "Rows:";
 			// 
 			// numericUpDownRows
 			// 
-			this.numericUpDownRows.Location = new System.Drawing.Point(99, 34);
+			this.numericUpDownRows.Location = new System.Drawing.Point(186, 1);
 			this.numericUpDownRows.Name = "numericUpDownRows";
 			this.numericUpDownRows.Size = new System.Drawing.Size(71, 20);
-			this.numericUpDownRows.TabIndex = 8;
+			this.numericUpDownRows.TabIndex = 10;
 			// 
 			// ColumnGeneratorForm
 			// 
@@ -201,6 +201,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Column Generator";
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.groupBoxColumns.ResumeLayout(false);
 			this.groupBoxItems.ResumeLayout(false);
 			this.groupBoxItems.PerformLayout();

@@ -1,23 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
-using EugeneAnykey.Project.DataGenerator.Misc;
+using EugeneAnykey.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class FixedStringsParamsControl : UserControl
+	public partial class LimitedStringsParamsControl : UserControl, IGenGetter
 	{
-		public StringsGen GetGen() => new StringsGen(Separate());
+		public StringsGen GetStandardGen() => new StringsGen(Separate());
 
-		public FixedStringsGen GetFixedGen() => new FixedStringsGen(Separate(), (int)numericUpDownFixed.Value);
+		public LimitedStringsGen GetLimitedGen() => new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
 
-		public BaseGen GetGenBase()
+		public BaseGen GetGen()
 		{
-			if (useFixedStrings)
-				return new FixedStringsGen(Separate(), (int)numericUpDownFixed.Value);
+			if (useLimitedStrings)
+				return new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
 			else
 				return new StringsGen(Separate());
 		}
+
+		public BaseGen GetBaseGen()
+		{
+			if (useLimitedStrings)
+				return new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
+			else
+				return new StringsGen(Separate());
+		}
+
+
 
 		// const
 		static readonly SeparatorItem commaSeparator = new SeparatorItem("Comma — [,]", ',');
@@ -29,23 +38,22 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		// field
 		SeparatorItem[] separators;
 
-		bool useFixedStrings;
-		public bool UseFixedStrings
+		bool useLimitedStrings;
+		public bool UseLimitedStrings
 		{
-			get => useFixedStrings;
+			get => useLimitedStrings;
 			set
 			{
-				useFixedStrings = value;
+				useLimitedStrings = value;
 				panelMaxLength.Enabled = value;
 				panelMaxLength.Visible = value;
-				labelName.Text = value ? "Fixed Strings Parameters" : "Strings Parameters";
 			}
 		}
 
 
 
 		// init
-		public FixedStringsParamsControl()
+		public LimitedStringsParamsControl()
 		{
 			InitializeComponent();
 
