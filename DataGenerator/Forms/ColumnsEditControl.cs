@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms.Controls;
+using System;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
@@ -37,11 +38,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			};
 
 			gens = new UserControl[] {
-				noParamsControl1,
-				idsParamsControl1,
-				intsParamsControl1,
-				doublesParamsControl1,
-				fixedStringsParamsControl1
+				noParamsControl,
+				idsParamsControl,
+				intsParamsControl,
+				doublesParamsControl,
+				stringsParamsControl
 			};
 
 			ShowOnly(collapsableNoParams);
@@ -49,7 +50,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void InitEvent()
 		{
-			buttonAdd.Click += (_, __) => Add();
+			gensListControl1.AddingItem += (_, gen) => AddingItem(gen);
 
 			foreach (var col in collapsables)
 			{
@@ -59,12 +60,25 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			checkBoxLimitedStrings.CheckedChanged += (_, __) => ToggleLimitedStrings(checkBoxLimitedStrings.Checked);
 		}
 
+		void AddingItem(GenItemAddEventArgs genItemArgs)
+		{
+			IGenGetter ugen = null;
+			for (int i = 0; i < collapsables.Length; i++)
+			{
+				if (!collapsables[i].Collapsed)
+				{
+					ugen = gens[i] as IGenGetter;
+					break;
+				}
+			}
 
+			genItemArgs.Gen = ugen?.GetBaseGen();
+		}
 
 		void ToggleLimitedStrings(bool enable)
 		{
 			collapsableStringsParams.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
-			fixedStringsParamsControl1.UseLimitedStrings = enable;
+			stringsParamsControl.UseLimitedStrings = enable;
 		}
 
 		void Add()
@@ -72,13 +86,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			BaseGen gen = null;
 
 			gen = new NothingGen();
-			gen = idsParamsControl1.GetGen();
-			gen = intsParamsControl1.GetGen();
-			gen = doublesParamsControl1.GetGen();
+			gen = idsParamsControl.GetGen();
+			gen = intsParamsControl.GetGen();
+			gen = doublesParamsControl.GetGen();
 			//case GeneratorsTypes.String:
-			gen = fixedStringsParamsControl1.GetGen();
+			gen = stringsParamsControl.GetGen();
 			//case GeneratorsTypes.FixedString:
-			gen = fixedStringsParamsControl1.GetGen();
+			gen = stringsParamsControl.GetGen();
 			//case GeneratorsTypes.Unknown:
 			//default:
 			//gen = null;
@@ -87,7 +101,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				return;
 
 			gen.Name = textBoxName.Text;
-			listBox1.Items.Add(gen);
+			//listBox.Items.Add(gen);
 		}
 
 

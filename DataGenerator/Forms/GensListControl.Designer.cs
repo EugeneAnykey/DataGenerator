@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.groupBoxMain = new System.Windows.Forms.GroupBox();
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.listBox = new System.Windows.Forms.ListBox();
 			this.panelSide = new System.Windows.Forms.Panel();
 			this.buttonAdd = new System.Windows.Forms.Button();
 			this.buttonDown = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@
 			// 
 			// groupBoxMain
 			// 
-			this.groupBoxMain.Controls.Add(this.listBox1);
+			this.groupBoxMain.Controls.Add(this.listBox);
 			this.groupBoxMain.Controls.Add(this.panelSide);
 			this.groupBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxMain.Location = new System.Drawing.Point(4, 4);
@@ -53,12 +53,12 @@
 			// 
 			// listBox1
 			// 
-			this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(3, 16);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(226, 401);
-			this.listBox1.TabIndex = 3;
+			this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listBox.FormattingEnabled = true;
+			this.listBox.Location = new System.Drawing.Point(3, 16);
+			this.listBox.Name = "listBox1";
+			this.listBox.Size = new System.Drawing.Size(226, 401);
+			this.listBox.TabIndex = 3;
 			// 
 			// panelSide
 			// 
@@ -125,7 +125,7 @@
 		#endregion
 
 		private System.Windows.Forms.GroupBox groupBoxMain;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.ListBox listBox;
 		private System.Windows.Forms.Panel panelSide;
 		private System.Windows.Forms.Button buttonAdd;
 		private System.Windows.Forms.Button buttonDown;

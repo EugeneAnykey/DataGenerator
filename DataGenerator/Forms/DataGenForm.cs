@@ -21,7 +21,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		public DataGenForm()
 		{
 			InitializeComponent();
-			
+
 			Text = Application.ProductName;
 
 			Init();
@@ -42,7 +42,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			menuExit.Click += (_, __) => Close();
 			menuFormsColumnGenerator.Click += (_, __) => new ColumnGeneratorForm().ShowDialog();
-			buttonTest.Click += (_, __) => GenTestFile();
+			buttonGenFile.Click += (_,__) => GenFile(ChooseFilename());
+			buttonTest.Click += (_, __) => GenTestFile("1.txt");
 			menuAbout.Click += FormUtils.ShowAbout;
 		}
 		#endregion
@@ -51,48 +52,40 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		#region private: GetRowsCount (+Short), ShowElapsed.
 		void ShowElapsed() => labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
-		
+
 		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100 * percents:N2}%.\nElapsed: {watch.Elapsed}.";
 		#endregion
 
 
 
 		#region events handlers
-		void ButtonGenFile_Click(object sender, EventArgs e)
+		string ChooseFilename()
 		{
-			var rows = rowsCountControl1.RowsCount;
 			var cols = (int)numericUpDownColumns.Value;
-
 			saveFileDialog1.FileName = $"random_r{rowsCountControl1.RowsCountShort}_c{cols}.txt";
 
 			if (DialogResult.OK != saveFileDialog1.ShowDialog())
 			{
-				return;
+				return string.Empty;
 			}
-			var filename = saveFileDialog1.FileName;
-
-			GenFile(filename, cols, rows);
-		}
-
-
-
-		public void DoWork(string filename, int rows, string[] types, IProgress<float> progress)
-		{
-			fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, generator.GetLines, progress);
+			return saveFileDialog1.FileName;
 		}
 		#endregion
 
 
 
-		async void GenFile(string filename, int cols, int rows)
+		async void GenFile(string filename)
 		{
+			var rows = rowsCountControl1.RowsCount;
+			var cols = (int)numericUpDownColumns.Value;
+
 			watch.Restart();
 
 			var progress = new Progress<float>(v => ShowElapsed(v));
 
 			string[] types = generator.GenerateTypes(true, cols);
 
-			await Task.Run(() => DoWork(filename, rows, types, progress));
+			await Task.Run(() => fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, generator.GetLines, progress));
 
 			watch.Stop();
 			ShowElapsed();
@@ -101,7 +94,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// TEST only
-		async void GenTestFile()
+		async void GenTestFile(string filename)
 		{
 			watch.Restart();
 
@@ -118,7 +111,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				new StringsGen(WordsHolder.EngWords),
 			};
 
-			await Task.Run(() => FileGen.GenerateTestFile("1.txt", 1000000, gens, progress));
+			await Task.Run(() => FileGen.GenerateTestFile(filename, 1000000, gens, progress));
 
 			watch.Stop();
 			ShowElapsed();
