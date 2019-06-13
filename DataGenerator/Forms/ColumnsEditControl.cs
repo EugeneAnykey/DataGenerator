@@ -8,15 +8,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 	public partial class ColumnsEditControl : UserControl
 	{
 		// const
-		readonly string[] exampleLines = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
-
+		
 
 
 		// field
 		//BaseGen gen;
 
-		UserControl[] gens;
+		UserControl[] ugens;
 		CollapsableControl[] collapsables;
+
+
 
 		// init
 		public ColumnsEditControl()
@@ -37,7 +38,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				collapsableStringsParams
 			};
 
-			gens = new UserControl[] {
+			ugens = new UserControl[] {
 				noParamsControl,
 				idsParamsControl,
 				intsParamsControl,
@@ -51,6 +52,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		void InitEvent()
 		{
 			gensListControl1.AddingItem += (_, gen) => AddingItem(gen);
+			gensListControl1.AddingRandomItem += (_, gen) => AddingRandomItem(gen);
+			gensListControl1.ItemSelected += (_, gen) => SelectingItem(gen);
 
 			foreach (var col in collapsables)
 			{
@@ -60,6 +63,37 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			checkBoxLimitedStrings.CheckedChanged += (_, __) => ToggleLimitedStrings(checkBoxLimitedStrings.Checked);
 		}
 
+		void ToggleLimitedStrings(bool enable)
+		{
+			collapsableStringsParams.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
+			stringsParamsControl.UseLimitedStrings = enable;
+		}
+
+
+
+		// public
+		public BaseGen[] GetBaseGens() => gensListControl1.GetBaseGens();
+
+
+
+		// private
+		void AddingRandomItem(GenItemEventArgs genItemArgs)
+		{
+			BaseGen gen = null;
+			var rnd = Randomizer.R.Next(ugens.Length);
+
+			if (ugens[rnd] is IGenRandomGetter ugen)
+			{
+				gen = ugen.GetRandomBaseGen();
+				if (gen == null)
+					return;
+
+				genItemArgs.Gen = gen;
+			}
+		}
+
+
+
 		void AddingItem(GenItemAddEventArgs genItemArgs)
 		{
 			IGenGetter ugen = null;
@@ -67,41 +101,78 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			{
 				if (!collapsables[i].Collapsed)
 				{
-					ugen = gens[i] as IGenGetter;
+					ugen = ugens[i] as IGenGetter;
 					break;
 				}
 			}
 
-			genItemArgs.Gen = ugen?.GetBaseGen();
-		}
-
-		void ToggleLimitedStrings(bool enable)
-		{
-			collapsableStringsParams.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
-			stringsParamsControl.UseLimitedStrings = enable;
-		}
-
-		void Add()
-		{
-			BaseGen gen = null;
-
-			gen = new NothingGen();
-			gen = idsParamsControl.GetGen();
-			gen = intsParamsControl.GetGen();
-			gen = doublesParamsControl.GetGen();
-			//case GeneratorsTypes.String:
-			gen = stringsParamsControl.GetGen();
-			//case GeneratorsTypes.FixedString:
-			gen = stringsParamsControl.GetGen();
-			//case GeneratorsTypes.Unknown:
-			//default:
-			//gen = null;
+			var gen = ugen?.GetBaseGen();
 
 			if (gen == null)
 				return;
 
 			gen.Name = textBoxName.Text;
-			//listBox.Items.Add(gen);
+
+			genItemArgs.Gen = gen;
+		}
+
+
+
+		void SelectingItem(GenItemEventArgs genItemArgs)
+		{
+			ShowOnly(genItemArgs.Gen);
+		}
+
+
+
+		void ShowOnly(BaseGen gen)
+		{
+			if (gen is NothingGen)
+			{
+				ActivateGen(collapsableNoParams, noParamsControl, gen);
+				return;
+			}
+
+			if (gen is IdsGen)
+			{
+				ActivateGen(collapsableIdsParams, idsParamsControl, gen);
+				return;
+			}
+
+			if (gen is IntegersGen)
+			{
+				ActivateGen(collapsableIntsParams, intsParamsControl, gen);
+				return;
+			}
+
+			if (gen is DoublesGen)
+			{
+				ActivateGen(collapsableDoublesParams, doublesParamsControl, gen);
+				return;
+			}
+
+			if (gen is StringsGen)
+			{
+				ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
+				stringsParamsControl.UseLimitedStrings = false;
+				return;
+			}
+
+			if (gen is LimitedStringsGen)
+			{
+				ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
+				stringsParamsControl.UseLimitedStrings = true;
+				return;
+			}
+		}
+
+
+
+		void ActivateGen(CollapsableControl control, IGenSetter igen, BaseGen gen)
+		{
+			ShowOnly(control);
+			igen.SetBaseGen(gen);
+			textBoxName.Text = gen.Name;
 		}
 
 
@@ -110,7 +181,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			foreach (var c in collapsables)
 			{
-				c.Collapsed = !(c == collapsable);
+				//c.Collapsed = !(c == collapsable);
+				c.Collapsed = true;
 			}
 
 			if (null == collapsable)
@@ -119,10 +191,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				return;
 			}
 
-			if (textBoxName.Text.Length == 0)
-			{
-				textBoxName.Text = collapsable.Caption;
-			}
+			collapsable.Collapsed = false;
+			textBoxName.Text = collapsable.Caption;
 		}
 	}
 }

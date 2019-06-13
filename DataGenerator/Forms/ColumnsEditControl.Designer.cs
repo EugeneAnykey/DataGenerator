@@ -32,6 +32,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.labelName = new System.Windows.Forms.Label();
 			this.textBoxName = new System.Windows.Forms.TextBox();
+			this.gensListControl1 = new EugeneAnykey.Project.DataGenerator.Forms.GensListControl();
 			this.collapsableStringsParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.stringsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.LimitedStringsParamsControl();
 			this.checkBoxLimitedStrings = new System.Windows.Forms.CheckBox();
@@ -44,7 +45,6 @@
 			this.idsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.IdsParamsControl();
 			this.collapsableNoParams = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.noParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.NoParamsControl();
-			this.gensListControl1 = new EugeneAnykey.Project.DataGenerator.Forms.GensListControl();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -76,6 +76,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.AutoScroll = true;
 			this.splitContainer1.Panel2.Controls.Add(this.collapsableStringsParams);
 			this.splitContainer1.Panel2.Controls.Add(this.collapsableDoublesParams);
 			this.splitContainer1.Panel2.Controls.Add(this.collapsableIntsParams);
@@ -114,6 +115,15 @@
 			this.textBoxName.Size = new System.Drawing.Size(170, 20);
 			this.textBoxName.TabIndex = 3;
 			// 
+			// gensListControl1
+			// 
+			this.gensListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gensListControl1.Location = new System.Drawing.Point(4, 4);
+			this.gensListControl1.Name = "gensListControl1";
+			this.gensListControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.gensListControl1.Size = new System.Drawing.Size(142, 648);
+			this.gensListControl1.TabIndex = 0;
+			// 
 			// collapsableStringsParams
 			// 
 			this.collapsableStringsParams.AllowDrop = true;
@@ -143,11 +153,11 @@
 			this.collapsableStringsParams.WorkingArea.Size = new System.Drawing.Size(276, 291);
 			this.collapsableStringsParams.WorkingArea.TabIndex = 2;
 			// 
-			// fixedStringsParamsControl1
+			// stringsParamsControl
 			// 
 			this.stringsParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.stringsParamsControl.Location = new System.Drawing.Point(0, 17);
-			this.stringsParamsControl.Name = "fixedStringsParamsControl1";
+			this.stringsParamsControl.Name = "stringsParamsControl";
 			this.stringsParamsControl.Padding = new System.Windows.Forms.Padding(4);
 			this.stringsParamsControl.Size = new System.Drawing.Size(276, 274);
 			this.stringsParamsControl.TabIndex = 1;
@@ -192,11 +202,11 @@
 			this.collapsableDoublesParams.WorkingArea.Size = new System.Drawing.Size(276, 101);
 			this.collapsableDoublesParams.WorkingArea.TabIndex = 2;
 			// 
-			// doublesParamsControl1
+			// doublesParamsControl
 			// 
 			this.doublesParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.doublesParamsControl.Location = new System.Drawing.Point(0, 0);
-			this.doublesParamsControl.Name = "doublesParamsControl1";
+			this.doublesParamsControl.Name = "doublesParamsControl";
 			this.doublesParamsControl.Padding = new System.Windows.Forms.Padding(4);
 			this.doublesParamsControl.Size = new System.Drawing.Size(276, 101);
 			this.doublesParamsControl.TabIndex = 1;
@@ -229,11 +239,11 @@
 			this.collapsableIntsParams.WorkingArea.Size = new System.Drawing.Size(276, 66);
 			this.collapsableIntsParams.WorkingArea.TabIndex = 2;
 			// 
-			// intsParamsControl1
+			// intsParamsControl
 			// 
 			this.intsParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.intsParamsControl.Location = new System.Drawing.Point(0, 0);
-			this.intsParamsControl.Name = "intsParamsControl1";
+			this.intsParamsControl.Name = "intsParamsControl";
 			this.intsParamsControl.Padding = new System.Windows.Forms.Padding(4);
 			this.intsParamsControl.Size = new System.Drawing.Size(276, 66);
 			this.intsParamsControl.TabIndex = 14;
@@ -276,11 +286,11 @@
 			this.doublesParamsControl2.Size = new System.Drawing.Size(276, 14);
 			this.doublesParamsControl2.TabIndex = 4;
 			// 
-			// idsParamsControl1
+			// idsParamsControl
 			// 
 			this.idsParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.idsParamsControl.Location = new System.Drawing.Point(0, 0);
-			this.idsParamsControl.Name = "idsParamsControl1";
+			this.idsParamsControl.Name = "idsParamsControl";
 			this.idsParamsControl.Padding = new System.Windows.Forms.Padding(4);
 			this.idsParamsControl.Size = new System.Drawing.Size(276, 69);
 			this.idsParamsControl.TabIndex = 1;
@@ -313,23 +323,14 @@
 			this.collapsableNoParams.WorkingArea.Size = new System.Drawing.Size(276, 22);
 			this.collapsableNoParams.WorkingArea.TabIndex = 2;
 			// 
-			// noParamsControl1
+			// noParamsControl
 			// 
 			this.noParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.noParamsControl.Location = new System.Drawing.Point(0, 0);
-			this.noParamsControl.Name = "noParamsControl1";
+			this.noParamsControl.Name = "noParamsControl";
 			this.noParamsControl.Padding = new System.Windows.Forms.Padding(4);
 			this.noParamsControl.Size = new System.Drawing.Size(276, 22);
 			this.noParamsControl.TabIndex = 16;
-			// 
-			// gensListControl1
-			// 
-			this.gensListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gensListControl1.Location = new System.Drawing.Point(4, 4);
-			this.gensListControl1.Name = "gensListControl1";
-			this.gensListControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.gensListControl1.Size = new System.Drawing.Size(142, 648);
-			this.gensListControl1.TabIndex = 0;
 			// 
 			// ColumnsEditControl
 			// 

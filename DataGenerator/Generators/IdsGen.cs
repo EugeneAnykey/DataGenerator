@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
@@ -7,34 +6,35 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 	{
 		// field
 		int current;
-		readonly int step;
+		public int Start { get; }
+		public int Step { get; }
 
 		public override string Name { get; set; } = "Ids Gen";
 
-		public string[] Latest { get; private set; }
+		public string[] Latest { get; private set; } = new string[0];
 
 
 
 		// init
 		public IdsGen(int start, int step = 1)
 		{
-			this.current = start - step;
-			this.step = step;
-			Latest = new string[0];
+			Start = start;
+			Step = step;
+			current = start - step;
 		}
 
 
 
 		// Generate
-		public int Generate() => current += step;
+		public int Generate() => current += Step;
 
-		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => current += step);
+		public IEnumerable<int> Generate(int count) => Fill(count, () => current += Step);
 
 
 
 		// Output
 		public string Output() => Generate().ToString();
 
-		public IEnumerable<string> Output(int count) => Latest = Fill<string>(count, () => (current += step).ToString()) as string[];
+		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => (current += Step).ToString()) as string[];
 	}
 }

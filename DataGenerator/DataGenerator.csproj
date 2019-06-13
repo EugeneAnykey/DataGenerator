@@ -96,7 +96,9 @@
     <Compile Include="Forms\DoublesParamsControl.Designer.cs">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\IGenGetter.cs" />
+    <Compile Include="_root\IGenRandomGetter.cs" />
+    <Compile Include="_root\IGenSetter.cs" />
+    <Compile Include="_root\IGenGetter.cs" />
     <Compile Include="Forms\LimitedStringsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,19 +127,21 @@
     <Compile Include="Generators\DataGen.cs" />
     <Compile Include="Generators\DoublesGen.cs" />
     <Compile Include="Generators\IdsGen.cs" />
-    <Compile Include="Generators\IGen.cs" />
+    <Compile Include="_root\IGen.cs" />
     <Compile Include="Generators\FileGen.cs" />
-    <Compile Include="Generators\BaseGen.cs" />
+    <Compile Include="_root\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
-    <Compile Include="Generators\IStringOutputer.cs" />
+    <Compile Include="_root\IStringOutputer.cs" />
     <Compile Include="Generators\LimitedStringsGen.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />
     <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
+    <Compile Include="_root\GenItemEventHandler.cs" />
+    <Compile Include="_root\GenItemAddEventHandler.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />
-    <Compile Include="_data\WordsHolder.cs" />
+    <Compile Include="_data\LinesHolder.cs" />
     <Compile Include="Forms\DataGenForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,11 +3,20 @@ using EugeneAnykey.Project.DataGenerator.Generators;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class NoParamsControl : UserControl, IGenGetter
+	public partial class NoParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
-		public NothingGen GetGen() => new NothingGen();
-
+		// IGenGetter
 		public BaseGen GetBaseGen() => new NothingGen();
+
+		// IGenRandomGetter
+		public BaseGen GetRandomBaseGen()
+		{
+			string[] rndNames = new[] { "Nothing", "Empty", "Void" };
+			return new NothingGen() { Name = Randomizer.OneOf(rndNames) };
+		}
+
+		// IGenSetter
+		public void SetBaseGen(BaseGen gen) { }
 
 
 

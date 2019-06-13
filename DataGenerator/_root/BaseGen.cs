@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EugeneAnykey.Project.DataGenerator.Generators
+namespace EugeneAnykey.Project.DataGenerator
 {
 	public abstract class BaseGen
 	{

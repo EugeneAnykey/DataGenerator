@@ -30,14 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGenForm));
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.buttonTest = new System.Windows.Forms.Button();
 			this.labelElapsed = new System.Windows.Forms.Label();
 			this.buttonGenFile = new System.Windows.Forms.Button();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageFixed = new System.Windows.Forms.TabPage();
-			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
 			this.tabPageRandom = new System.Windows.Forms.TabPage();
 			this.labelColumns = new System.Windows.Forms.Label();
 			this.numericUpDownColumns = new System.Windows.Forms.NumericUpDown();
@@ -47,6 +45,8 @@
 			this.menuForms = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuFormsColumnGenerator = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
+			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
 			this.groupBox1.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.tabPageFixed.SuspendLayout();
@@ -54,15 +54,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownColumns)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// rowsCountControl1
-			// 
-			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
-			this.rowsCountControl1.Name = "rowsCountControl1";
-			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.rowsCountControl1.Size = new System.Drawing.Size(526, 67);
-			this.rowsCountControl1.TabIndex = 9;
 			// 
 			// groupBox1
 			// 
@@ -126,15 +117,6 @@
 			this.tabPageFixed.Text = "Fixed Columns";
 			this.tabPageFixed.UseVisualStyleBackColor = true;
 			// 
-			// columnsEditControl1
-			// 
-			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.columnsEditControl1.Location = new System.Drawing.Point(3, 3);
-			this.columnsEditControl1.Name = "columnsEditControl1";
-			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.columnsEditControl1.Size = new System.Drawing.Size(512, 331);
-			this.columnsEditControl1.TabIndex = 0;
-			// 
 			// tabPageRandom
 			// 
 			this.tabPageRandom.Controls.Add(this.labelColumns);
@@ -142,7 +124,7 @@
 			this.tabPageRandom.Location = new System.Drawing.Point(4, 22);
 			this.tabPageRandom.Name = "tabPageRandom";
 			this.tabPageRandom.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageRandom.Size = new System.Drawing.Size(518, 361);
+			this.tabPageRandom.Size = new System.Drawing.Size(518, 337);
 			this.tabPageRandom.TabIndex = 1;
 			this.tabPageRandom.Text = "Random Columns";
 			this.tabPageRandom.UseVisualStyleBackColor = true;
@@ -186,7 +168,7 @@
 			// menuExit
 			// 
 			this.menuExit.Name = "menuExit";
-			this.menuExit.Size = new System.Drawing.Size(180, 22);
+			this.menuExit.Size = new System.Drawing.Size(92, 22);
 			this.menuExit.Text = "&Exit";
 			// 
 			// menuForms
@@ -208,6 +190,24 @@
 			this.menuAbout.Name = "menuAbout";
 			this.menuAbout.Size = new System.Drawing.Size(52, 20);
 			this.menuAbout.Text = "&About";
+			// 
+			// columnsEditControl1
+			// 
+			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.columnsEditControl1.Location = new System.Drawing.Point(3, 3);
+			this.columnsEditControl1.Name = "columnsEditControl1";
+			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.columnsEditControl1.Size = new System.Drawing.Size(512, 331);
+			this.columnsEditControl1.TabIndex = 0;
+			// 
+			// rowsCountControl1
+			// 
+			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
+			this.rowsCountControl1.Name = "rowsCountControl1";
+			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.rowsCountControl1.Size = new System.Drawing.Size(526, 67);
+			this.rowsCountControl1.TabIndex = 9;
 			// 
 			// DataGenForm
 			// 

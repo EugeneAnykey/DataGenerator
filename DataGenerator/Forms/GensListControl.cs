@@ -1,34 +1,8 @@
-﻿using EugeneAnykey.Project.DataGenerator.Generators;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public class GenItemAddEventArgs : EventArgs
-	{
-		BaseGen gen;
-		public BaseGen Gen
-		{
-			get => gen;
-			set
-			{
-				gen = value;
-				Cancel = gen == null;
-			}
-		}
-
-		public bool Cancel { get; private set; }
-
-		public GenItemAddEventArgs(BaseGen gen)
-		{
-			Gen = gen;
-		}
-	}
-
-	public delegate void GenItemAddEventHandler(object sender, GenItemAddEventArgs args);
-
-
-
 	public partial class GensListControl : UserControl
 	{
 		// events
@@ -38,11 +12,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		public event GenItemAddEventHandler AddingItem;
 		void OnAddingItem(GenItemAddEventArgs args) => AddingItem?.Invoke(this, args);
 
-		public event GenItemAddEventHandler ItemSelected;
-		void OnItemSelected(GenItemAddEventArgs args) => ItemSelected?.Invoke(this, args);
+		public event GenItemEventHandler ItemSelected;
+		void OnItemSelected(GenItemEventArgs args) => ItemSelected?.Invoke(this, args);
+
+		public event GenItemEventHandler AddingRandomItem;
+		void OnAddingRandomItem(GenItemEventArgs args) => AddingRandomItem?.Invoke(this, args);
 
 		public event EventHandler RemovingItem;
 		void OnRemovingItem() => RemovingItem?.Invoke(this, EventArgs.Empty);
+
+
 
 
 
@@ -62,10 +41,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void InitEvent()
 		{
-			buttonAdd.Click += (_, __) => Add();
+			buttonAdd.Click += (_, __) => AddItem();
+			buttonGenerateRandom.Click += (_, __) => AddRandomItem();
 			buttonUp.Click += (_, __) => MoveItem(Direction.Up);
 			buttonDown.Click += (_, __) => MoveItem(Direction.Down);
-			buttonRemove.Click += (_, __) => Remove();
+			buttonRemove.Click += (_, __) => RemoveItem();
 
 			listBox.SelectedIndexChanged += (_, __) => SelectedItem();
 		}
@@ -116,25 +96,38 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// Add
-		void Add()
+		void AddItem()
 		{
-			//OnPassingItemToAdd();
 			var args = new GenItemAddEventArgs(null);
 			OnAddingItem(args);
 
-			//if (args.Cancel)
 			if (args.Gen == null)
 				return;
 
-			listBox.Items.Add(args.Gen);
-			
+			AddItem(args.Gen);
+		}
+
+		void AddItem(BaseGen gen)
+		{
+			listBox.Items.Add(gen);
 			UpdateCaption();
+		}
+
+		void AddRandomItem()
+		{
+			var args = new GenItemEventArgs(null);
+			OnAddingRandomItem(args);
+
+			if (args.Gen == null)
+				return;
+
+			AddItem(args.Gen);
 		}
 
 
 
 		// Remove
-		void Remove()
+		void RemoveItem()
 		{
 			if (!(listBox.SelectedItem is BaseGen selected))
 				return;
@@ -151,8 +144,17 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			if (!(listBox.SelectedItem is BaseGen selected))
 				return;
 
-			var args = new GenItemAddEventArgs(selected);
-			OnItemSelected(args);
+			OnItemSelected(new GenItemEventArgs(selected));
+		}
+
+
+
+		// public GetBaseGens
+		public BaseGen[] GetBaseGens()
+		{
+			var res = new BaseGen[listBox.Items.Count];
+			listBox.Items.CopyTo(res, 0);
+			return res;
 		}
 
 

@@ -4,11 +4,29 @@ using EugeneAnykey.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class IdsParamsControl : UserControl, IGenGetter
+	public partial class IdsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
-		public IdsGen GetGen() => new IdsGen((int)numericUpDownStart.Value, (int)numericUpDownStep.Value);
-
+		// IGenGetter
 		public BaseGen GetBaseGen() => new IdsGen((int)numericUpDownStart.Value, (int)numericUpDownStep.Value);
+
+		// IGenRandomGetter
+		public BaseGen GetRandomBaseGen()
+		{
+			string[] rndNames = new[] { "Id", "Num", "Position", "Pos" };
+			var min = Randomizer.R.Next(1, 10000);
+			var max = Randomizer.R.Next(10);
+			return new IdsGen(min, max) { Name = Randomizer.OneOf(rndNames) };
+		}
+
+		// IGenSetter
+		public void SetBaseGen(BaseGen gen)
+		{
+			if (gen is IdsGen gen1)
+			{
+				numericUpDownStart.Value = gen1.Start;
+				numericUpDownStep.Value = gen1.Step;
+			}
+		}
 
 
 

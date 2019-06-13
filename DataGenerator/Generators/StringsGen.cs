@@ -5,7 +5,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 	public class StringsGen : BaseGen, IGen<string>, IStringOutputer
 	{
 		// field
-		readonly string[] lines;
+		public string[] Lines { get; }
 		readonly int max;
 
 		public override string Name { get; set; } = "Strings Gen";
@@ -17,22 +17,22 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		// init
 		public StringsGen(string[] lines)
 		{
-			this.lines = lines;
+			Lines = lines;
 			max = lines.Length;
 		}
 
 
 
 		// Generate
-		public string Generate() => lines[R.Next(max)];
+		public string Generate() => Lines[R.Next(max)];
 
-		public IEnumerable<string> Generate(int count) => Fill<string>(count, () => lines[R.Next(max)]);
+		public IEnumerable<string> Generate(int count) => Fill<string>(count, () => Lines[R.Next(max)]);
 
 
 
 		// Output
 		public string Output() => Generate();
 
-		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => lines[R.Next(max)])) as string[];
+		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => Lines[R.Next(max)])) as string[];
 	}
 }

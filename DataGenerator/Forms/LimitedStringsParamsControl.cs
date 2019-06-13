@@ -4,26 +4,47 @@ using EugeneAnykey.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
-	public partial class LimitedStringsParamsControl : UserControl, IGenGetter
+	public partial class LimitedStringsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
-		public StringsGen GetStandardGen() => new StringsGen(Separate());
+		// IGenGetter
+		public BaseGen GetBaseGen() => useLimitedStrings ? (BaseGen)new LimitedStringsGen(Separate(), 5) : new StringsGen(Separate());
 
-		public LimitedStringsGen GetLimitedGen() => new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
-
-		public BaseGen GetGen()
+		// IGenRandomGetter
+		public BaseGen GetRandomBaseGen()
 		{
-			if (useLimitedStrings)
-				return new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
-			else
-				return new StringsGen(Separate());
+			string[] Names = new[] { "Colors", "Latin", "Words", "LongWords", "Particles" };
+			string[][] lines = new[] {
+				LinesHolder.Colors,
+				LinesHolder.AlphabetLatin,
+				LinesHolder.EngWords,
+				LinesHolder.LongEngWords,
+				LinesHolder.EngParticles
+			};
+
+			var limited = Randomizer.R.Next(1) > 0.5;
+			var linesId = Randomizer.R.Next(lines.Length);
+
+			BaseGen gen = limited ? (BaseGen)new LimitedStringsGen(lines[linesId], 5) : new StringsGen(lines[linesId]);
+			gen.Name = Names[linesId];
+
+			return gen;
 		}
 
-		public BaseGen GetBaseGen()
+		// IGenSetter
+		public void SetBaseGen(BaseGen gen)
 		{
-			if (useLimitedStrings)
-				return new LimitedStringsGen(Separate(), (int)numericUpDownFixed.Value);
-			else
-				return new StringsGen(Separate());
+			if (gen is LimitedStringsGen gen1)
+			{
+				numericUpDownFixed.Value = gen1.MaxLength;
+				comboBoxItemsSeparator.SelectedItem = commaSeparator;
+				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen1.Lines);
+			}
+
+			if (gen is StringsGen gen2)
+			{
+				comboBoxItemsSeparator.SelectedItem = commaSeparator;
+				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen2.Lines);
+			}
 		}
 
 

@@ -42,7 +42,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			menuExit.Click += (_, __) => Close();
 			menuFormsColumnGenerator.Click += (_, __) => new ColumnGeneratorForm().ShowDialog();
-			buttonGenFile.Click += (_,__) => GenFile(ChooseFilename());
+			//buttonGenFile.Click += (_,__) => GenFile(ChooseFilename());
+			buttonGenFile.Click += (_, __) => GenFileBaseGen(ChooseFilename());
 			buttonTest.Click += (_, __) => GenTestFile("1.txt");
 			menuAbout.Click += FormUtils.ShowAbout;
 		}
@@ -61,7 +62,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#region events handlers
 		string ChooseFilename()
 		{
-			var cols = (int)numericUpDownColumns.Value;
+			//var cols = (int)numericUpDownColumns.Value;
+			var cols = columnsEditControl1.GetBaseGens().Length;
 			saveFileDialog1.FileName = $"random_r{rowsCountControl1.RowsCountShort}_c{cols}.txt";
 
 			if (DialogResult.OK != saveFileDialog1.ShowDialog())
@@ -93,6 +95,31 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
+		async void GenFileBaseGen(string filename)
+		{
+			var rows = rowsCountControl1.RowsCount;
+			var gens = columnsEditControl1.GetBaseGens();
+			var cols = gens.Length;
+
+			watch.Restart();
+
+			var progress = new Progress<float>(v => ShowElapsed(v));
+
+			await Task.Run(() => FileGen.GenerateBaseGenFile(filename, rows, gens, progress));
+
+			watch.Stop();
+			ShowElapsed();
+		}
+
+
+
+		void GenerateRandom()
+		{
+			//columnsEditControl1.;
+		}
+
+
+
 		// TEST only
 		async void GenTestFile(string filename)
 		{
@@ -107,8 +134,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				new DoublesGen(70, 80, 2),
 				new IntegersGen(7, 9),
 				new IdsGen(18, 3),
-				new LimitedStringsGen(WordsHolder.EngWords, 5),
-				new StringsGen(WordsHolder.EngWords),
+				new LimitedStringsGen(LinesHolder.EngWords, 5),
+				new StringsGen(LinesHolder.EngWords),
 			};
 
 			await Task.Run(() => FileGen.GenerateTestFile(filename, 1000000, gens, progress));

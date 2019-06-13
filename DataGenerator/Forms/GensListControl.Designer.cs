@@ -35,6 +35,7 @@
 			this.buttonDown = new System.Windows.Forms.Button();
 			this.buttonUp = new System.Windows.Forms.Button();
 			this.buttonRemove = new System.Windows.Forms.Button();
+			this.buttonGenerateRandom = new System.Windows.Forms.Button();
 			this.groupBoxMain.SuspendLayout();
 			this.panelSide.SuspendLayout();
 			this.SuspendLayout();
@@ -51,17 +52,18 @@
 			this.groupBoxMain.TabStop = false;
 			this.groupBoxMain.Text = "groupBox1";
 			// 
-			// listBox1
+			// listBox
 			// 
 			this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listBox.FormattingEnabled = true;
 			this.listBox.Location = new System.Drawing.Point(3, 16);
-			this.listBox.Name = "listBox1";
+			this.listBox.Name = "listBox";
 			this.listBox.Size = new System.Drawing.Size(226, 401);
 			this.listBox.TabIndex = 3;
 			// 
 			// panelSide
 			// 
+			this.panelSide.Controls.Add(this.buttonGenerateRandom);
 			this.panelSide.Controls.Add(this.buttonAdd);
 			this.panelSide.Controls.Add(this.buttonDown);
 			this.panelSide.Controls.Add(this.buttonUp);
@@ -108,6 +110,15 @@
 			this.buttonRemove.Text = ">";
 			this.buttonRemove.UseVisualStyleBackColor = true;
 			// 
+			// buttonGenerateRandom
+			// 
+			this.buttonGenerateRandom.Location = new System.Drawing.Point(6, 12);
+			this.buttonGenerateRandom.Name = "buttonGenerateRandom";
+			this.buttonGenerateRandom.Size = new System.Drawing.Size(29, 23);
+			this.buttonGenerateRandom.TabIndex = 6;
+			this.buttonGenerateRandom.Text = "~";
+			this.buttonGenerateRandom.UseVisualStyleBackColor = true;
+			// 
 			// GensListControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,5 +142,6 @@
 		private System.Windows.Forms.Button buttonDown;
 		private System.Windows.Forms.Button buttonUp;
 		private System.Windows.Forms.Button buttonRemove;
+		private System.Windows.Forms.Button buttonGenerateRandom;
 	}
 }

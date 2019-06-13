@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace EugeneAnykey.Project.DataGenerator.Generators
+namespace EugeneAnykey.Project.DataGenerator
 {
 	public interface IGen<T>
 	{
 		T Generate();
-		//T[] Generate(int count);
+
 		IEnumerable<T> Generate(int count);
 	}
 }

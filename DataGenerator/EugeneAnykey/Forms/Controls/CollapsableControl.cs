@@ -16,7 +16,17 @@ namespace EugeneAnykey.Forms.Controls
 
 
 
-		#region event: HeightChanged, WidthChanged.
+		#region event: CollapseStateChanged, HeightChanged, WidthChanged.
+		/// <summary>
+		/// Event raised when collapse state changed.
+		/// </summary>
+		[Category("Property Changed")]
+		[Description("Event raised when Collapsed is set.")]
+		public event EventHandler CollapseStateChanged;
+		void OnCollapseStateChanged() => CollapseStateChanged?.Invoke(this, EventArgs.Empty);
+
+
+
 		/// <summary>
 		/// Event raised when height changed.
 		/// </summary>
@@ -34,16 +44,6 @@ namespace EugeneAnykey.Forms.Controls
 		[Description("Event raised when width of the control changed.")]
 		public event EventHandler WidthChanged;
 		protected virtual void OnWidthChanged() => WidthChanged?.Invoke(this, EventArgs.Empty);
-
-
-
-		/// <summary>
-		/// Event raised when width changed.
-		/// </summary>
-		[Category("Property Changed")]
-		[Description("Event raised when Collapsed is set.")]
-		public event EventHandler CollapseStateChanged;
-		void OnCollapseStateChanged() => CollapseStateChanged?.Invoke(this, EventArgs.Empty);
 		#endregion
 
 
@@ -247,7 +247,7 @@ namespace EugeneAnykey.Forms.Controls
 		/// Resizing control and prepairing its visuals.
 		/// </summary>
 		/// <param name="_collapsed">wanted state (would not work on not collapsable)</param>
-		/// <param name="orientationChanged">true, if orientation had changed</param>
+		/// <param name="orientationChanged">true, if orientation had been changed</param>
 		void ShowWithState(bool _collapsed, bool orientationChanged)
 		{
 			SetControlTextCaption();

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
@@ -52,8 +51,19 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		public static void GenerateTestFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
 			var outputers = GetStringOutputers(gens);
-			GenFile(filename, rows, outputers, progress);
+			GenFile(filename, rows, "test", outputers, progress);
 		}
+
+
+
+		public static void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
+		{
+			var title = MakeTitle(gens);
+			var outputers = GetStringOutputers(gens);
+			GenFile(filename, rows, title, outputers, progress);
+		}
+
+
 
 		static IStringOutputer[] GetStringOutputers(BaseGen[] gens)
 		{
@@ -65,9 +75,12 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			return outputers;
 		}
 
-		static void GenFile(string filename, int totalRows, IStringOutputer[] outputers, IProgress<float> progress)
+		static void GenFile(string filename, int totalRows, string title, IStringOutputer[] outputers, IProgress<float> progress)
 		{
 			using (File.Create(filename)) { }
+
+			if (title != null)
+				File.AppendAllLines(filename, new[] { title });
 
 			int rowsDone = 0;
 
@@ -89,12 +102,33 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		static string MakeSingleLine(int index, IStringOutputer[] outputers)
 		{
 			const string separator = "\t";
-			
+
 			var res = new string[outputers.Length];
-			
+
 			for (int i = 0; i < outputers.Length; i++)
 			{
 				res[i] = outputers[i].Latest[index];
+			}
+
+			return string.Join(separator, res);
+		}
+
+
+
+		static string MakeTitle(BaseGen[] gens)
+		{
+			if (gens == null)
+			{
+				throw new ArgumentNullException(nameof(gens));
+			}
+
+			const string separator = "\t";
+
+			var res = new string[gens.Length];
+
+			for (int i = 0; i < gens.Length; i++)
+			{
+				res[i] = gens[i].Name;
 			}
 
 			return string.Join(separator, res);
@@ -120,6 +154,8 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 			return res;
 		}
+
+
 
 		static void GenerateNewPortion(int count, IStringOutputer[] outputers)
 		{
