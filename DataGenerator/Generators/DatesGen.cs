@@ -28,7 +28,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 		// Generate
-		public DateTime Generate() => new DateTime((long)(R.NextDouble() * dif));
+		public DateTime Generate() => new DateTime((long)(R.NextDouble() * dif) + Min.Ticks);
 
 		public IEnumerable<DateTime> Generate(int count) => Fill<DateTime>(count, () => Generate());
 

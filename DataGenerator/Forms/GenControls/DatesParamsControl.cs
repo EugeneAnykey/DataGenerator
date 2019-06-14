@@ -25,7 +25,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			if (gen is DatesGen gen1)
 			{
 				dateTimePickerMin.Value = gen1.Min;
-				dateTimePickerMin.Value = gen1.Max;
+				dateTimePickerMax.Value = gen1.Max;
 			}
 		}
 
