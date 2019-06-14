@@ -32,15 +32,15 @@
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuFileGenerate = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
-			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
-			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
 			this.toolStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-			this.menuFileGenerate = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
+			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -66,10 +66,21 @@
 			this.menuFile.Size = new System.Drawing.Size(37, 20);
 			this.menuFile.Text = "&File";
 			// 
+			// menuFileGenerate
+			// 
+			this.menuFileGenerate.Name = "menuFileGenerate";
+			this.menuFileGenerate.Size = new System.Drawing.Size(130, 22);
+			this.menuFileGenerate.Text = "&Generate...";
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(127, 6);
+			// 
 			// menuExit
 			// 
 			this.menuExit.Name = "menuExit";
-			this.menuExit.Size = new System.Drawing.Size(180, 22);
+			this.menuExit.Size = new System.Drawing.Size(130, 22);
 			this.menuExit.Text = "&Exit";
 			// 
 			// menuAbout
@@ -78,24 +89,6 @@
 			this.menuAbout.Name = "menuAbout";
 			this.menuAbout.Size = new System.Drawing.Size(52, 20);
 			this.menuAbout.Text = "&About";
-			// 
-			// rowsCountControl1
-			// 
-			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
-			this.rowsCountControl1.Name = "rowsCountControl1";
-			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.rowsCountControl1.Size = new System.Drawing.Size(526, 67);
-			this.rowsCountControl1.TabIndex = 9;
-			// 
-			// columnsEditControl1
-			// 
-			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.columnsEditControl1.Location = new System.Drawing.Point(0, 91);
-			this.columnsEditControl1.Name = "columnsEditControl1";
-			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
-			this.columnsEditControl1.Size = new System.Drawing.Size(526, 438);
-			this.columnsEditControl1.TabIndex = 16;
 			// 
 			// toolStrip1
 			// 
@@ -123,16 +116,25 @@
 			this.toolStripProgressBar.Value = 75;
 			this.toolStripProgressBar.Visible = false;
 			// 
-			// menuFileGenerate
+			// columnsEditControl1
 			// 
-			this.menuFileGenerate.Name = "menuFileGenerate";
-			this.menuFileGenerate.Size = new System.Drawing.Size(180, 22);
-			this.menuFileGenerate.Text = "&Generate...";
+			this.columnsEditControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.columnsEditControl1.Location = new System.Drawing.Point(0, 85);
+			this.columnsEditControl1.Name = "columnsEditControl1";
+			this.columnsEditControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.columnsEditControl1.Size = new System.Drawing.Size(526, 444);
+			this.columnsEditControl1.TabIndex = 16;
 			// 
-			// toolStripMenuItem1
+			// rowsCountControl1
 			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+			this.rowsCountControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
+			this.rowsCountControl1.Name = "rowsCountControl1";
+			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
+			this.rowsCountControl1.Size = new System.Drawing.Size(526, 61);
+			this.rowsCountControl1.TabIndex = 9;
 			// 
 			// DataGenForm
 			// 

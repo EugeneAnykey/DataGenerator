@@ -45,6 +45,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 				comboBoxItemsSeparator.SelectedItem = commaSeparator;
 				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen2.Lines);
 			}
+
+			TogglePreview(showPreview);
 		}
 
 

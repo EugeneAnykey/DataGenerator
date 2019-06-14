@@ -78,6 +78,12 @@
     <Compile Include="Forms\GenControls\DatesParamsControl.Designer.cs">
       <DependentUpon>DatesParamsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GenControls\MaskedIdsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GenControls\MaskedIdsParamsControl.Designer.cs">
+      <DependentUpon>MaskedIdsParamsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GensListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +103,7 @@
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Generators\DatesGen.cs" />
+    <Compile Include="Generators\MaskedIdsGen.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
@@ -160,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GenControls\DatesParamsControl.resx">
       <DependentUpon>DatesParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenControls\MaskedIdsParamsControl.resx">
+      <DependentUpon>MaskedIdsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GensListControl.resx">
       <DependentUpon>GensListControl.cs</DependentUpon>

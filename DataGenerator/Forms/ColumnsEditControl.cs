@@ -32,12 +32,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		void Init()
 		{
 			collapsables = new[] {
-				collapsableNoParams,
-				collapsableIdsParams,
-				collapsableIntsParams,
-				collapsableDoublesParams,
+				collapsableNothing,
+				collapsableIds,
+				collapsableInts,
+				collapsableDoubles,
 				collapsableDates,
-				collapsableStringsParams,
+				collapsableMaskedIds,
+				collapsableStrings,
 			};
 
 			names = new[] {
@@ -47,6 +48,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				"Int",
 				"Double",
 				"Date",
+				"Masked Id",
 				"String",
 			};
 
@@ -56,10 +58,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				intsParamsControl,
 				doublesParamsControl,
 				datesParamsControl,
+				maskedIdsParamsControl,
 				stringsParamsControl,
 			};
 
-			ShowOnly(collapsableNoParams);
+			ShowOnly(collapsableNothing);
 		}
 
 		void InitEvent()
@@ -78,7 +81,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void ToggleLimitedStrings(bool enable)
 		{
-			collapsableStringsParams.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
+			collapsableStrings.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
 			stringsParamsControl.UseLimitedStrings = enable;
 		}
 
@@ -140,49 +143,75 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void ShowOnly(BaseGen gen)
 		{
-			if (gen is NothingGen)
-			{
-				ActivateGen(collapsableNoParams, noParamsControl, gen);
-				return;
-			}
+			int index =
+				gen is NothingGen ? 0 :
+				gen is IdsGen ? 1 :
+				gen is IntegersGen ? 2 :
+				gen is DoublesGen ? 3 :
+				gen is DatesGen ? 4 :
+				gen is MaskedIdsGen ? 5 :
+				gen is StringsGen ? 6 :
+				gen is LimitedStringsGen ? 7 :
+				-1;
 
-			if (gen is IdsGen)
-			{
-				ActivateGen(collapsableIdsParams, idsParamsControl, gen);
-				return;
-			}
+			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
 
-			if (gen is IntegersGen)
-			{
-				ActivateGen(collapsableIntsParams, intsParamsControl, gen);
-				return;
-			}
+			if (index == 6 || index == 7)
+				stringsParamsControl.UseLimitedStrings = index == 7;
 
-			if (gen is DoublesGen)
-			{
-				ActivateGen(collapsableDoublesParams, doublesParamsControl, gen);
-				return;
-			}
+			#region del
+			/*
+		if (gen is NothingGen)
+		{
+			ActivateGen(collapsableNoParams, noParamsControl, gen);
+			return;
+		}
 
-			if (gen is DatesGen)
-			{
-				ActivateGen(collapsableDates, datesParamsControl, gen);
-				return;
-			}
+		if (gen is IdsGen)
+		{
+			ActivateGen(collapsableIdsParams, idsParamsControl, gen);
+			return;
+		}
 
-			if (gen is StringsGen)
-			{
-				ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
-				stringsParamsControl.UseLimitedStrings = false;
-				return;
-			}
+		if (gen is IntegersGen)
+		{
+			ActivateGen(collapsableIntsParams, intsParamsControl, gen);
+			return;
+		}
 
-			if (gen is LimitedStringsGen)
-			{
-				ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
-				stringsParamsControl.UseLimitedStrings = true;
-				return;
-			}
+		if (gen is DoublesGen)
+		{
+			ActivateGen(collapsableDoublesParams, doublesParamsControl, gen);
+			return;
+		}
+
+		if (gen is DatesGen)
+		{
+			ActivateGen(collapsableDates, datesParamsControl, gen);
+			return;
+		}
+
+		if (gen is MaskedIdsGen)
+		{
+			ActivateGen(collapsableMaskedIds, maskedIdsParamsControl, gen);
+			return;
+		}
+
+		if (gen is StringsGen)
+		{
+			ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
+			stringsParamsControl.UseLimitedStrings = false;
+			return;
+		}
+
+		if (gen is LimitedStringsGen)
+		{
+			ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
+			stringsParamsControl.UseLimitedStrings = true;
+			return;
+		}
+		*/
+			#endregion
 		}
 
 
