@@ -20,6 +20,14 @@ namespace EugeneAnykey.Forms
 
 
 
+		// Asks
+		public static bool AskToClear()
+		{
+			return (DialogResult.Yes == MessageBox.Show("Clear all?", "Clear?", MessageBoxButtons.YesNo, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2));
+		}
+
+
+
 		// NumericUpDown
 		public static void NumericsUpdate(this NumericUpDown control, decimal min, decimal max, decimal val)
 		{
@@ -32,7 +40,7 @@ namespace EugeneAnykey.Forms
 
 			val = min > val ? min : max < val ? max : val;
 
-			// need to be tested HARDER!!!
+			// TODO check it, it needs to be tested HARDER!!!
 
 			control.Minimum = min;
 			control.Maximum = max;
@@ -43,8 +51,12 @@ namespace EugeneAnykey.Forms
 
 		public static void SetNumericUpDownValue(this NumericUpDown control, decimal value)
 		{
-			if (control == null) throw new ArgumentNullException(nameof(control));
+			if (control == null)
+				throw new ArgumentNullException(nameof(control));
+
 			var currentValueField = control.GetType().GetField("currentValue", BindingFlags.Instance | BindingFlags.NonPublic);
+
+			// sets value without hitting event:
 			if (currentValueField != null)
 			{
 				currentValueField.SetValue(control, value);

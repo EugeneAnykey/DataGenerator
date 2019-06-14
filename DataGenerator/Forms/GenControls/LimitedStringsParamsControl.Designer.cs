@@ -1,4 +1,4 @@
-﻿namespace EugeneAnykey.Project.DataGenerator.Forms
+﻿namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	partial class LimitedStringsParamsControl
 	{
@@ -37,6 +37,7 @@
 			this.labelItemsSeparator = new System.Windows.Forms.Label();
 			this.groupBoxItems = new System.Windows.Forms.GroupBox();
 			this.textBoxItems = new System.Windows.Forms.TextBox();
+			this.listBoxPreview = new System.Windows.Forms.ListBox();
 			this.panelMaxLength.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFixed)).BeginInit();
 			this.panelSeparators.SuspendLayout();
@@ -108,11 +109,12 @@
 			// 
 			// groupBoxItems
 			// 
+			this.groupBoxItems.Controls.Add(this.listBoxPreview);
 			this.groupBoxItems.Controls.Add(this.textBoxItems);
 			this.groupBoxItems.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxItems.Location = new System.Drawing.Point(4, 112);
 			this.groupBoxItems.Name = "groupBoxItems";
-			this.groupBoxItems.Size = new System.Drawing.Size(263, 131);
+			this.groupBoxItems.Size = new System.Drawing.Size(263, 172);
 			this.groupBoxItems.TabIndex = 16;
 			this.groupBoxItems.TabStop = false;
 			this.groupBoxItems.Text = "Items:";
@@ -123,19 +125,27 @@
 			this.textBoxItems.Location = new System.Drawing.Point(3, 16);
 			this.textBoxItems.Multiline = true;
 			this.textBoxItems.Name = "textBoxItems";
-			this.textBoxItems.Size = new System.Drawing.Size(257, 112);
+			this.textBoxItems.Size = new System.Drawing.Size(257, 153);
 			this.textBoxItems.TabIndex = 3;
 			// 
-			// FixedStringsParamsControl
+			// listBoxPreview
+			// 
+			this.listBoxPreview.FormattingEnabled = true;
+			this.listBoxPreview.Location = new System.Drawing.Point(115, 30);
+			this.listBoxPreview.Name = "listBoxPreview";
+			this.listBoxPreview.Size = new System.Drawing.Size(120, 95);
+			this.listBoxPreview.TabIndex = 4;
+			// 
+			// LimitedStringsParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.groupBoxItems);
 			this.Controls.Add(this.panelSeparators);
 			this.Controls.Add(this.panelMaxLength);
-			this.Name = "FixedStringsParamsControl";
+			this.Name = "LimitedStringsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(271, 247);
+			this.Size = new System.Drawing.Size(271, 288);
 			this.panelMaxLength.ResumeLayout(false);
 			this.panelMaxLength.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFixed)).EndInit();
@@ -158,5 +168,6 @@
 		private System.Windows.Forms.Label labelItemsSeparator;
 		private System.Windows.Forms.GroupBox groupBoxItems;
 		private System.Windows.Forms.TextBox textBoxItems;
+		private System.Windows.Forms.ListBox listBoxPreview;
 	}
 }

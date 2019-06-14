@@ -2,7 +2,7 @@
 using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms;
 
-namespace EugeneAnykey.Project.DataGenerator.Forms
+namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	public partial class LimitedStringsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
@@ -89,6 +89,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				new SeparatorItem("Vertical bar — [|]", '|'),
 			};
 
+			listBoxPreview.Dock = DockStyle.Fill;
+			listBoxPreview.Visible = false;
+
 			comboBoxItemsSeparator.Items.Clear();
 			comboBoxItemsSeparator.DropDownStyle = ComboBoxStyle.DropDownList;
 			comboBoxItemsSeparator.Items.AddRange(separators);
@@ -96,6 +99,26 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			numericUpDownFixed.NumericsUpdate(0, 100, 5);
 
 			buttonFastExample.Click += (_, __) => FastExample();
+			groupBoxItems.Click += (_, __) => TogglePreview();
+		}
+
+
+
+		// private: Preview
+		bool showPreview = false;
+		void TogglePreview() => TogglePreview(showPreview = !showPreview);
+
+		void TogglePreview(bool show)
+		{
+			listBoxPreview.Visible = show;
+			textBoxItems.Visible = !show;
+			groupBoxItems.Text = show ? "Preview Items:" : "Items:";
+
+			if (show)
+			{
+				listBoxPreview.Items.Clear();
+				listBoxPreview.Items.AddRange(Separate());
+			}
 		}
 
 

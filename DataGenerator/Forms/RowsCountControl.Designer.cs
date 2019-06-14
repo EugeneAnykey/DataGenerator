@@ -31,18 +31,20 @@
 			this.groupBoxRows = new System.Windows.Forms.GroupBox();
 			this.comboBoxRowsMult = new System.Windows.Forms.ComboBox();
 			this.numericUpDownRows = new System.Windows.Forms.NumericUpDown();
+			this.buttonGenFile = new System.Windows.Forms.Button();
 			this.groupBoxRows.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBoxRows
 			// 
+			this.groupBoxRows.Controls.Add(this.buttonGenFile);
 			this.groupBoxRows.Controls.Add(this.comboBoxRowsMult);
 			this.groupBoxRows.Controls.Add(this.numericUpDownRows);
 			this.groupBoxRows.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxRows.Location = new System.Drawing.Point(4, 4);
 			this.groupBoxRows.Name = "groupBoxRows";
-			this.groupBoxRows.Size = new System.Drawing.Size(243, 50);
+			this.groupBoxRows.Size = new System.Drawing.Size(382, 50);
 			this.groupBoxRows.TabIndex = 10;
 			this.groupBoxRows.TabStop = false;
 			this.groupBoxRows.Text = "Rows:";
@@ -66,6 +68,15 @@
 			this.numericUpDownRows.Size = new System.Drawing.Size(120, 20);
 			this.numericUpDownRows.TabIndex = 10;
 			// 
+			// buttonGenFile
+			// 
+			this.buttonGenFile.Location = new System.Drawing.Point(256, 16);
+			this.buttonGenFile.Name = "buttonGenFile";
+			this.buttonGenFile.Size = new System.Drawing.Size(120, 23);
+			this.buttonGenFile.TabIndex = 12;
+			this.buttonGenFile.Text = "Generate file...";
+			this.buttonGenFile.UseVisualStyleBackColor = true;
+			// 
 			// RowsCountControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -73,7 +84,7 @@
 			this.Controls.Add(this.groupBoxRows);
 			this.Name = "RowsCountControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 58);
+			this.Size = new System.Drawing.Size(390, 58);
 			this.groupBoxRows.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRows)).EndInit();
 			this.ResumeLayout(false);
@@ -85,5 +96,6 @@
 		private System.Windows.Forms.GroupBox groupBoxRows;
 		private System.Windows.Forms.ComboBox comboBoxRowsMult;
 		private System.Windows.Forms.NumericUpDown numericUpDownRows;
+		private System.Windows.Forms.Button buttonGenFile;
 	}
 }

@@ -8,7 +8,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 	public partial class ColumnsEditControl : UserControl
 	{
 		// const
-		
+
 
 
 		// field
@@ -16,6 +16,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
+		string[] names;
 
 
 
@@ -35,7 +36,18 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				collapsableIdsParams,
 				collapsableIntsParams,
 				collapsableDoublesParams,
-				collapsableStringsParams
+				collapsableDates,
+				collapsableStringsParams,
+			};
+
+			names = new[] {
+				"",
+				"Nothing",
+				"Id",
+				"Int",
+				"Double",
+				"Date",
+				"String",
 			};
 
 			ugens = new UserControl[] {
@@ -43,7 +55,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				idsParamsControl,
 				intsParamsControl,
 				doublesParamsControl,
-				stringsParamsControl
+				datesParamsControl,
+				stringsParamsControl,
 			};
 
 			ShowOnly(collapsableNoParams);
@@ -80,9 +93,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		void AddingRandomItem(GenItemEventArgs genItemArgs)
 		{
 			BaseGen gen = null;
-			var rnd = Randomizer.R.Next(ugens.Length);
+			var index = Randomizer.R.Next(ugens.Length);
 
-			if (ugens[rnd] is IGenRandomGetter ugen)
+			if (ugens[index] is IGenRandomGetter ugen)
 			{
 				gen = ugen.GetRandomBaseGen();
 				if (gen == null)
@@ -94,7 +107,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-		void AddingItem(GenItemAddEventArgs genItemArgs)
+		void AddingItem(GenItemEventArgs genItemArgs)
 		{
 			IGenGetter ugen = null;
 			for (int i = 0; i < collapsables.Length; i++)
@@ -151,6 +164,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				return;
 			}
 
+			if (gen is DatesGen)
+			{
+				ActivateGen(collapsableDates, datesParamsControl, gen);
+				return;
+			}
+
 			if (gen is StringsGen)
 			{
 				ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
@@ -181,18 +200,28 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			foreach (var c in collapsables)
 			{
-				//c.Collapsed = !(c == collapsable);
-				c.Collapsed = true;
+				if (!c.Collapsed && c != collapsable)
+					c.Collapsed = true;
 			}
+
+			textBoxName.Text = names[GetPos(collapsable) + 1];
 
 			if (null == collapsable)
-			{
-				textBoxName.Text = "";
 				return;
-			}
 
-			collapsable.Collapsed = false;
-			textBoxName.Text = collapsable.Caption;
+			if (collapsable.Collapsed)
+				collapsable.Collapsed = false;
+		}
+
+
+
+		int GetPos(CollapsableControl collapsable)
+		{
+			for (int i = 0; i < collapsables.Length; i++)
+				if (collapsables[i] == collapsable)
+					return i;
+
+			return -1;
 		}
 	}
 }

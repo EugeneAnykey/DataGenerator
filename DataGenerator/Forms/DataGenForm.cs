@@ -10,93 +10,85 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 	public partial class DataGenForm : Form
 	{
 		// field
-		//Generators.DataGeneratorOld gen1 = new Generators.DataGeneratorOld();
-		DataGen generator = new DataGen();
 		FileGen fileGen = new FileGen();
 		Stopwatch watch = new Stopwatch();
 
 
 
-		#region init
+		// init
 		public DataGenForm()
 		{
 			InitializeComponent();
 
 			Text = Application.ProductName;
 
-			Init();
-			InitEvent();
-		}
-
-		void Init()
-		{
 			saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
-			labelElapsed.Text = $"Elapsed: n/a.";
 
-			numericUpDownColumns.Minimum = 1;
-			numericUpDownColumns.Maximum = 999;
-			numericUpDownColumns.Value = 20;
-		}
+			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile(ChooseFilename());
+			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile(ChooseFilename());
+			//menuFileClear.Click += (_, __) => if (AskToClear()) gensListControl.Clear();
 
-		private void InitEvent()
-		{
-			menuExit.Click += (_, __) => Close();
-			menuFormsColumnGenerator.Click += (_, __) => new ColumnGeneratorForm().ShowDialog();
-			//buttonGenFile.Click += (_,__) => GenFile(ChooseFilename());
-			buttonGenFile.Click += (_, __) => GenFileBaseGen(ChooseFilename());
-			buttonTest.Click += (_, __) => GenTestFile("1.txt");
 			menuAbout.Click += FormUtils.ShowAbout;
+			menuExit.Click += (_, __) => Close();
 		}
-		#endregion
 
 
 
-		#region private: GetRowsCount (+Short), ShowElapsed.
-		void ShowElapsed() => labelElapsed.Text = $"Elapsed: {watch.Elapsed}.";
+		// private: ShowElapsed.
+		void ShowElapsed()
+		{
+			const string mesDone = "Done by: {0}";
+			toolStripLabelStatus.Text = string.Format(mesDone, watch.Elapsed);
 
-		void ShowElapsed(float percents) => labelElapsed.Text = $"Done: {100 * percents:N2}%.\nElapsed: {watch.Elapsed}.";
-		#endregion
+			if (toolStripProgressBar.Visible)
+			{
+				toolStripProgressBar.Value = 0;
+				toolStripProgressBar.Visible = false;
+			}
+		}
+
+		void ShowElapsed(float percents)
+		{
+			const string mesElapsed = "Elapsed: {0}";
+			toolStripLabelStatus.Text = string.Format(mesElapsed, watch.Elapsed);
+
+			if (!toolStripProgressBar.Visible)
+			{
+				toolStripProgressBar.Visible = true;
+			}
+			toolStripProgressBar.Value = (int)(100 * percents);
+		}
 
 
 
-		#region events handlers
+		// private: ChooseFilename
 		string ChooseFilename()
 		{
-			//var cols = (int)numericUpDownColumns.Value;
+			const string mesText = "Could not generate a file without columns.";
+			const string mesCap = "No columns";
+			const string filenameMask = "random_r{0}_c{1}.txt";
+
 			var cols = columnsEditControl1.GetBaseGens().Length;
-			saveFileDialog1.FileName = $"random_r{rowsCountControl1.RowsCountShort}_c{cols}.txt";
 
-			if (DialogResult.OK != saveFileDialog1.ShowDialog())
+			if (cols == 0)
 			{
-				return string.Empty;
+				MessageBox.Show(mesText, mesCap, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return null;
 			}
-			return saveFileDialog1.FileName;
-		}
-		#endregion
 
+			saveFileDialog1.FileName = string.Format(filenameMask, rowsCountControl1.RowsCountShort, cols);
 
-
-		async void GenFile(string filename)
-		{
-			var rows = rowsCountControl1.RowsCount;
-			var cols = (int)numericUpDownColumns.Value;
-
-			watch.Restart();
-
-			var progress = new Progress<float>(v => ShowElapsed(v));
-
-			string[] types = generator.GenerateTypes(true, cols);
-
-			await Task.Run(() => fileGen.GenerateFile(saveFileDialog1.FileName, rows, types, generator.GetLines, progress));
-
-			watch.Stop();
-			ShowElapsed();
+			return DialogResult.OK == saveFileDialog1.ShowDialog() ? saveFileDialog1.FileName : string.Empty;
 		}
 
 
 
-		async void GenFileBaseGen(string filename)
+		// private: GenerateBaseGenFile
+		async void GenerateBaseGenFile(string filename)
 		{
+			if (string.IsNullOrEmpty(filename))
+				return;
+
 			var rows = rowsCountControl1.RowsCount;
 			var gens = columnsEditControl1.GetBaseGens();
 			var cols = gens.Length;
@@ -105,40 +97,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			var progress = new Progress<float>(v => ShowElapsed(v));
 
-			await Task.Run(() => FileGen.GenerateBaseGenFile(filename, rows, gens, progress));
-
-			watch.Stop();
-			ShowElapsed();
-		}
-
-
-
-		void GenerateRandom()
-		{
-			//columnsEditControl1.;
-		}
-
-
-
-		// TEST only
-		async void GenTestFile(string filename)
-		{
-			watch.Restart();
-
-			var progress = new Progress<float>(v => ShowElapsed(v));
-
-			var gens = new BaseGen[] {
-				new IdsGen(1, 1),
-				new IntegersGen(10, 60),
-				new DoublesGen(10, 60, 1),
-				new DoublesGen(70, 80, 2),
-				new IntegersGen(7, 9),
-				new IdsGen(18, 3),
-				new LimitedStringsGen(LinesHolder.EngWords, 5),
-				new StringsGen(LinesHolder.EngWords),
-			};
-
-			await Task.Run(() => FileGen.GenerateTestFile(filename, 1000000, gens, progress));
+			await Task.Run(() => fileGen.GenerateBaseGenFile(filename, rows, gens, progress));
 
 			watch.Stop();
 			ShowElapsed();

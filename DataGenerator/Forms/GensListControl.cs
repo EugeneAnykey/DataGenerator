@@ -9,8 +9,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		public event EventHandler PassingItemToAdd;
 		void OnPassingItemToAdd() => PassingItemToAdd?.Invoke(this, EventArgs.Empty);
 
-		public event GenItemAddEventHandler AddingItem;
-		void OnAddingItem(GenItemAddEventArgs args) => AddingItem?.Invoke(this, args);
+		public event GenItemEventHandler AddingItem;
+		void OnAddingItem(GenItemEventArgs args) => AddingItem?.Invoke(this, args);
 
 		public event GenItemEventHandler ItemSelected;
 		void OnItemSelected(GenItemEventArgs args) => ItemSelected?.Invoke(this, args);
@@ -20,8 +20,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		public event EventHandler RemovingItem;
 		void OnRemovingItem() => RemovingItem?.Invoke(this, EventArgs.Empty);
-
-
 
 
 
@@ -74,7 +72,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			pos = listBox.SelectedIndex;
 			if (Direction.Up == dir)
 			{
-				if (IsIn(pos, 1, listBox.Items.Count - 1))
+				if (HelperFuncs.IsIn(pos, 1, listBox.Items.Count - 1))
 				{
 					pos = toTheEdge ? 0 : pos - 1;
 					return true;
@@ -82,7 +80,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 			else if (Direction.Down == dir)
 			{
-				if (IsIn(pos, 0, listBox.Items.Count - 2))
+				if (HelperFuncs.IsIn(pos, 0, listBox.Items.Count - 2))
 				{
 					pos = toTheEdge ? listBox.Items.Count - 1 : pos + 1;
 					return true;
@@ -91,14 +89,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			return false;
 		}
 
-		bool IsIn(int val, int min, int max) => min <= val && val <= max;
-
 
 
 		// Add
 		void AddItem()
 		{
-			var args = new GenItemAddEventArgs(null);
+			var args = new GenItemEventArgs(null);
 			OnAddingItem(args);
 
 			if (args.Gen == null)
@@ -132,8 +128,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			if (!(listBox.SelectedItem is BaseGen selected))
 				return;
 
+			var index = listBox.Items.IndexOf(selected);
 			listBox.Items.Remove(selected);
 			UpdateCaption();
+
+			if (listBox.Items.Count > 0)
+				listBox.SelectedIndex = HelperFuncs.MakeIn(index, 0, listBox.Items.Count - 1);
 		}
 
 

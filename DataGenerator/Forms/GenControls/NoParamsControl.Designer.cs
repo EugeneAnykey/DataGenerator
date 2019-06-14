@@ -1,4 +1,4 @@
-﻿namespace EugeneAnykey.Project.DataGenerator.Forms
+﻿namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	partial class NoParamsControl
 	{

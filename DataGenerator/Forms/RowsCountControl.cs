@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
@@ -7,6 +8,14 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		// const
 		readonly double[] mults = new[] { 1, 1e3, 1e6 };
 		readonly string[] multsNames = new[] { "", "k", "M" };
+
+
+
+		// events
+		public event EventHandler GenerateFile;
+		void OnGenerateFile() => GenerateFile?.Invoke(this, EventArgs.Empty);
+
+
 
 		// field
 		public int RowsCount { get; private set; }
@@ -29,6 +38,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			numericUpDownRows.ValueChanged += (_, __) => CalcRowsCount();
 			comboBoxRowsMult.SelectedIndexChanged += (_, __) => CalcRowsCount();
+			buttonGenFile.Click += (_, __) => OnGenerateFile();
 
 			CalcRowsCount();
 		}

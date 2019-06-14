@@ -1,6 +1,6 @@
-﻿namespace EugeneAnykey.Project.DataGenerator.Forms
+﻿namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
-	partial class IntsParamsControl
+	partial class DatesParamsControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -28,20 +28,11 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.numericUpDownMax = new System.Windows.Forms.NumericUpDown();
 			this.labelParamMax = new System.Windows.Forms.Label();
 			this.labelParamMin = new System.Windows.Forms.Label();
-			this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
+			this.dateTimePickerMin = new System.Windows.Forms.DateTimePicker();
+			this.dateTimePickerMax = new System.Windows.Forms.DateTimePicker();
 			this.SuspendLayout();
-			// 
-			// numericUpDown2
-			// 
-			this.numericUpDownMax.Location = new System.Drawing.Point(69, 39);
-			this.numericUpDownMax.Name = "numericUpDown2";
-			this.numericUpDownMax.Size = new System.Drawing.Size(170, 20);
-			this.numericUpDownMax.TabIndex = 11;
 			// 
 			// labelParamMax
 			// 
@@ -61,36 +52,40 @@
 			this.labelParamMin.TabIndex = 9;
 			this.labelParamMin.Text = "Min:";
 			// 
-			// numericUpDown1
+			// dateTimePickerMin
 			// 
-			this.numericUpDownMin.Location = new System.Drawing.Point(69, 7);
-			this.numericUpDownMin.Name = "numericUpDown1";
-			this.numericUpDownMin.Size = new System.Drawing.Size(170, 20);
-			this.numericUpDownMin.TabIndex = 8;
+			this.dateTimePickerMin.Location = new System.Drawing.Point(64, 3);
+			this.dateTimePickerMin.Name = "dateTimePickerMin";
+			this.dateTimePickerMin.Size = new System.Drawing.Size(180, 20);
+			this.dateTimePickerMin.TabIndex = 11;
 			// 
-			// IntsParamsControl
+			// dateTimePickerMax
+			// 
+			this.dateTimePickerMax.Location = new System.Drawing.Point(64, 35);
+			this.dateTimePickerMax.Name = "dateTimePickerMax";
+			this.dateTimePickerMax.Size = new System.Drawing.Size(180, 20);
+			this.dateTimePickerMax.TabIndex = 12;
+			// 
+			// DatesParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.numericUpDownMax);
+			this.Controls.Add(this.dateTimePickerMax);
+			this.Controls.Add(this.dateTimePickerMin);
 			this.Controls.Add(this.labelParamMax);
 			this.Controls.Add(this.labelParamMin);
-			this.Controls.Add(this.numericUpDownMin);
-			this.Name = "IntsParamsControl";
+			this.Name = "DatesParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 75);
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).EndInit();
+			this.Size = new System.Drawing.Size(251, 66);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.NumericUpDown numericUpDownMax;
 		private System.Windows.Forms.Label labelParamMax;
 		private System.Windows.Forms.Label labelParamMin;
-		private System.Windows.Forms.NumericUpDown numericUpDownMin;
+		private System.Windows.Forms.DateTimePicker dateTimePickerMin;
+		private System.Windows.Forms.DateTimePicker dateTimePickerMax;
 	}
 }

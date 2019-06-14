@@ -6,7 +6,7 @@ namespace EugeneAnykey.Project.DataGenerator
 	public abstract class BaseGen
 	{
 		// field
-		public static Random R { get; } = new Random((int)DateTime.UtcNow.Ticks);
+		protected static Random R { get; } = new Random((int)DateTime.UtcNow.Ticks);
 
 		public virtual string Name { get; set; } = "BaseGen";
 

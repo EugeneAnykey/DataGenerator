@@ -6,8 +6,10 @@ namespace EugeneAnykey.Project.DataGenerator
 {
 	public static class LinesHolder
 	{
+		// from files:
 		public static readonly string[] EngWords;
 
+		// hard coded:
 		public static readonly string[] AlphabetLatin = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
 
 		public static readonly string[] EngParticles = "above,after,before,behind,in,in front,inside,off,on,over,out,outside,under".Split(',');

@@ -2,7 +2,7 @@
 using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms;
 
-namespace EugeneAnykey.Project.DataGenerator.Forms
+namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	public partial class IdsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{

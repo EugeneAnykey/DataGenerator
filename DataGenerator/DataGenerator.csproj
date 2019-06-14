@@ -66,17 +66,17 @@
     </Compile>
     <Compile Include="EugeneAnykey\Forms\Controls\Designers\Designer.cs" />
     <Compile Include="EugeneAnykey\Forms\Controls\Designers\MyControlDesigner.cs" />
-    <Compile Include="Forms\ColumnGeneratorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ColumnGeneratorForm.Designer.cs">
-      <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ColumnsEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\ColumnsEditControl.Designer.cs">
       <DependentUpon>ColumnsEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GenControls\DatesParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GenControls\DatesParamsControl.Designer.cs">
+      <DependentUpon>DatesParamsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GensListControl.cs">
       <SubType>UserControl</SubType>
@@ -84,37 +84,38 @@
     <Compile Include="Forms\GensListControl.Designer.cs">
       <DependentUpon>GensListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\IdsParamsControl.cs">
+    <Compile Include="Forms\GenControls\IdsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\IdsParamsControl.Designer.cs">
+    <Compile Include="Forms\GenControls\IdsParamsControl.Designer.cs">
       <DependentUpon>IdsParamsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DoublesParamsControl.cs">
+    <Compile Include="Forms\GenControls\DoublesParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DoublesParamsControl.Designer.cs">
+    <Compile Include="Forms\GenControls\DoublesParamsControl.Designer.cs">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generators\DatesGen.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
-    <Compile Include="Forms\LimitedStringsParamsControl.cs">
+    <Compile Include="Forms\GenControls\LimitedStringsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\LimitedStringsParamsControl.Designer.cs">
+    <Compile Include="Forms\GenControls\LimitedStringsParamsControl.Designer.cs">
       <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NoParamsControl.cs">
+    <Compile Include="Forms\GenControls\NoParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\NoParamsControl.Designer.cs">
+    <Compile Include="Forms\GenControls\NoParamsControl.Designer.cs">
       <DependentUpon>NoParamsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\IntsParamsControl.cs">
+    <Compile Include="Forms\GenControls\IntsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\IntsParamsControl.Designer.cs">
+    <Compile Include="Forms\GenControls\IntsParamsControl.Designer.cs">
       <DependentUpon>IntsParamsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RowsCountControl.cs">
@@ -123,8 +124,6 @@
     <Compile Include="Forms\RowsCountControl.Designer.cs">
       <DependentUpon>RowsCountControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generators\AlphabeticalGenerator.cs" />
-    <Compile Include="Generators\DataGen.cs" />
     <Compile Include="Generators\DoublesGen.cs" />
     <Compile Include="Generators\IdsGen.cs" />
     <Compile Include="_root\IGen.cs" />
@@ -137,7 +136,7 @@
     <Compile Include="Generators\IntegersGen.cs" />
     <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
     <Compile Include="_root\GenItemEventHandler.cs" />
-    <Compile Include="_root\GenItemAddEventHandler.cs" />
+    <Compile Include="_root\HelperFuncs.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />
@@ -159,25 +158,25 @@
     <EmbeddedResource Include="Forms\DataGenForm.resx">
       <DependentUpon>DataGenForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ColumnGeneratorForm.resx">
-      <DependentUpon>ColumnGeneratorForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GenControls\DatesParamsControl.resx">
+      <DependentUpon>DatesParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GensListControl.resx">
       <DependentUpon>GensListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\IdsParamsControl.resx">
+    <EmbeddedResource Include="Forms\GenControls\IdsParamsControl.resx">
       <DependentUpon>IdsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DoublesParamsControl.resx">
+    <EmbeddedResource Include="Forms\GenControls\DoublesParamsControl.resx">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LimitedStringsParamsControl.resx">
+    <EmbeddedResource Include="Forms\GenControls\LimitedStringsParamsControl.resx">
       <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NoParamsControl.resx">
+    <EmbeddedResource Include="Forms\GenControls\NoParamsControl.resx">
       <DependentUpon>NoParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\IntsParamsControl.resx">
+    <EmbeddedResource Include="Forms\GenControls\IntsParamsControl.resx">
       <DependentUpon>IntsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RowsCountControl.resx">

@@ -16,56 +16,18 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		// gen file
-		public void GenerateFile(string filename, int totalRows, string[] types, Func<int, string[], IEnumerable<string>> getLinesFunc)
-		{
-			GenerateFile(filename, totalRows, types, getLinesFunc, null);
-		}
-
-
-
-		// gen file with progress output
-		public void GenerateFile(string filename, int totalRows, string[] types, Func<int, string[], IEnumerable<string>> getLinesFunc, IProgress<float> progress)
-		{
-			// getLinesFunc is Func<int, string[], IEnumerable<string>> for 'count', 'types' that returns newLines.
-			using (File.Create(filename)) { }
-
-			int rowsDone = 0;
-
-			while (totalRows - rowsDone > 0)
-			{
-				int currentRowsPortion = totalRows - rowsDone > defaultRowsPortion ? defaultRowsPortion : totalRows - rowsDone;
-
-				IEnumerable<string> lines = getLinesFunc(currentRowsPortion, types);
-				File.AppendAllLines(filename, lines);
-				rowsDone += currentRowsPortion;
-
-				if (progress != null)
-					progress.Report((float)rowsDone / totalRows);
-			}
-		}
-
-
-
-		// TEST
-		public static void GenerateTestFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
-		{
-			var outputers = GetStringOutputers(gens);
-			GenFile(filename, rows, "test", outputers, progress);
-		}
-
-
-
-		public static void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
+		// public: GenerateBaseGenFile
+		public void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
 			var title = MakeTitle(gens);
-			var outputers = GetStringOutputers(gens);
+			var outputers = ConvertGensToStringOutputers(gens);
 			GenFile(filename, rows, title, outputers, progress);
 		}
 
 
 
-		static IStringOutputer[] GetStringOutputers(BaseGen[] gens)
+
+		IStringOutputer[] ConvertGensToStringOutputers(BaseGen[] gens)
 		{
 			var outputers = new IStringOutputer[gens.Length];
 			for (int i = 0; i < gens.Length; i++)
@@ -75,7 +37,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			return outputers;
 		}
 
-		static void GenFile(string filename, int totalRows, string title, IStringOutputer[] outputers, IProgress<float> progress)
+		void GenFile(string filename, int totalRows, string title, IStringOutputer[] outputers, IProgress<float> progress)
 		{
 			using (File.Create(filename)) { }
 
@@ -99,7 +61,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		static string MakeSingleLine(int index, IStringOutputer[] outputers)
+		string MakeSingleLine(int index, IStringOutputer[] outputers)
 		{
 			const string separator = "\t";
 
@@ -115,7 +77,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		static string MakeTitle(BaseGen[] gens)
+		string MakeTitle(BaseGen[] gens)
 		{
 			if (gens == null)
 			{
@@ -136,7 +98,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		static IEnumerable<string> MakeNewLinesPortion(int count, IStringOutputer[] outputers)
+		IEnumerable<string> MakeNewLinesPortion(int count, IStringOutputer[] outputers)
 		{
 			if (outputers == null)
 			{
@@ -157,7 +119,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		static void GenerateNewPortion(int count, IStringOutputer[] outputers)
+		void GenerateNewPortion(int count, IStringOutputer[] outputers)
 		{
 			for (int i = 0; i < outputers.Length; i++)
 			{

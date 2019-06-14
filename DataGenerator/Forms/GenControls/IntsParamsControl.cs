@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms;
 
-namespace EugeneAnykey.Project.DataGenerator.Forms
+namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	public partial class IntsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{

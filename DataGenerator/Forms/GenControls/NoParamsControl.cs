@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
 
-namespace EugeneAnykey.Project.DataGenerator.Forms
+namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
 	public partial class NoParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
