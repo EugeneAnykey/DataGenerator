@@ -158,60 +158,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			if (index == 6 || index == 7)
 				stringsParamsControl.UseLimitedStrings = index == 7;
-
-			#region del
-			/*
-		if (gen is NothingGen)
-		{
-			ActivateGen(collapsableNoParams, noParamsControl, gen);
-			return;
-		}
-
-		if (gen is IdsGen)
-		{
-			ActivateGen(collapsableIdsParams, idsParamsControl, gen);
-			return;
-		}
-
-		if (gen is IntegersGen)
-		{
-			ActivateGen(collapsableIntsParams, intsParamsControl, gen);
-			return;
-		}
-
-		if (gen is DoublesGen)
-		{
-			ActivateGen(collapsableDoublesParams, doublesParamsControl, gen);
-			return;
-		}
-
-		if (gen is DatesGen)
-		{
-			ActivateGen(collapsableDates, datesParamsControl, gen);
-			return;
-		}
-
-		if (gen is MaskedIdsGen)
-		{
-			ActivateGen(collapsableMaskedIds, maskedIdsParamsControl, gen);
-			return;
-		}
-
-		if (gen is StringsGen)
-		{
-			ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
-			stringsParamsControl.UseLimitedStrings = false;
-			return;
-		}
-
-		if (gen is LimitedStringsGen)
-		{
-			ActivateGen(collapsableStringsParams, stringsParamsControl, gen);
-			stringsParamsControl.UseLimitedStrings = true;
-			return;
-		}
-		*/
-			#endregion
 		}
 
 

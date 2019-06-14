@@ -26,8 +26,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile(ChooseFilename());
 			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile(ChooseFilename());
-			//menuFileClear.Click += (_, __) => if (AskToClear()) gensListControl.Clear();
-
 			menuAbout.Click += FormUtils.ShowAbout;
 			menuExit.Click += (_, __) => Close();
 		}
