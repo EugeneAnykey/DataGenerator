@@ -114,13 +114,14 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		{
 			listBoxPreview.Visible = show;
 			textBoxItems.Visible = !show;
-			groupBoxItems.Text = show ? "Preview Items:" : "Items:";
 
 			if (show)
 			{
 				listBoxPreview.Items.Clear();
 				listBoxPreview.Items.AddRange(Separate());
 			}
+
+			groupBoxItems.Text = show ? $"Preview Items {listBoxPreview.Items.Count}:" : "Items:";
 		}
 
 
