@@ -100,7 +100,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void AddingRandomItem(GenItemEventArgs genItemArgs)
 		{
-			bool shift = false;
+			bool shift = ModifierKeys == Keys.Shift;
 
 			var gen = shift ? GetCurrentGenGetter() : GetRandomGenGetter();
 
