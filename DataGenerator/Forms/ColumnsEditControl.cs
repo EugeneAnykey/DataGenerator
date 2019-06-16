@@ -82,18 +82,31 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// private
+		IGenGetter GetRandomGenGetter()
+		{
+			var index = Randomizer.R.Next(ugens.Length);
+			return ugens[index] as IGenGetter;
+		}
+
+		IGenGetter GetCurrentGenGetter()
+		{
+			for (int i = 0; i < collapsables.Length; i++)
+				if (!collapsables[i].Collapsed)
+					return ugens[i] as IGenGetter;
+			return null;
+		}
+
+
+
 		void AddingRandomItem(GenItemEventArgs genItemArgs)
 		{
-			BaseGen gen = null;
-			var index = Randomizer.R.Next(ugens.Length);
+			bool shift = false;
 
-			if (ugens[index] is IGenRandomGetter ugen)
+			var gen = shift ? GetCurrentGenGetter() : GetRandomGenGetter();
+
+			if (gen is IGenRandomGetter rgen)
 			{
-				gen = ugen.GetRandomBaseGen();
-				if (gen == null)
-					return;
-
-				genItemArgs.Gen = gen;
+				genItemArgs.Gen = rgen.GetRandomBaseGen();
 			}
 		}
 
@@ -101,24 +114,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void AddingItem(GenItemEventArgs genItemArgs)
 		{
-			IGenGetter ugen = null;
-			for (int i = 0; i < collapsables.Length; i++)
-			{
-				if (!collapsables[i].Collapsed)
-				{
-					ugen = ugens[i] as IGenGetter;
-					break;
-				}
-			}
-
-			var gen = ugen?.GetBaseGen();
-
-			if (gen == null)
-				return;
-
-			gen.Name = textBoxName.Text;
-
-			genItemArgs.Gen = gen;
+			genItemArgs.Gen = GetCurrentGenGetter()?.GetBaseGen();
+			if (genItemArgs.Gen != null)
+				genItemArgs.Gen.Name = textBoxName.Text;
 		}
 
 

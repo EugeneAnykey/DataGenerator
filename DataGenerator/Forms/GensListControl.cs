@@ -105,7 +105,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void AddItem(BaseGen gen)
 		{
-			listBox.Items.Add(gen);
+			var pos = listBox.Items.Add(gen);
+			listBox.SetSelected(pos, true);
 			UpdateCaption();
 		}
 

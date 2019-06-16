@@ -44,12 +44,12 @@ namespace EugeneAnykey.Forms
 
 			control.Minimum = min;
 			control.Maximum = max;
-			control.SetNumericUpDownValue(val);
+			control.SetNumericUpDownValueQuietly(val);
 		}
 
 
 
-		public static void SetNumericUpDownValue(this NumericUpDown control, decimal value)
+		public static void SetNumericUpDownValueQuietly(this NumericUpDown control, decimal value)
 		{
 			if (control == null)
 				throw new ArgumentNullException(nameof(control));
