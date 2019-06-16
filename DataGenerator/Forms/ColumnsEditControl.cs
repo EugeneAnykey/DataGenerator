@@ -33,6 +33,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			collapsables = new[] {
 				collapsableNothing,
+				collapsableConstant,
 				collapsableIds,
 				collapsableInts,
 				collapsableDoubles,
@@ -44,6 +45,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			names = new[] {
 				"",
 				"Nothing",
+				"Constant",
 				"Id",
 				"Int",
 				"Double",
@@ -54,6 +56,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			ugens = new UserControl[] {
 				noParamsControl,
+				constantsParamsControl,
 				idsParamsControl,
 				intsParamsControl,
 				doublesParamsControl,
@@ -145,19 +148,20 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			int index =
 				gen is NothingGen ? 0 :
-				gen is IdsGen ? 1 :
-				gen is IntegersGen ? 2 :
-				gen is DoublesGen ? 3 :
-				gen is DatesGen ? 4 :
-				gen is MaskedIdsGen ? 5 :
-				gen is StringsGen ? 6 :
-				gen is LimitedStringsGen ? 7 :
+				gen is ConstantStringsGen ? 1 :
+				gen is IdsGen ? 2 :
+				gen is IntegersGen ? 3 :
+				gen is DoublesGen ? 4 :
+				gen is DatesGen ? 5 :
+				gen is MaskedIdsGen ? 6 :
+				gen is StringsGen ? 7 :
+				gen is LimitedStringsGen ? 8 :
 				-1;
 
 			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
 
-			if (index == 6 || index == 7)
-				stringsParamsControl.UseLimitedStrings = index == 7;
+			if (index == 7 || index == 8)
+				stringsParamsControl.UseLimitedStrings = index == 8;
 		}
 
 
