@@ -28,16 +28,15 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			InitializeComponent();
 
-			comboBoxRowsMult.Items.Clear();
-			comboBoxRowsMult.Items.AddRange(multsNames);
-			comboBoxRowsMult.SelectedIndex = 1;
-
 			numericUpDownRows.Minimum = 1;
 			numericUpDownRows.Maximum = 999;
 			numericUpDownRows.Value = 100;
+			
+			buttonMult.Values = multsNames;
+			buttonMult.ValuePosition = 1;
 
 			numericUpDownRows.ValueChanged += (_, __) => CalcRowsCount();
-			comboBoxRowsMult.SelectedIndexChanged += (_, __) => CalcRowsCount();
+			
 			buttonGenFile.Click += (_, __) => OnGenerateFile();
 
 			CalcRowsCount();
@@ -45,8 +44,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-		void CalcRowsCount() => RowsCount = ((int)numericUpDownRows.Value * (int)mults[comboBoxRowsMult.SelectedIndex]);
+		void CalcRowsCount() => RowsCount = (int)numericUpDownRows.Value * (int)mults[buttonMult.ValuePosition];
 
-		string GetRowsCountShort() => $"{(int)numericUpDownRows.Value}{comboBoxRowsMult.Text}";
+		string GetRowsCountShort() => $"{(int)numericUpDownRows.Value}{buttonMult.Text}";
 	}
 }
