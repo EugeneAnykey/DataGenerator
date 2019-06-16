@@ -36,6 +36,14 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
+		// predefined
+		const char PredefMaskDigit = '#';   // 'D'
+		const char PredefMaskAutos = '^';   // 'Z'
+		const char PredefMaskLatin = '$';   // 'L'
+		const char PredefMaskRus = '%';   // 'R'
+
+
+
 		// Generate
 		public string Generate()
 		{
@@ -45,10 +53,10 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			for (int i = 0; i < res.Length; i++)
 			{
 				char replace =
-					res[i] == 'D' ? OneOf(predefDigits) :
-					res[i] == 'L' ? OneOf(predefLatin) :
-					res[i] == 'R' ? OneOf(predefRus) :
-					res[i] == 'Z' ? OneOf(predefAutos) :
+					res[i] == PredefMaskDigit ? OneOf(predefDigits) :
+					res[i] == PredefMaskAutos ? OneOf(predefAutos) :
+					res[i] == PredefMaskLatin ? OneOf(predefLatin) :
+					res[i] == PredefMaskRus ? OneOf(predefRus) :
 					res[i];
 
 				if (replace != res[i])

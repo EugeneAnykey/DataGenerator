@@ -12,7 +12,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		public BaseGen GetRandomBaseGen()
 		{
 			string[] rndNames = new[] { "Identification", "Id Number", "Code", "Part Number" };
-			string[] maskes = new[] { "DDDD DDDDDD", "ZDDDZZ DD", "LLDD LDDLDDD", "R-DD RR-DDD", "LLL DD - RRR" };
+			string[] maskes = new[] { "#### ######", "^###^^ ##", "$$## $##$###", "%-## %%-###", "$$$ ## - %%%" };
 
 			return new MaskedIdsGen(Randomizer.OneOf(maskes)) { Name = Randomizer.OneOf(rndNames) };
 		}

@@ -72,6 +72,11 @@
 			// 
 			// numericUpDownRows
 			// 
+			this.numericUpDownRows.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
 			this.numericUpDownRows.Location = new System.Drawing.Point(22, 19);
 			this.numericUpDownRows.Name = "numericUpDownRows";
 			this.numericUpDownRows.Size = new System.Drawing.Size(120, 20);
