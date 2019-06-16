@@ -29,9 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.labelName = new System.Windows.Forms.Label();
-			this.textBoxName = new System.Windows.Forms.TextBox();
 			this.gensListControl1 = new EugeneAnykey.Project.DataGenerator.Forms.GensListControl();
 			this.collapsableStrings = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.stringsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.StringsParamsControl();
@@ -49,11 +46,13 @@
 			this.constantsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.ConstantsParamsControl();
 			this.collapsableNothing = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.noParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.NoParamsControl();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.labelName = new System.Windows.Forms.Label();
+			this.textBoxName = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			this.panel2.SuspendLayout();
 			this.collapsableStrings.WorkingArea.SuspendLayout();
 			this.collapsableStrings.SuspendLayout();
 			this.collapsableMaskedIds.WorkingArea.SuspendLayout();
@@ -70,6 +69,7 @@
 			this.collapsableConstant.SuspendLayout();
 			this.collapsableNothing.WorkingArea.SuspendLayout();
 			this.collapsableNothing.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -100,33 +100,6 @@
 			this.splitContainer1.Size = new System.Drawing.Size(446, 656);
 			this.splitContainer1.SplitterDistance = 150;
 			this.splitContainer1.TabIndex = 0;
-			// 
-			// panel2
-			// 
-			this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-			this.panel2.Controls.Add(this.labelName);
-			this.panel2.Controls.Add(this.textBoxName);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel2.Location = new System.Drawing.Point(4, 4);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(267, 43);
-			this.panel2.TabIndex = 3;
-			// 
-			// labelName
-			// 
-			this.labelName.AutoSize = true;
-			this.labelName.Location = new System.Drawing.Point(13, 16);
-			this.labelName.Name = "labelName";
-			this.labelName.Size = new System.Drawing.Size(38, 13);
-			this.labelName.TabIndex = 4;
-			this.labelName.Text = "Name:";
-			// 
-			// textBoxName
-			// 
-			this.textBoxName.Location = new System.Drawing.Point(72, 13);
-			this.textBoxName.Name = "textBoxName";
-			this.textBoxName.Size = new System.Drawing.Size(170, 20);
-			this.textBoxName.TabIndex = 3;
 			// 
 			// gensListControl1
 			// 
@@ -442,6 +415,32 @@
 			this.noParamsControl.Size = new System.Drawing.Size(257, 20);
 			this.noParamsControl.TabIndex = 16;
 			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.labelName);
+			this.panel2.Controls.Add(this.textBoxName);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(4, 4);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(267, 43);
+			this.panel2.TabIndex = 3;
+			// 
+			// labelName
+			// 
+			this.labelName.AutoSize = true;
+			this.labelName.Location = new System.Drawing.Point(13, 16);
+			this.labelName.Name = "labelName";
+			this.labelName.Size = new System.Drawing.Size(38, 13);
+			this.labelName.TabIndex = 4;
+			this.labelName.Text = "Name:";
+			// 
+			// textBoxName
+			// 
+			this.textBoxName.Location = new System.Drawing.Point(72, 13);
+			this.textBoxName.Name = "textBoxName";
+			this.textBoxName.Size = new System.Drawing.Size(170, 20);
+			this.textBoxName.TabIndex = 3;
+			// 
 			// ColumnsEditControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,8 +453,6 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
 			this.collapsableStrings.WorkingArea.ResumeLayout(false);
 			this.collapsableStrings.ResumeLayout(false);
 			this.collapsableMaskedIds.WorkingArea.ResumeLayout(false);
@@ -472,6 +469,8 @@
 			this.collapsableConstant.ResumeLayout(false);
 			this.collapsableNothing.WorkingArea.ResumeLayout(false);
 			this.collapsableNothing.ResumeLayout(false);
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
