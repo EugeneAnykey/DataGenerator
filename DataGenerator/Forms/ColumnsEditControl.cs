@@ -7,13 +7,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class ColumnsEditControl : UserControl
 	{
-		// const
-
-
-
 		// field
-		//BaseGen gen;
-
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
 		string[] names;
@@ -78,14 +72,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			{
 				col.CollapseStateChanged += (_, __) => ShowOnly(col);
 			}
-
-			checkBoxLimitedStrings.CheckedChanged += (_, __) => ToggleLimitedStrings(checkBoxLimitedStrings.Checked);
-		}
-
-		void ToggleLimitedStrings(bool enable)
-		{
-			collapsableStrings.Caption = enable ? "Limited Strings Parameters" : "Strings Parameters";
-			stringsParamsControl.UseLimitedStrings = enable;
 		}
 
 
@@ -155,13 +141,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				gen is DatesGen ? 5 :
 				gen is MaskedIdsGen ? 6 :
 				gen is StringsGen ? 7 :
-				gen is LimitedStringsGen ? 8 :
 				-1;
 
 			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
-
-			if (index == 7 || index == 8)
-				stringsParamsControl.UseLimitedStrings = index == 8;
 		}
 
 

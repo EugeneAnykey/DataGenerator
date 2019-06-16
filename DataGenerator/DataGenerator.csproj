@@ -114,11 +114,11 @@
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
-    <Compile Include="Forms\GenControls\LimitedStringsParamsControl.cs">
+    <Compile Include="Forms\GenControls\StringsParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\GenControls\LimitedStringsParamsControl.Designer.cs">
-      <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
+    <Compile Include="Forms\GenControls\StringsParamsControl.Designer.cs">
+      <DependentUpon>StringsParamsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GenControls\NoParamsControl.cs">
       <SubType>UserControl</SubType>
@@ -145,7 +145,6 @@
     <Compile Include="_root\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
     <Compile Include="_root\IStringOutputer.cs" />
-    <Compile Include="Generators\LimitedStringsGen.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />
     <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
@@ -190,8 +189,8 @@
     <EmbeddedResource Include="Forms\GenControls\DoublesParamsControl.resx">
       <DependentUpon>DoublesParamsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\GenControls\LimitedStringsParamsControl.resx">
-      <DependentUpon>LimitedStringsParamsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GenControls\StringsParamsControl.resx">
+      <DependentUpon>StringsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GenControls\NoParamsControl.resx">
       <DependentUpon>NoParamsControl.cs</DependentUpon>

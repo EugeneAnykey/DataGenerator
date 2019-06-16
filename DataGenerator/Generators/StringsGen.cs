@@ -6,33 +6,46 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 	{
 		// field
 		public string[] Lines { get; }
-		readonly int max;
+		public int StringLengthLimit { get; }
+		public bool Limited { get; }
+		readonly int linesCount;
 
-		public override string Name { get; set; } = "Strings Gen";
+		public override string Name { get; set; }
 
 		public string[] Latest { get; private set; } = new string[0];
 
 
 
 		// init
-		public StringsGen(string[] lines)
+		public StringsGen(string[] lines) : this(lines, 0) { }
+
+		public StringsGen(string[] lines, int lengthLimit)
 		{
 			Lines = lines;
-			max = lines.Length;
+			linesCount = lines.Length;
+
+			StringLengthLimit = lengthLimit > 0 ? lengthLimit : 0;
+			Limited = StringLengthLimit > 0;
+			Name = Limited ? "Limited Strings Gen" : "Strings Gen";
 		}
 
 
 
-		// Generate
-		public string Generate() => Lines[R.Next(max)];
+		// private: GetLimited
+		string GetLimited(string s) => s.Length <= StringLengthLimit ? s : s.Substring(0, StringLengthLimit);
 
-		public IEnumerable<string> Generate(int count) => Fill<string>(count, () => Lines[R.Next(max)]);
+
+
+		// Generate
+		public string Generate() => Limited ? GetLimited(Lines[R.Next(linesCount)]) : Lines[R.Next(linesCount)];
+
+		public IEnumerable<string> Generate(int count) => Fill(count, () => Generate());
 
 
 
 		// Output
 		public string Output() => Generate();
 
-		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => Lines[R.Next(max)])) as string[];
+		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => Generate()) as string[];
 	}
 }

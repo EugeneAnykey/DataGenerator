@@ -1,6 +1,6 @@
 ﻿namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
-	partial class LimitedStringsParamsControl
+	partial class StringsParamsControl
 	{
 		/// <summary> 
 		/// Обязательная переменная конструктора.
@@ -36,8 +36,9 @@
 			this.comboBoxItemsSeparator = new System.Windows.Forms.ComboBox();
 			this.labelItemsSeparator = new System.Windows.Forms.Label();
 			this.groupBoxItems = new System.Windows.Forms.GroupBox();
-			this.textBoxItems = new System.Windows.Forms.TextBox();
 			this.listBoxPreview = new System.Windows.Forms.ListBox();
+			this.textBoxItems = new System.Windows.Forms.TextBox();
+			this.checkBoxLimitedStrings = new System.Windows.Forms.CheckBox();
 			this.panelMaxLength.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFixed)).BeginInit();
 			this.panelSeparators.SuspendLayout();
@@ -49,7 +50,7 @@
 			this.panelMaxLength.Controls.Add(this.labelParamFixed);
 			this.panelMaxLength.Controls.Add(this.numericUpDownFixed);
 			this.panelMaxLength.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelMaxLength.Location = new System.Drawing.Point(4, 4);
+			this.panelMaxLength.Location = new System.Drawing.Point(4, 21);
 			this.panelMaxLength.Name = "panelMaxLength";
 			this.panelMaxLength.Size = new System.Drawing.Size(263, 40);
 			this.panelMaxLength.TabIndex = 14;
@@ -76,7 +77,7 @@
 			this.panelSeparators.Controls.Add(this.comboBoxItemsSeparator);
 			this.panelSeparators.Controls.Add(this.labelItemsSeparator);
 			this.panelSeparators.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelSeparators.Location = new System.Drawing.Point(4, 44);
+			this.panelSeparators.Location = new System.Drawing.Point(4, 61);
 			this.panelSeparators.Name = "panelSeparators";
 			this.panelSeparators.Size = new System.Drawing.Size(263, 68);
 			this.panelSeparators.TabIndex = 15;
@@ -112,21 +113,12 @@
 			this.groupBoxItems.Controls.Add(this.listBoxPreview);
 			this.groupBoxItems.Controls.Add(this.textBoxItems);
 			this.groupBoxItems.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.groupBoxItems.Location = new System.Drawing.Point(4, 112);
+			this.groupBoxItems.Location = new System.Drawing.Point(4, 129);
 			this.groupBoxItems.Name = "groupBoxItems";
-			this.groupBoxItems.Size = new System.Drawing.Size(263, 172);
+			this.groupBoxItems.Size = new System.Drawing.Size(263, 155);
 			this.groupBoxItems.TabIndex = 16;
 			this.groupBoxItems.TabStop = false;
 			this.groupBoxItems.Text = "Items:";
-			// 
-			// textBoxItems
-			// 
-			this.textBoxItems.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.textBoxItems.Location = new System.Drawing.Point(3, 16);
-			this.textBoxItems.Multiline = true;
-			this.textBoxItems.Name = "textBoxItems";
-			this.textBoxItems.Size = new System.Drawing.Size(257, 153);
-			this.textBoxItems.TabIndex = 3;
 			// 
 			// listBoxPreview
 			// 
@@ -136,6 +128,26 @@
 			this.listBoxPreview.Size = new System.Drawing.Size(120, 95);
 			this.listBoxPreview.TabIndex = 4;
 			// 
+			// textBoxItems
+			// 
+			this.textBoxItems.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.textBoxItems.Location = new System.Drawing.Point(3, 16);
+			this.textBoxItems.Multiline = true;
+			this.textBoxItems.Name = "textBoxItems";
+			this.textBoxItems.Size = new System.Drawing.Size(257, 136);
+			this.textBoxItems.TabIndex = 3;
+			// 
+			// checkBoxLimitedStrings
+			// 
+			this.checkBoxLimitedStrings.AutoSize = true;
+			this.checkBoxLimitedStrings.Dock = System.Windows.Forms.DockStyle.Top;
+			this.checkBoxLimitedStrings.Location = new System.Drawing.Point(4, 4);
+			this.checkBoxLimitedStrings.Name = "checkBoxLimitedStrings";
+			this.checkBoxLimitedStrings.Size = new System.Drawing.Size(263, 17);
+			this.checkBoxLimitedStrings.TabIndex = 17;
+			this.checkBoxLimitedStrings.Text = "Limited Strings";
+			this.checkBoxLimitedStrings.UseVisualStyleBackColor = true;
+			// 
 			// LimitedStringsParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -143,6 +155,7 @@
 			this.Controls.Add(this.groupBoxItems);
 			this.Controls.Add(this.panelSeparators);
 			this.Controls.Add(this.panelMaxLength);
+			this.Controls.Add(this.checkBoxLimitedStrings);
 			this.Name = "LimitedStringsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
 			this.Size = new System.Drawing.Size(271, 288);
@@ -154,6 +167,7 @@
 			this.groupBoxItems.ResumeLayout(false);
 			this.groupBoxItems.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -169,5 +183,6 @@
 		private System.Windows.Forms.GroupBox groupBoxItems;
 		private System.Windows.Forms.TextBox textBoxItems;
 		private System.Windows.Forms.ListBox listBoxPreview;
+		private System.Windows.Forms.CheckBox checkBoxLimitedStrings;
 	}
 }

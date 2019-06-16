@@ -4,10 +4,10 @@ using EugeneAnykey.Forms;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 {
-	public partial class LimitedStringsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
+	public partial class StringsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
 		// IGenGetter
-		public BaseGen GetBaseGen() => useLimitedStrings ? (BaseGen)new LimitedStringsGen(Separate(), 5) : new StringsGen(Separate());
+		public BaseGen GetBaseGen() => new StringsGen(Separate(), useLimitedStrings ? (int)numericUpDownFixed.Value : 0);
 
 		// IGenRandomGetter
 		public BaseGen GetRandomBaseGen()
@@ -21,29 +21,22 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 				LinesHolder.EngParticles
 			};
 
-			var limited = Randomizer.R.Next(1) > 0.5;
+			var possibleLimit = Randomizer.R.Next(6);
+			var limited = possibleLimit > 2;
 			var linesId = Randomizer.R.Next(lines.Length);
 
-			BaseGen gen = limited ? (BaseGen)new LimitedStringsGen(lines[linesId], 5) : new StringsGen(lines[linesId]);
-			gen.Name = Names[linesId];
-
-			return gen;
+			return new StringsGen(lines[linesId], limited ? possibleLimit : 0) { Name = Names[linesId] };
 		}
 
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
-			if (gen is LimitedStringsGen gen1)
+			if (gen is StringsGen gen1)
 			{
-				numericUpDownFixed.Value = gen1.MaxLength;
+				numericUpDownFixed.Value = gen1.StringLengthLimit;
 				comboBoxItemsSeparator.SelectedItem = commaSeparator;
+				checkBoxLimitedStrings.Checked = gen1.Limited;
 				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen1.Lines);
-			}
-
-			if (gen is StringsGen gen2)
-			{
-				comboBoxItemsSeparator.SelectedItem = commaSeparator;
-				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen2.Lines);
 			}
 
 			TogglePreview(showPreview);
@@ -70,13 +63,15 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 				useLimitedStrings = value;
 				panelMaxLength.Enabled = value;
 				panelMaxLength.Visible = value;
+				if (!value)
+					numericUpDownFixed.Value = 0;
 			}
 		}
 
 
 
 		// init
-		public LimitedStringsParamsControl()
+		public StringsParamsControl()
 		{
 			InitializeComponent();
 
@@ -102,6 +97,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 
 			buttonFastExample.Click += (_, __) => FastExample();
 			groupBoxItems.Click += (_, __) => TogglePreview();
+			checkBoxLimitedStrings.CheckedChanged += (_, __) => UseLimitedStrings = checkBoxLimitedStrings.Checked;
 		}
 
 
