@@ -36,6 +36,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			buttonMult.ValuePosition = 1;
 
 			numericUpDownRows.ValueChanged += (_, __) => CalcRowsCount();
+			buttonMult.ValuePositionChanged += (_,__) => CalcRowsCount();
 			
 			buttonGenFile.Click += (_, __) => OnGenerateFile();
 
