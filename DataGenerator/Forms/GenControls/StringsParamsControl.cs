@@ -15,7 +15,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			string[] Names = new[] { "Colors", "Latin", "Words", "LongWords", "Particles" };
 			string[][] lines = new[] {
 				LinesHolder.Colors,
-				LinesHolder.AlphabetLatin,
+				LinesHolder.AlphabetLatin1,
+				LinesHolder.AlphabetLatin2,
+				LinesHolder.AlphabetLatin3,
 				LinesHolder.EngWords,
 				LinesHolder.LongEngWords,
 				LinesHolder.EngParticles

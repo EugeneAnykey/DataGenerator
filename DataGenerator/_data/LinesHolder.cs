@@ -10,7 +10,9 @@ namespace EugeneAnykey.Project.DataGenerator
 		public static readonly string[] EngWords;
 
 		// hard coded:
-		public static readonly string[] AlphabetLatin = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
+		public static readonly string[] AlphabetLatin1 = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".Split(',');
+		public static readonly string[] AlphabetLatin2 = "ab,bc,cd,de,ef,fg,gh,hi,ij,jk,kl,lm,mn,no,op,pq,qr,rs,st,tu,uv,vw,wx,xy,yz,za".Split(',');
+		public static readonly string[] AlphabetLatin3 = "abc,bcd,cde,def,efg,fgh,ghi,hij,ijk,jkl,klm,lmn,mno,nop,opq,pqr,qrs,rst,stu,tuv,uvw,vwx,wxy,xyz,yza,zab".Split(',');
 
 		public static readonly string[] EngParticles = "above,after,before,behind,in,in front,inside,off,on,over,out,outside,under".Split(',');
 
@@ -23,11 +25,11 @@ namespace EugeneAnykey.Project.DataGenerator
 		#region init
 		static LinesHolder()
 		{
-			Assembly asm = Assembly.GetExecutingAssembly();
+			Assembly assembly = Assembly.GetExecutingAssembly();
 
-			var resources = asm.GetManifestResourceNames();
+			var resources = assembly.GetManifestResourceNames();
 
-			EngWords = SplitByNewLine(GetTextStringFromEmbeded(asm, GetName(resources, "engWords.txt")));
+			EngWords = SplitByNewLine(GetTextStringFromEmbeded(assembly, GetResourceName(resources, "engWords.txt")));
 			//RusWords = SplitByNewLine(GetTextStringFromEmbeded(asm, GetName(resources, "rusWords.txt")));
 		}
 
@@ -58,7 +60,7 @@ namespace EugeneAnykey.Project.DataGenerator
 
 
 		// gets first string that looks like the "lookFor" or empty string.
-		static string GetName(string[] fromNames, string lookFor)
+		static string GetResourceName(string[] fromNames, string lookFor)
 		{
 			lookFor = lookFor.ToLower();
 
