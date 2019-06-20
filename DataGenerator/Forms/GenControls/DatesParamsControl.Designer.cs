@@ -32,6 +32,8 @@
 			this.labelParamMin = new System.Windows.Forms.Label();
 			this.dateTimePickerMin = new System.Windows.Forms.DateTimePicker();
 			this.dateTimePickerMax = new System.Windows.Forms.DateTimePicker();
+			this.labelFormat = new System.Windows.Forms.Label();
+			this.comboBoxOutputFormat = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// labelParamMax
@@ -54,6 +56,8 @@
 			// 
 			// dateTimePickerMin
 			// 
+			this.dateTimePickerMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateTimePickerMin.Location = new System.Drawing.Point(64, 3);
 			this.dateTimePickerMin.Name = "dateTimePickerMin";
 			this.dateTimePickerMin.Size = new System.Drawing.Size(180, 20);
@@ -61,22 +65,46 @@
 			// 
 			// dateTimePickerMax
 			// 
+			this.dateTimePickerMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dateTimePickerMax.Location = new System.Drawing.Point(64, 35);
 			this.dateTimePickerMax.Name = "dateTimePickerMax";
 			this.dateTimePickerMax.Size = new System.Drawing.Size(180, 20);
 			this.dateTimePickerMax.TabIndex = 12;
 			// 
+			// labelFormat
+			// 
+			this.labelFormat.AutoSize = true;
+			this.labelFormat.Location = new System.Drawing.Point(10, 67);
+			this.labelFormat.Name = "labelFormat";
+			this.labelFormat.Size = new System.Drawing.Size(42, 13);
+			this.labelFormat.TabIndex = 13;
+			this.labelFormat.Text = "Format:";
+			// 
+			// comboBoxOutputFormat
+			// 
+			this.comboBoxOutputFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBoxOutputFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxOutputFormat.FormattingEnabled = true;
+			this.comboBoxOutputFormat.Location = new System.Drawing.Point(64, 64);
+			this.comboBoxOutputFormat.Name = "comboBoxOutputFormat";
+			this.comboBoxOutputFormat.Size = new System.Drawing.Size(180, 21);
+			this.comboBoxOutputFormat.TabIndex = 14;
+			// 
 			// DatesParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.comboBoxOutputFormat);
+			this.Controls.Add(this.labelFormat);
 			this.Controls.Add(this.dateTimePickerMax);
 			this.Controls.Add(this.dateTimePickerMin);
 			this.Controls.Add(this.labelParamMax);
 			this.Controls.Add(this.labelParamMin);
 			this.Name = "DatesParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 66);
+			this.Size = new System.Drawing.Size(251, 93);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -87,5 +115,7 @@
 		private System.Windows.Forms.Label labelParamMin;
 		private System.Windows.Forms.DateTimePicker dateTimePickerMin;
 		private System.Windows.Forms.DateTimePicker dateTimePickerMax;
+		private System.Windows.Forms.Label labelFormat;
+		private System.Windows.Forms.ComboBox comboBoxOutputFormat;
 	}
 }

@@ -123,7 +123,7 @@
 			this.collapsableStrings.Collapsed = false;
 			this.collapsableStrings.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableStrings.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableStrings.Location = new System.Drawing.Point(4, 505);
+			this.collapsableStrings.Location = new System.Drawing.Point(4, 439);
 			this.collapsableStrings.Name = "collapsableStrings";
 			this.collapsableStrings.Padding = new System.Windows.Forms.Padding(4);
 			this.collapsableStrings.Size = new System.Drawing.Size(267, 313);
@@ -162,7 +162,7 @@
 			this.collapsableMaskedIds.Collapsed = false;
 			this.collapsableMaskedIds.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableMaskedIds.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableMaskedIds.Location = new System.Drawing.Point(4, 445);
+			this.collapsableMaskedIds.Location = new System.Drawing.Point(4, 379);
 			this.collapsableMaskedIds.Name = "collapsableMaskedIds";
 			this.collapsableMaskedIds.Padding = new System.Windows.Forms.Padding(4);
 			this.collapsableMaskedIds.Size = new System.Drawing.Size(267, 60);
@@ -197,13 +197,13 @@
 			this.collapsableDates.CaptionCollapsed = "";
 			this.collapsableDates.CaptionOppositeAlignment = false;
 			this.collapsableDates.Collapsable = true;
-			this.collapsableDates.Collapsed = false;
+			this.collapsableDates.Collapsed = true;
 			this.collapsableDates.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableDates.Dock = System.Windows.Forms.DockStyle.Top;
 			this.collapsableDates.Location = new System.Drawing.Point(4, 355);
 			this.collapsableDates.Name = "collapsableDates";
 			this.collapsableDates.Padding = new System.Windows.Forms.Padding(4);
-			this.collapsableDates.Size = new System.Drawing.Size(267, 90);
+			this.collapsableDates.Size = new System.Drawing.Size(267, 24);
 			this.collapsableDates.TabIndex = 23;
 			// 
 			// collapsableDates.WorkingArea
@@ -213,7 +213,7 @@
 			this.collapsableDates.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.collapsableDates.WorkingArea.Location = new System.Drawing.Point(4, 18);
 			this.collapsableDates.WorkingArea.Name = "WorkingArea";
-			this.collapsableDates.WorkingArea.Size = new System.Drawing.Size(257, 66);
+			this.collapsableDates.WorkingArea.Size = new System.Drawing.Size(257, 89);
 			this.collapsableDates.WorkingArea.TabIndex = 2;
 			// 
 			// datesParamsControl
@@ -222,7 +222,7 @@
 			this.datesParamsControl.Location = new System.Drawing.Point(0, 0);
 			this.datesParamsControl.Name = "datesParamsControl";
 			this.datesParamsControl.Padding = new System.Windows.Forms.Padding(4);
-			this.datesParamsControl.Size = new System.Drawing.Size(257, 66);
+			this.datesParamsControl.Size = new System.Drawing.Size(257, 89);
 			this.datesParamsControl.TabIndex = 0;
 			// 
 			// collapsableDoubles
