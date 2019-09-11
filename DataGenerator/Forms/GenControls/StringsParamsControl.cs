@@ -12,7 +12,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenRandomGetter
 		public BaseGen GetRandomBaseGen()
 		{
-			string[] Names = new[] { "Colors", "Latin", "Words", "LongWords", "Particles" };
+			string[] Names = new[] { "Colors", "Latin (1 letter)", "Latin (2 letters)", "Latin (3 letters)", "Words", "LongWords", "Particles" };
 			string[][] lines = new[] {
 				LinesHolder.Colors,
 				LinesHolder.AlphabetLatin1,
