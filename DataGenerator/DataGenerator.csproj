@@ -69,6 +69,7 @@
     <Compile Include="EugeneAnykey\Forms\Controls\SequenceButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="EugeneAnykey\Forms\Colorer.cs" />
     <Compile Include="Forms\ColumnsEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
