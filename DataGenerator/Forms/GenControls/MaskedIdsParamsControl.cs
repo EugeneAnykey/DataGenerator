@@ -33,6 +33,31 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			InitializeComponent();
 
 			textBoxMask.Text = "";
+
+			buttonHelp.Click += (_, __) => ShowHelp();
+		}
+
+
+
+		void ShowHelp()
+		{
+			const string S_MaskedHelp_Cap = "Replacement info";
+
+			string[] S_MaskedHelp_Txt_Lines = new[] {
+				"Use chars for replacements:",
+				"",
+				"# — for numbers;",
+				"$ — for latin letters only;",
+				"% — for russian letters only;",
+				"^ — for only similar russian and latin letters.",
+			};
+
+			MessageBox.Show(
+				string.Join("\n", S_MaskedHelp_Txt_Lines),
+				S_MaskedHelp_Cap,
+				MessageBoxButtons.OK,
+				MessageBoxIcon.Information
+			);
 		}
 	}
 }
