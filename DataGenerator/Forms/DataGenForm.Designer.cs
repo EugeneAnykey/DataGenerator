@@ -41,6 +41,7 @@
 			this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
 			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
+			this.menuRecolor = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -49,7 +50,8 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFile,
-            this.menuAbout});
+            this.menuAbout,
+            this.menuRecolor});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(526, 24);
@@ -118,7 +120,7 @@
 			// 
 			// columnsEditControl1
 			// 
-			this.columnsEditControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+			this.columnsEditControl1.BackColor = System.Drawing.SystemColors.Control;
 			this.columnsEditControl1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.columnsEditControl1.Location = new System.Drawing.Point(0, 85);
 			this.columnsEditControl1.Name = "columnsEditControl1";
@@ -128,13 +130,19 @@
 			// 
 			// rowsCountControl1
 			// 
-			this.rowsCountControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+			this.rowsCountControl1.BackColor = System.Drawing.SystemColors.Control;
 			this.rowsCountControl1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.rowsCountControl1.Location = new System.Drawing.Point(0, 24);
 			this.rowsCountControl1.Name = "rowsCountControl1";
 			this.rowsCountControl1.Padding = new System.Windows.Forms.Padding(4);
 			this.rowsCountControl1.Size = new System.Drawing.Size(526, 61);
 			this.rowsCountControl1.TabIndex = 9;
+			// 
+			// menuRecolor
+			// 
+			this.menuRecolor.Name = "menuRecolor";
+			this.menuRecolor.Size = new System.Drawing.Size(59, 20);
+			this.menuRecolor.Text = "Recolor";
 			// 
 			// DataGenForm
 			// 
@@ -173,6 +181,7 @@
 		private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
 		private System.Windows.Forms.ToolStripMenuItem menuFileGenerate;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem menuRecolor;
 	}
 }
 

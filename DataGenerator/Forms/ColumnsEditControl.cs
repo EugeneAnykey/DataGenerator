@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms.Controls;
-using System;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
@@ -11,8 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
 		string[] names;
-
-
+		
 
 		// init
 		public ColumnsEditControl()
@@ -59,7 +57,19 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				stringsParamsControl,
 			};
 
+			Recolor();
+
 			ShowOnly(collapsableNothing);
+		}
+
+		void Recolor()
+		{
+			var colorer = new EugeneAnykey.Forms.Colorer();
+
+			foreach (var item in collapsables)
+			{
+				item.BaseColor = item.BackColor = colorer.GetNext();
+			}
 		}
 
 		void InitEvent()

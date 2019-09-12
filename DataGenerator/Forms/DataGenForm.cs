@@ -14,6 +14,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		Stopwatch watch = new Stopwatch();
 
 
+		Colorer colorer = new Colorer();
 
 		// init
 		public DataGenForm()
@@ -22,12 +23,19 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			Text = Application.ProductName;
 
+			rowsCountControl1.BackColor =
+				columnsEditControl1.BackColor =
+				colorer[13];
+
 			saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
 
 			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile(ChooseFilename());
 			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile(ChooseFilename());
 			menuAbout.Click += FormUtils.ShowAbout;
 			menuExit.Click += (_, __) => Close();
+
+			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.Random();
+			//menuRecolor.Visible = false;
 		}
 
 
