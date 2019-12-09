@@ -34,14 +34,18 @@
 			this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuFileGenerate = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuRecolor = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
 			this.columnsEditControl1 = new EugeneAnykey.Project.DataGenerator.Forms.ColumnsEditControl();
 			this.rowsCountControl1 = new EugeneAnykey.Project.DataGenerator.Forms.RowsCountControl();
-			this.menuRecolor = new System.Windows.Forms.ToolStripMenuItem();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -63,6 +67,9 @@
 			this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuFileGenerate,
             this.toolStripMenuItem1,
+            this.menuFileOpen,
+            this.menuFileSave,
+            this.toolStripMenuItem2,
             this.menuExit});
 			this.menuFile.Name = "menuFile";
 			this.menuFile.Size = new System.Drawing.Size(37, 20);
@@ -71,18 +78,35 @@
 			// menuFileGenerate
 			// 
 			this.menuFileGenerate.Name = "menuFileGenerate";
-			this.menuFileGenerate.Size = new System.Drawing.Size(130, 22);
+			this.menuFileGenerate.Size = new System.Drawing.Size(156, 22);
 			this.menuFileGenerate.Text = "&Generate...";
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(127, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 6);
+			// 
+			// menuFileOpen
+			// 
+			this.menuFileOpen.Name = "menuFileOpen";
+			this.menuFileOpen.Size = new System.Drawing.Size(156, 22);
+			this.menuFileOpen.Text = "&Open scheme...";
+			// 
+			// menuFileSave
+			// 
+			this.menuFileSave.Name = "menuFileSave";
+			this.menuFileSave.Size = new System.Drawing.Size(156, 22);
+			this.menuFileSave.Text = "&Save scheme...";
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(153, 6);
 			// 
 			// menuExit
 			// 
 			this.menuExit.Name = "menuExit";
-			this.menuExit.Size = new System.Drawing.Size(130, 22);
+			this.menuExit.Size = new System.Drawing.Size(156, 22);
 			this.menuExit.Text = "&Exit";
 			// 
 			// menuAbout
@@ -91,6 +115,12 @@
 			this.menuAbout.Name = "menuAbout";
 			this.menuAbout.Size = new System.Drawing.Size(52, 20);
 			this.menuAbout.Text = "&About";
+			// 
+			// menuRecolor
+			// 
+			this.menuRecolor.Name = "menuRecolor";
+			this.menuRecolor.Size = new System.Drawing.Size(59, 20);
+			this.menuRecolor.Text = "Recolor";
 			// 
 			// toolStrip1
 			// 
@@ -138,11 +168,9 @@
 			this.rowsCountControl1.Size = new System.Drawing.Size(526, 61);
 			this.rowsCountControl1.TabIndex = 9;
 			// 
-			// menuRecolor
+			// openFileDialog1
 			// 
-			this.menuRecolor.Name = "menuRecolor";
-			this.menuRecolor.Size = new System.Drawing.Size(59, 20);
-			this.menuRecolor.Text = "Recolor";
+			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
 			// DataGenForm
 			// 
@@ -182,6 +210,10 @@
 		private System.Windows.Forms.ToolStripMenuItem menuFileGenerate;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem menuRecolor;
+		private System.Windows.Forms.ToolStripMenuItem menuFileOpen;
+		private System.Windows.Forms.ToolStripMenuItem menuFileSave;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 	}
 }
 

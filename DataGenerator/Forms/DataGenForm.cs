@@ -31,14 +31,14 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile(ChooseFilename());
 			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile(ChooseFilename());
+			menuFileOpen.Click += (_,__) => OpenScheme();
+			menuFileSave.Click += (_, __) => SaveScheme();
 			menuAbout.Click += FormUtils.ShowAbout;
 			menuExit.Click += (_, __) => Close();
 
 			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.Random();
 			//menuRecolor.Visible = false;
 		}
-
-
 
 		// private: ShowElapsed.
 		void ShowElapsed()
@@ -107,6 +107,43 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			watch.Stop();
 			ShowElapsed();
+		}
+
+		void SaveScheme()
+		{
+			const string mesText = "Could not save a scheme without columns.";
+			const string mesCap = "No columns";
+			const string filenameMask = "scheme_r{0}_c{1}.txt";
+
+			var cols = columnsEditControl1.GetBaseGens().Length;
+
+			if (cols == 0)
+			{
+				MessageBox.Show(mesText, mesCap, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return ;
+			}
+
+			saveFileDialog1.FileName = string.Format(filenameMask, rowsCountControl1.RowsCountShort, cols);
+
+			var filename = DialogResult.OK == saveFileDialog1.ShowDialog() ? saveFileDialog1.FileName : string.Empty;
+
+			// save scheme:
+			// ...
+
+			throw new NotImplementedException();
+		}
+
+		void OpenScheme()
+		{
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				var filename = openFileDialog1.FileName;
+
+				// open scheme...
+				// ...
+			}
+
+			throw new NotImplementedException();
 		}
 	}
 }

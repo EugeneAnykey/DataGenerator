@@ -115,6 +115,7 @@
     <Compile Include="Generators\DatesGen.cs" />
     <Compile Include="Generators\ConstantStringsGen.cs" />
     <Compile Include="Generators\MaskedIdsGen.cs" />
+    <Compile Include="IO\_empty.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
@@ -223,5 +224,6 @@
     <Content Include="_data\datagen-icon.ico" />
     <EmbeddedResource Include="_data\engWords.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
