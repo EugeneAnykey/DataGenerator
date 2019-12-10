@@ -29,8 +29,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
 
-			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile(ChooseFilename());
-			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile(ChooseFilename());
+			rowsCountControl1.GenerateFile += (_, __) => GenerateBaseGenFile();
+			menuFileGenerate.Click += (_, __) => GenerateBaseGenFile();
 			menuFileOpen.Click += (_,__) => OpenScheme();
 			menuFileSave.Click += (_, __) => SaveScheme();
 			menuAbout.Click += FormUtils.ShowAbout;
@@ -68,17 +68,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// private: ChooseFilename
-		string ChooseFilename()
+		string ChooseFilename(string messageText, string messageCaption, string filenameMask)
 		{
-			const string mesText = "Could not generate a file without columns.";
-			const string mesCap = "No columns";
-			const string filenameMask = "random_r{0}_c{1}.txt";
-
 			var cols = columnsEditControl1.GetBaseGens().Length;
 
 			if (cols == 0)
 			{
-				MessageBox.Show(mesText, mesCap, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(messageText, messageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return null;
 			}
 
@@ -90,6 +86,19 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 		// private: GenerateBaseGenFile
+		const string mesText_Generate = "Could not generate a file without columns.";
+		const string mesCap_Generate = "No columns";
+		const string filenameMask_Generate = "random_r{0}_c{1}.txt";
+
+		const string mesText_SchemeSave = "Could not save a scheme without columns.";
+		const string mesCap_SchemeSave = "No columns";
+		const string filenameMask_SchemeSave = "scheme_r{0}_c{1}.txt";
+
+		void GenerateBaseGenFile()
+		{
+			GenerateBaseGenFile(ChooseFilename(mesText_Generate, mesCap_Generate, filenameMask_Generate));
+		}
+
 		async void GenerateBaseGenFile(string filename)
 		{
 			if (string.IsNullOrEmpty(filename))
@@ -111,21 +120,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void SaveScheme()
 		{
-			const string mesText = "Could not save a scheme without columns.";
-			const string mesCap = "No columns";
-			const string filenameMask = "scheme_r{0}_c{1}.txt";
-
-			var cols = columnsEditControl1.GetBaseGens().Length;
-
-			if (cols == 0)
-			{
-				MessageBox.Show(mesText, mesCap, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return ;
-			}
-
-			saveFileDialog1.FileName = string.Format(filenameMask, rowsCountControl1.RowsCountShort, cols);
-
-			var filename = DialogResult.OK == saveFileDialog1.ShowDialog() ? saveFileDialog1.FileName : string.Empty;
+			var filename = ChooseFilename(mesText_SchemeSave, mesCap_SchemeSave, filenameMask_SchemeSave);
 
 			// save scheme:
 			// ...
