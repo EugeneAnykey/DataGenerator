@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class DatesGen : BaseGen, IGen<DateTime>, IStringOutputer
+	public class DatesGen : BaseGen, IGen<DateTime>, IStringOutputer, IXmlOutputer
 	{
 		/* mask
 		 yyyy-MM-dd - 2019-06-20
@@ -52,5 +53,17 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		public string Output() => Generate().ToString(Format);
 
 		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => Generate().ToString(Format)) as string[];
+
+
+
+		// Xml
+		public void WriteXmlSubtree(XmlWriter writer)
+		{
+			//writer.WriteStartElement("DatesGen");
+			writer.WriteAttributeString("Min", Min.ToBinary().ToString());
+			writer.WriteAttributeString("Max", Max.ToBinary().ToString());
+			writer.WriteAttributeString("Format", Format);
+			//writer.WriteFullEndElement();
+		}
 	}
 }

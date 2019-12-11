@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using EugeneAnykey.Forms;
-using EugeneAnykey.Project.DataGenerator.Generators;
+using EugeneAnykey.Project.DataGenerator.IO;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
@@ -71,7 +72,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		string ChooseFilename(string messageText, string messageCaption, string filenameMask)
 		{
 			var cols = columnsEditControl1.GetBaseGens().Length;
-
+			
 			if (cols == 0)
 			{
 				MessageBox.Show(messageText, messageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -124,6 +125,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			// save scheme:
 			// ...
+			var cols = columnsEditControl1.GetBaseGens().Length;
+			var rows = rowsCountControl1.RowsCount;
+
+			var writer = XmlWriter.Create();
+
 
 			throw new NotImplementedException();
 		}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace EugeneAnykey.Project.DataGenerator.Generators
+namespace EugeneAnykey.Project.DataGenerator.IO
 {
 	public class FileGen
 	{

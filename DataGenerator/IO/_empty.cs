@@ -1,4 +1,0 @@
-﻿namespace EugeneAnykey.Project.DataGenerator
-{
-
-}

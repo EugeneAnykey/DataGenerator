@@ -56,6 +56,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EugeneAnykey\Forms\Controls\CollapsableControl.cs">
@@ -115,7 +116,7 @@
     <Compile Include="Generators\DatesGen.cs" />
     <Compile Include="Generators\ConstantStringsGen.cs" />
     <Compile Include="Generators\MaskedIdsGen.cs" />
-    <Compile Include="IO\_empty.cs" />
+    <Compile Include="IO\SchemeGen.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
@@ -146,9 +147,10 @@
     <Compile Include="Generators\DoublesGen.cs" />
     <Compile Include="Generators\IdsGen.cs" />
     <Compile Include="_root\IGen.cs" />
-    <Compile Include="Generators\FileGen.cs" />
+    <Compile Include="IO\FileGen.cs" />
     <Compile Include="_root\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
+    <Compile Include="_root\IXmlOutputer.cs" />
     <Compile Include="_root\IStringOutputer.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />

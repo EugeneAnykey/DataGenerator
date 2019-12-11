@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Xml;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class ConstantStringsGen : BaseGen, IGen<string>, IStringOutputer
+	public class ConstantStringsGen : BaseGen, IGen<string>, IStringOutputer, IXmlOutputer
 	{
 		// field
 		public string Constant { get; }
@@ -32,5 +33,15 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		public string Output() => Generate().ToString();
 
 		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => Constant) as string[];
+
+
+
+		// Xml
+		public void WriteXmlSubtree(XmlWriter writer)
+		{
+			//writer.WriteStartElement("ConstantStringsGen");
+			writer.WriteAttributeString("Constant", Constant);
+			//writer.WriteFullEndElement();
+		}
 	}
 }
