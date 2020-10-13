@@ -30,6 +30,8 @@
 		{
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.gensListControl1 = new EugeneAnykey.Project.DataGenerator.Forms.GensListControl();
+			this.collapsableRndSymbols = new EugeneAnykey.Forms.Controls.CollapsableControl();
+			this.rndSymbolsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.RndSymbolsParamsControl();
 			this.collapsableStrings = new EugeneAnykey.Forms.Controls.CollapsableControl();
 			this.stringsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.StringsParamsControl();
 			this.collapsableMaskedIds = new EugeneAnykey.Forms.Controls.CollapsableControl();
@@ -49,12 +51,12 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.labelName = new System.Windows.Forms.Label();
 			this.textBoxName = new System.Windows.Forms.TextBox();
-			this.collapsableRndSymbols = new EugeneAnykey.Forms.Controls.CollapsableControl();
-			this.rndSymbolsParamsControl = new EugeneAnykey.Project.DataGenerator.Forms.GenControls.RndSymbolsParamsControl();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.collapsableRndSymbols.WorkingArea.SuspendLayout();
+			this.collapsableRndSymbols.SuspendLayout();
 			this.collapsableStrings.WorkingArea.SuspendLayout();
 			this.collapsableStrings.SuspendLayout();
 			this.collapsableMaskedIds.WorkingArea.SuspendLayout();
@@ -72,8 +74,6 @@
 			this.collapsableNothing.WorkingArea.SuspendLayout();
 			this.collapsableNothing.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.collapsableRndSymbols.WorkingArea.SuspendLayout();
-			this.collapsableRndSymbols.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -115,6 +115,43 @@
 			this.gensListControl1.Size = new System.Drawing.Size(142, 1093);
 			this.gensListControl1.TabIndex = 0;
 			// 
+			// collapsableRndSymbols
+			// 
+			this.collapsableRndSymbols.AllowDrop = true;
+			this.collapsableRndSymbols.BaseColor = System.Drawing.SystemColors.Control;
+			this.collapsableRndSymbols.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.collapsableRndSymbols.Caption = "Random Symbols";
+			this.collapsableRndSymbols.CaptionCollapsed = "";
+			this.collapsableRndSymbols.CaptionOppositeAlignment = false;
+			this.collapsableRndSymbols.Collapsable = true;
+			this.collapsableRndSymbols.Collapsed = false;
+			this.collapsableRndSymbols.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
+			this.collapsableRndSymbols.Dock = System.Windows.Forms.DockStyle.Top;
+			this.collapsableRndSymbols.Location = new System.Drawing.Point(4, 776);
+			this.collapsableRndSymbols.Name = "collapsableRndSymbols";
+			this.collapsableRndSymbols.Padding = new System.Windows.Forms.Padding(4);
+			this.collapsableRndSymbols.Size = new System.Drawing.Size(284, 301);
+			this.collapsableRndSymbols.TabIndex = 26;
+			// 
+			// collapsableRndSymbols.WorkingArea
+			// 
+			this.collapsableRndSymbols.WorkingArea.BackColor = System.Drawing.SystemColors.Control;
+			this.collapsableRndSymbols.WorkingArea.Controls.Add(this.rndSymbolsParamsControl);
+			this.collapsableRndSymbols.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.collapsableRndSymbols.WorkingArea.Location = new System.Drawing.Point(4, 18);
+			this.collapsableRndSymbols.WorkingArea.Name = "WorkingArea";
+			this.collapsableRndSymbols.WorkingArea.Size = new System.Drawing.Size(274, 277);
+			this.collapsableRndSymbols.WorkingArea.TabIndex = 2;
+			// 
+			// rndSymbolsParamsControl
+			// 
+			this.rndSymbolsParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rndSymbolsParamsControl.Location = new System.Drawing.Point(0, 0);
+			this.rndSymbolsParamsControl.Name = "rndSymbolsParamsControl";
+			this.rndSymbolsParamsControl.Padding = new System.Windows.Forms.Padding(4);
+			this.rndSymbolsParamsControl.Size = new System.Drawing.Size(274, 277);
+			this.rndSymbolsParamsControl.TabIndex = 0;
+			// 
 			// collapsableStrings
 			// 
 			this.collapsableStrings.AllowDrop = true;
@@ -127,7 +164,7 @@
 			this.collapsableStrings.Collapsed = false;
 			this.collapsableStrings.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableStrings.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableStrings.Location = new System.Drawing.Point(4, 439);
+			this.collapsableStrings.Location = new System.Drawing.Point(4, 463);
 			this.collapsableStrings.Name = "collapsableStrings";
 			this.collapsableStrings.Padding = new System.Windows.Forms.Padding(4);
 			this.collapsableStrings.Size = new System.Drawing.Size(284, 313);
@@ -168,7 +205,7 @@
 			this.collapsableMaskedIds.Location = new System.Drawing.Point(4, 379);
 			this.collapsableMaskedIds.Name = "collapsableMaskedIds";
 			this.collapsableMaskedIds.Padding = new System.Windows.Forms.Padding(4);
-			this.collapsableMaskedIds.Size = new System.Drawing.Size(284, 60);
+			this.collapsableMaskedIds.Size = new System.Drawing.Size(284, 84);
 			this.collapsableMaskedIds.TabIndex = 24;
 			// 
 			// collapsableMaskedIds.WorkingArea
@@ -178,7 +215,7 @@
 			this.collapsableMaskedIds.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.collapsableMaskedIds.WorkingArea.Location = new System.Drawing.Point(4, 18);
 			this.collapsableMaskedIds.WorkingArea.Name = "WorkingArea";
-			this.collapsableMaskedIds.WorkingArea.Size = new System.Drawing.Size(274, 36);
+			this.collapsableMaskedIds.WorkingArea.Size = new System.Drawing.Size(274, 60);
 			this.collapsableMaskedIds.WorkingArea.TabIndex = 2;
 			// 
 			// maskedIdsParamsControl
@@ -187,7 +224,7 @@
 			this.maskedIdsParamsControl.Location = new System.Drawing.Point(0, 0);
 			this.maskedIdsParamsControl.Name = "maskedIdsParamsControl";
 			this.maskedIdsParamsControl.Padding = new System.Windows.Forms.Padding(4);
-			this.maskedIdsParamsControl.Size = new System.Drawing.Size(274, 36);
+			this.maskedIdsParamsControl.Size = new System.Drawing.Size(274, 60);
 			this.maskedIdsParamsControl.TabIndex = 0;
 			// 
 			// collapsableDates
@@ -438,42 +475,6 @@
 			this.textBoxName.Size = new System.Drawing.Size(170, 20);
 			this.textBoxName.TabIndex = 3;
 			// 
-			// collapsableRndSymbols
-			// 
-			this.collapsableRndSymbols.AllowDrop = true;
-			this.collapsableRndSymbols.BaseColor = System.Drawing.SystemColors.Control;
-			this.collapsableRndSymbols.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.collapsableRndSymbols.Caption = "Random Symbols";
-			this.collapsableRndSymbols.CaptionCollapsed = "";
-			this.collapsableRndSymbols.CaptionOppositeAlignment = false;
-			this.collapsableRndSymbols.Collapsable = true;
-			this.collapsableRndSymbols.Collapsed = false;
-			this.collapsableRndSymbols.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
-			this.collapsableRndSymbols.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableRndSymbols.Location = new System.Drawing.Point(4, 752);
-			this.collapsableRndSymbols.Name = "collapsableRndSymbols";
-			this.collapsableRndSymbols.Padding = new System.Windows.Forms.Padding(4);
-			this.collapsableRndSymbols.Size = new System.Drawing.Size(284, 301);
-			this.collapsableRndSymbols.TabIndex = 26;
-			// 
-			// collapsableRndSymbols.WorkingArea
-			// 
-			this.collapsableRndSymbols.WorkingArea.Controls.Add(this.rndSymbolsParamsControl);
-			this.collapsableRndSymbols.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.collapsableRndSymbols.WorkingArea.Location = new System.Drawing.Point(4, 18);
-			this.collapsableRndSymbols.WorkingArea.Name = "WorkingArea";
-			this.collapsableRndSymbols.WorkingArea.Size = new System.Drawing.Size(274, 277);
-			this.collapsableRndSymbols.WorkingArea.TabIndex = 2;
-			// 
-			// rndSymbolsParamsControl1
-			// 
-			this.rndSymbolsParamsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rndSymbolsParamsControl.Location = new System.Drawing.Point(0, 0);
-			this.rndSymbolsParamsControl.Name = "rndSymbolsParamsControl1";
-			this.rndSymbolsParamsControl.Padding = new System.Windows.Forms.Padding(4);
-			this.rndSymbolsParamsControl.Size = new System.Drawing.Size(274, 277);
-			this.rndSymbolsParamsControl.TabIndex = 0;
-			// 
 			// ColumnsEditControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -486,6 +487,8 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.collapsableRndSymbols.WorkingArea.ResumeLayout(false);
+			this.collapsableRndSymbols.ResumeLayout(false);
 			this.collapsableStrings.WorkingArea.ResumeLayout(false);
 			this.collapsableStrings.ResumeLayout(false);
 			this.collapsableMaskedIds.WorkingArea.ResumeLayout(false);
@@ -504,8 +507,6 @@
 			this.collapsableNothing.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
-			this.collapsableRndSymbols.WorkingArea.ResumeLayout(false);
-			this.collapsableRndSymbols.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}

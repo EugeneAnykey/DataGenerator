@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using EugeneAnykey.Project.DataGenerator.Generators;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
@@ -6,7 +8,17 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 	public partial class MaskedIdsParamsControl : UserControl, IGenGetter, IGenSetter, IGenRandomGetter
 	{
 		// field
+		readonly Dictionary<string, string> templates = new Dictionary<string, string>();
+		readonly Dictionary<string, string> templatesRndNames = new Dictionary<string, string>();
 		readonly ToolTip toolTip = new ToolTip();
+		readonly string help =
+			"Use chars for replacements:\n\n" +
+			$"{MaskHolder.PredefMaskDigit} — for numbers;\n" +
+			$"{MaskHolder.PredefMaskHex} — for hex numbers;\n" +
+			$"{MaskHolder.PredefMaskLatin} — for latin letters only;\n" +
+			$"{MaskHolder.PredefMaskRus} — for russian letters only;\n" +
+			$"{MaskHolder.PredefMaskAutos} — for letters that are similar in russian and latin."
+		;
 
 		// IGenGetter
 		public BaseGen GetBaseGen() => new MaskedIdsGen(textBoxMask.Text);
@@ -14,32 +26,20 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenRandomGetter
 		public BaseGen GetRandomBaseGen()
 		{
-			string Convert(string alpha) => alpha
-				.Replace('D', MaskHolder.PredefMaskDigit)
-				.Replace('A', MaskHolder.PredefMaskAutos)
-				.Replace('H', MaskHolder.PredefMaskHex)
-				.Replace('L', MaskHolder.PredefMaskLatin)
-				.Replace('R', MaskHolder.PredefMaskRus);
-
-			string[] rndNames = new[] { "Identification", "Id Number", "Code", "Part Number", "Hash" };
-			string[] masks = new[] {
-				"DDDD DDDDDD", // rus passport
-				"ADDDAA DD", // rus auto
-				"LLDD LDDLDDD",
-				"R-DD RR-DDD",
-				"LLL DD - RRR",
-				"HHHHHHHH", // md5
-				"HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH", // guid
-			};
-
-			return new MaskedIdsGen(Convert(Randomizer.OneOf(masks))) { Name = Randomizer.OneOf(rndNames) };
+			var i = Randomizer.R.Next(templates.Count);
+			var val = templates.ElementAt(i).Value;
+			var name = templatesRndNames.ElementAt(i).Value;
+			return new MaskedIdsGen(val) { Name = name };
 		}
 
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
 			if (gen is MaskedIdsGen gen1)
+			{
+				comboBoxTemplates.SelectedIndex = 0;
 				textBoxMask.Text = gen1.Mask;
+			}
 		}
 
 		// init
@@ -47,41 +47,63 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		{
 			InitializeComponent();
 
-			textBoxMask.Text = $"d={MaskHolder.PredefMaskDigit}, h={MaskHolder.PredefMaskHex}, l={MaskHolder.PredefMaskLatin}, r={MaskHolder.PredefMaskRus}, a={MaskHolder.PredefMaskAutos}";
+			FillTemplates();
 
-			buttonHelp.Click += (_, __) => ShowHelp();
+			comboBoxTemplates.DataSource = new BindingSource(templates, null);
+			comboBoxTemplates.ValueMember = "Value";
+			comboBoxTemplates.DisplayMember = "Key";
+
+			comboBoxTemplates.SelectedIndexChanged += (_, __) => textBoxMask.Text = ((KeyValuePair<string, string>)comboBoxTemplates.SelectedItem).Value;
+			comboBoxTemplates.SelectedIndex = 1;
 
 			// tool tips
-			toolTip.AutoPopDelay = 5000;
+			toolTip.AutoPopDelay = 10000;
 			toolTip.InitialDelay = 1000;
 			toolTip.ReshowDelay = 500;
-			toolTip.SetToolTip(this.buttonHelp, GetHelp());
+			toolTip.SetToolTip(this.labelHelp, help);
 		}
 
-		// Help
-		string GetHelp() {
-			string[] S_MaskedHelp_Txt_Lines = new[] {
-				"Use chars for replacements:",
-				"",
-				$"{MaskHolder.PredefMaskDigit} — for numbers;",
-				$"{MaskHolder.PredefMaskHex} — for hex numbers;",
-				$"{MaskHolder.PredefMaskLatin} — for latin letters only;",
-				$"{MaskHolder.PredefMaskRus} — for russian letters only;",
-				$"{MaskHolder.PredefMaskAutos} — for only similar russian and latin letters.",
-			};
-			return string.Join("\n", S_MaskedHelp_Txt_Lines);
-		}
-
-		void ShowHelp()
+		// private
+		struct Templater
 		{
-			const string S_MaskedHelp_Cap = "Replacement info";
+			public string Name;
+			public string RndName;
+			public string Mask;
 
-			MessageBox.Show(
-				GetHelp(),
-				S_MaskedHelp_Cap,
-				MessageBoxButtons.OK,
-				MessageBoxIcon.Information
-			);
+			public Templater(string name, string rndName, string mask)
+			{
+				Name = name;
+				RndName = rndName;
+				Mask = mask;
+			}
+		};
+
+		void FillTemplates() {
+			var values = new Templater[] {
+				new Templater("user input", "Empty_Code", ""),
+				new Templater("example", "Example_code", $"d=DD, h=HH, l=L, r=R, a=A"),
+				new Templater("guid", "GUID", "HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH"),
+				new Templater("md5", "MD5", new string('H', 8)),
+				new Templater("sha 64", "SHA", new string('H', 64)),
+				new Templater("passport (russian code)", "Passport", "DDDD DDDDDD"),
+				new Templater("auto (russian code)", "Auto_code", "ADDDAA DD"),
+				new Templater("latin + digits", "Identification", "LLDD LDDLDDD"),
+				new Templater("rus + digits", "Sample_rus_id", "R-DD RR-DDD"),
+				new Templater("latin + rus + digits (1)", "Sample_code", "LLL DD - RRR"),
+				new Templater("latin + rus + digits (2)", "Id_number", "LRD DDDDDD"),
+			};
+
+			string Convert(string alpha) => alpha
+				.Replace('D', MaskHolder.PredefMaskDigit)
+				.Replace('A', MaskHolder.PredefMaskAutos)
+				.Replace('H', MaskHolder.PredefMaskHex)
+				.Replace('L', MaskHolder.PredefMaskLatin)
+				.Replace('R', MaskHolder.PredefMaskRus);
+			for (int i = 0; i < values.Length; i++)
+			{
+				templates.Add(values[i].Name, Convert(values[i].Mask));
+				templatesRndNames.Add(values[i].Name, values[i].RndName);
+			}
 		}
 	}
 }
