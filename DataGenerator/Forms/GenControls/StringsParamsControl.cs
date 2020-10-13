@@ -23,7 +23,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 				LinesHolder.EngParticles
 			};
 
-			var possibleLimit = Randomizer.R.Next(6);
+			var possibleLimit = Randomizer.R.Next(lines.Length - 1);
 			var limited = possibleLimit > 2;
 			var linesId = Randomizer.R.Next(lines.Length);
 
@@ -51,10 +51,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		static readonly SeparatorItem spaceSeparator = new SeparatorItem("Space — [ ]", ' ');
 		static readonly SeparatorItem defaultSeparator = spaceSeparator;
 
-
-
 		// field
-		SeparatorItem[] separators;
+		readonly SeparatorItem[] separators;
 
 		bool useLimitedStrings;
 		public bool UseLimitedStrings
@@ -69,8 +67,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 					numericUpDownFixed.Value = 0;
 			}
 		}
-
-
 
 		// init
 		public StringsParamsControl()
@@ -102,9 +98,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			checkBoxLimitedStrings.CheckedChanged += (_, __) => UseLimitedStrings = checkBoxLimitedStrings.Checked;
 		}
 
-
-
-		// private: Preview
+		// private
 		bool showPreview = false;
 		void TogglePreview() => TogglePreview(showPreview = !showPreview);
 
@@ -122,9 +116,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			groupBoxItems.Text = show ? $"Preview Items {listBoxPreview.Items.Count}:" : "Items:";
 		}
 
-
-
-		// private: Separate
 		string[] Separate()
 		{
 			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? defaultSeparator;
@@ -132,9 +123,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			return textBoxItems.Text.Split(sep.Separators);
 		}
 
-
-
-		// private: FastExample
 		void FastExample()
 		{
 			comboBoxItemsSeparator.SelectedItem = commaSeparator;

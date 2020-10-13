@@ -128,7 +128,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			var cols = columnsEditControl1.GetBaseGens().Length;
 			var rows = rowsCountControl1.RowsCount;
 
-			var writer = XmlWriter.Create();
+			// var writer = XmlWriter.Create();
 
 
 			throw new NotImplementedException();
