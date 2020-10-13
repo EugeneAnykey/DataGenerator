@@ -95,6 +95,12 @@
     <Compile Include="Forms\GenControls\ConstantsParamsControl.Designer.cs">
       <DependentUpon>ConstantsParamsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GenControls\RndSymbolsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GenControls\RndSymbolsParamsControl.Designer.cs">
+      <DependentUpon>RndSymbolsParamsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GensListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +122,7 @@
     <Compile Include="Generators\DatesGen.cs" />
     <Compile Include="Generators\ConstantStringsGen.cs" />
     <Compile Include="Generators\MaskedIdsGen.cs" />
+    <Compile Include="Generators\RndSymbolsGen.cs" />
     <Compile Include="IO\SchemeGen.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
@@ -186,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GenControls\ConstantsParamsControl.resx">
       <DependentUpon>ConstantsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenControls\RndSymbolsParamsControl.resx">
+      <DependentUpon>RndSymbolsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GensListControl.resx">
       <DependentUpon>GensListControl.cs</DependentUpon>

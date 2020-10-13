@@ -32,6 +32,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				collapsableDates,
 				collapsableMaskedIds,
 				collapsableStrings,
+				collapsableRndSymbols,
 			};
 
 			names = new[] {
@@ -44,6 +45,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				"Date",
 				"Masked Id",
 				"String",
+				"RndSymbols",
 			};
 
 			ugens = new UserControl[] {
@@ -55,6 +57,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				datesParamsControl,
 				maskedIdsParamsControl,
 				stringsParamsControl,
+				rndSymbolsParamsControl,
 			};
 
 			Recolor();
@@ -149,6 +152,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				gen is DatesGen ? 5 :
 				gen is MaskedIdsGen ? 6 :
 				gen is StringsGen ? 7 :
+				gen is RndSymbolsGen ? 8 :
 				-1;
 
 			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
