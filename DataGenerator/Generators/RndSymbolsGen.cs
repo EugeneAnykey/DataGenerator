@@ -5,7 +5,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 	public class RndSymbolsGen : BaseGen, IGen<string>, IStringOutputer
 	{
 		// const
-		const int MaxStringLength = 65000; 
+		const int MaxPossibleLength = 65000;
 		
 		// field
 		public int MinLength { get; }
@@ -27,7 +27,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		public RndSymbolsGen(string[] lines, int min = 0, int max = 1000)
 		{
 			MinLength = min > 0 ? min : 0;
-			MaxLength = max > 0 ? (max < MaxStringLength ? max : MaxStringLength) : 0;
+			MaxLength = max > 0 ? (max < MaxPossibleLength ? max : MaxPossibleLength) : 0;
 			//AvgLength = (min + max) / 2;
 			Lines = lines;
 			Line = string.Concat(lines);
@@ -43,7 +43,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			if (SymbolsCount == 0)
 				return string.Empty;
 
-			var len = R.Next(MaxLength - MinLength);
+			var len = R.Next(MinLength, MaxLength);
 			var chars = new char[len];
 			for (int i = 0; i < len; i++)
 			{

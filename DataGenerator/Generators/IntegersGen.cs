@@ -26,13 +26,13 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		// Generate
 		public int Generate() => R.Next(Min, Max);
 
-		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => R.Next(Min, Max));
+		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => Generate());
 
 
 
 		// Output
 		public string Output() => Generate().ToString();
 
-		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => R.Next(Min, Max).ToString())) as string[];
+		public IEnumerable<string> Output(int count) => Latest = (Fill<string>(count, () => Generate().ToString())) as string[];
 	}
 }
