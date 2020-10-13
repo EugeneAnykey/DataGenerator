@@ -164,6 +164,7 @@
     <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
     <Compile Include="_root\GenItemEventHandler.cs" />
     <Compile Include="_root\HelperFuncs.cs" />
+    <Compile Include="_root\MaskHolder.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />

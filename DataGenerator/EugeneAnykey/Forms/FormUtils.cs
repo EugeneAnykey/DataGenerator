@@ -8,10 +8,10 @@ namespace EugeneAnykey.Forms
 	{
 		public static void ShowAbout(object sender, EventArgs e)
 		{
-			var date = "2019-09-12";
+			var date = "2020-10-13";
 
 			MessageBox.Show(
-				$"{Application.ProductName}\n version: {Application.ProductVersion} from {date}\n Copyright (c) 2019 Eugene Anykey Software.\nAll Rights Reserved.",
+				$"{Application.ProductName}\n version: {Application.ProductVersion} from {date}\n Copyright (c) 2019-2020 Eugene Anykey Software.\nAll Rights Reserved.",
 				"About " + Application.ProductName,
 				MessageBoxButtons.OK,
 				MessageBoxIcon.Information

@@ -9,6 +9,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		const string predefLatin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		const string predefRus = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЪЫЭЮЯ";
 		const string predefAutos = "ABCEHKMNOPTXY";
+		const string predefHex = "0123456789abcdef";
 
 
 
@@ -36,14 +37,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		// predefined
-		const char PredefMaskDigit = '#';   // 'D'
-		const char PredefMaskAutos = '^';   // 'Z'
-		const char PredefMaskLatin = '$';   // 'L'
-		const char PredefMaskRus = '%';   // 'R'
-
-
-
 		// Generate
 		public string Generate()
 		{
@@ -53,10 +46,11 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			for (int i = 0; i < res.Length; i++)
 			{
 				char replace =
-					res[i] == PredefMaskDigit ? OneOf(predefDigits) :
-					res[i] == PredefMaskAutos ? OneOf(predefAutos) :
-					res[i] == PredefMaskLatin ? OneOf(predefLatin) :
-					res[i] == PredefMaskRus ? OneOf(predefRus) :
+					res[i] == MaskHolder.PredefMaskDigit? OneOf(predefDigits) :
+					res[i] == MaskHolder.PredefMaskAutos ? OneOf(predefAutos) :
+					res[i] == MaskHolder.PredefMaskHex ? OneOf(predefHex) :
+					res[i] == MaskHolder.PredefMaskLatin ? OneOf(predefLatin) :
+					res[i] == MaskHolder.PredefMaskRus ? OneOf(predefRus) :
 					res[i];
 
 				if (replace != res[i])

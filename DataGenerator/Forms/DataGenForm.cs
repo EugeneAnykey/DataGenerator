@@ -26,7 +26,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			rowsCountControl1.BackColor =
 				columnsEditControl1.BackColor =
-				colorer[13];
+				colorer[21];
 
 			saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
 
@@ -39,6 +39,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.Random();
 			//menuRecolor.Visible = false;
+
+			// undone!
+			toolStripMenuItem1.Visible = 
+			menuFileOpen.Visible = menuFileSave.Visible =
+			menuFileOpen.Enabled = menuFileSave.Enabled = false;
 		}
 
 		// private: ShowElapsed.
