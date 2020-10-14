@@ -33,6 +33,7 @@
 			this.labelTemplates = new System.Windows.Forms.Label();
 			this.comboBoxTemplates = new System.Windows.Forms.ComboBox();
 			this.labelHelp = new System.Windows.Forms.Label();
+			this.labelExample = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// labelMask
@@ -83,10 +84,21 @@
 			this.labelHelp.TabIndex = 14;
 			this.labelHelp.Text = "?";
 			// 
+			// labelExample
+			// 
+			this.labelExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelExample.AutoSize = true;
+			this.labelExample.Location = new System.Drawing.Point(231, 10);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(13, 13);
+			this.labelExample.TabIndex = 15;
+			this.labelExample.Text = "…";
+			// 
 			// MaskedIdsParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.labelExample);
 			this.Controls.Add(this.labelHelp);
 			this.Controls.Add(this.comboBoxTemplates);
 			this.Controls.Add(this.labelTemplates);
@@ -106,5 +118,6 @@
 		private System.Windows.Forms.Label labelTemplates;
 		private System.Windows.Forms.ComboBox comboBoxTemplates;
 		private System.Windows.Forms.Label labelHelp;
+		private System.Windows.Forms.Label labelExample;
 	}
 }

@@ -61,6 +61,17 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			toolTip.InitialDelay = 1000;
 			toolTip.ReshowDelay = 500;
 			toolTip.SetToolTip(this.labelHelp, help);
+			labelExample.MouseEnter += (_,__) => { toolTip.SetToolTip(this.labelExample, GetExample(GetBaseGen())); };
+			labelExample.MouseClick += (_,__) => { Clipboard.SetText(latestExample); };
+		}
+
+		string latestExample = "";
+		string GetExample(BaseGen gen)
+		{
+			const int exampleLines = 20;
+			int i = 1;
+			var arr = (gen as IStringOutputer).Output(exampleLines).Select(s => $"{i++}. {s}");
+			return latestExample = string.Concat("Example:\r\n", string.Join("\r\n", arr));
 		}
 
 		// private
