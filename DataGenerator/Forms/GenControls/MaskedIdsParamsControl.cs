@@ -10,6 +10,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// field
 		readonly Dictionary<string, string> templates = new Dictionary<string, string>();
 		readonly Dictionary<string, string> templatesRndNames = new Dictionary<string, string>();
+		//readonly ExamplerHandler exampler;
+
 		readonly ToolTip toolTip = new ToolTip();
 		readonly string help =
 			"Use chars for replacements:\n\n" +
@@ -61,15 +63,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			toolTip.InitialDelay = 1000;
 			toolTip.ReshowDelay = 500;
 			toolTip.SetToolTip(this.labelHelp, help);
-			labelExample.MouseEnter += (_,__) => { UpdateExample(); };
-			labelExample.MouseClick += (_,__) => { Clipboard.SetText(latestExample); };
-		}
-
-		string latestExample = "";
-		void UpdateExample()
-		{
-			latestExample = Exampler.GetExample(GetBaseGen());
-			toolTip.SetToolTip(this.labelExample, latestExample);
+			//exampler = new ExamplerHandler(labelExample, GetBaseGen);
+			new Exampler(labelExample, GetBaseGen);
 		}
 
 		// private

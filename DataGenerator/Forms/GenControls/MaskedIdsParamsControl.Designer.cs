@@ -40,7 +40,7 @@
 			// 
 			this.labelMask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.labelMask.AutoSize = true;
-			this.labelMask.Location = new System.Drawing.Point(10, 38);
+			this.labelMask.Location = new System.Drawing.Point(10, 42);
 			this.labelMask.Name = "labelMask";
 			this.labelMask.Size = new System.Drawing.Size(36, 13);
 			this.labelMask.TabIndex = 9;
@@ -50,7 +50,7 @@
 			// 
 			this.textBoxMask.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxMask.Location = new System.Drawing.Point(48, 35);
+			this.textBoxMask.Location = new System.Drawing.Point(48, 39);
 			this.textBoxMask.Name = "textBoxMask";
 			this.textBoxMask.Size = new System.Drawing.Size(177, 20);
 			this.textBoxMask.TabIndex = 10;
@@ -78,7 +78,7 @@
 			// 
 			this.labelHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelHelp.AutoSize = true;
-			this.labelHelp.Location = new System.Drawing.Point(231, 38);
+			this.labelHelp.Location = new System.Drawing.Point(231, 42);
 			this.labelHelp.Name = "labelHelp";
 			this.labelHelp.Size = new System.Drawing.Size(13, 13);
 			this.labelHelp.TabIndex = 14;
@@ -106,7 +106,7 @@
 			this.Controls.Add(this.labelMask);
 			this.Name = "MaskedIdsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 64);
+			this.Size = new System.Drawing.Size(251, 66);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

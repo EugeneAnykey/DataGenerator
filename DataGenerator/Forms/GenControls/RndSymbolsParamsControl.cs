@@ -78,6 +78,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 
 			numericUpDownLengthMin.NumericsUpdate(0, 100, 5);
 			numericUpDownLengthMax.NumericsUpdate(0, MaxStringLength, 50);
+
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

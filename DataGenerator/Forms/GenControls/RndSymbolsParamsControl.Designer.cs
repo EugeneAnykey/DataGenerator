@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.groupBoxLength = new System.Windows.Forms.GroupBox();
+			this.labelExample = new System.Windows.Forms.Label();
 			this.labelLengthMax = new System.Windows.Forms.Label();
 			this.numericUpDownLengthMax = new System.Windows.Forms.NumericUpDown();
 			this.labelLengthMin = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
 			// 
 			// groupBoxLength
 			// 
+			this.groupBoxLength.Controls.Add(this.labelExample);
 			this.groupBoxLength.Controls.Add(this.labelLengthMax);
 			this.groupBoxLength.Controls.Add(this.numericUpDownLengthMax);
 			this.groupBoxLength.Controls.Add(this.labelLengthMin);
@@ -58,10 +60,20 @@
 			this.groupBoxLength.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBoxLength.Location = new System.Drawing.Point(4, 4);
 			this.groupBoxLength.Name = "groupBoxLength";
-			this.groupBoxLength.Size = new System.Drawing.Size(263, 74);
+			this.groupBoxLength.Size = new System.Drawing.Size(288, 74);
 			this.groupBoxLength.TabIndex = 16;
 			this.groupBoxLength.TabStop = false;
 			this.groupBoxLength.Text = "Length:";
+			// 
+			// labelExample
+			// 
+			this.labelExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelExample.AutoSize = true;
+			this.labelExample.Location = new System.Drawing.Point(269, 16);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(13, 13);
+			this.labelExample.TabIndex = 22;
+			this.labelExample.Text = "…";
 			// 
 			// labelLengthMax
 			// 
@@ -119,7 +131,7 @@
 			this.groupBoxDefaultSymbols.Dock = System.Windows.Forms.DockStyle.Top;
 			this.groupBoxDefaultSymbols.Location = new System.Drawing.Point(4, 78);
 			this.groupBoxDefaultSymbols.Name = "groupBoxDefaultSymbols";
-			this.groupBoxDefaultSymbols.Size = new System.Drawing.Size(263, 104);
+			this.groupBoxDefaultSymbols.Size = new System.Drawing.Size(288, 104);
 			this.groupBoxDefaultSymbols.TabIndex = 18;
 			this.groupBoxDefaultSymbols.TabStop = false;
 			this.groupBoxDefaultSymbols.Text = "Default used symbols";
@@ -131,7 +143,7 @@
 			this.listBoxDefaultSymbols.Location = new System.Drawing.Point(3, 16);
 			this.listBoxDefaultSymbols.Name = "listBoxDefaultSymbols";
 			this.listBoxDefaultSymbols.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-			this.listBoxDefaultSymbols.Size = new System.Drawing.Size(257, 85);
+			this.listBoxDefaultSymbols.Size = new System.Drawing.Size(282, 85);
 			this.listBoxDefaultSymbols.TabIndex = 12;
 			// 
 			// groupBoxAdditionalSymbols
@@ -140,7 +152,7 @@
 			this.groupBoxAdditionalSymbols.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxAdditionalSymbols.Location = new System.Drawing.Point(4, 182);
 			this.groupBoxAdditionalSymbols.Name = "groupBoxAdditionalSymbols";
-			this.groupBoxAdditionalSymbols.Size = new System.Drawing.Size(263, 102);
+			this.groupBoxAdditionalSymbols.Size = new System.Drawing.Size(288, 102);
 			this.groupBoxAdditionalSymbols.TabIndex = 19;
 			this.groupBoxAdditionalSymbols.TabStop = false;
 			this.groupBoxAdditionalSymbols.Text = "Additional symbols";
@@ -151,7 +163,7 @@
 			this.textBoxAdditionalSymbols.Location = new System.Drawing.Point(3, 16);
 			this.textBoxAdditionalSymbols.Multiline = true;
 			this.textBoxAdditionalSymbols.Name = "textBoxAdditionalSymbols";
-			this.textBoxAdditionalSymbols.Size = new System.Drawing.Size(257, 83);
+			this.textBoxAdditionalSymbols.Size = new System.Drawing.Size(282, 83);
 			this.textBoxAdditionalSymbols.TabIndex = 15;
 			// 
 			// RndSymbolsParamsControl
@@ -163,7 +175,7 @@
 			this.Controls.Add(this.groupBoxLength);
 			this.Name = "RndSymbolsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(271, 288);
+			this.Size = new System.Drawing.Size(296, 288);
 			this.groupBoxLength.ResumeLayout(false);
 			this.groupBoxLength.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownLengthMax)).EndInit();
@@ -188,5 +200,6 @@
 		private System.Windows.Forms.ListBox listBoxDefaultSymbols;
 		private System.Windows.Forms.GroupBox groupBoxAdditionalSymbols;
 		private System.Windows.Forms.TextBox textBoxAdditionalSymbols;
+		private System.Windows.Forms.Label labelExample;
 	}
 }
