@@ -59,6 +59,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 				}
 			);
 			comboBoxOutputFormat.SelectedIndex = 0;
+
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

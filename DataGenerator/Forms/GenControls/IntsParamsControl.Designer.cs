@@ -32,14 +32,17 @@
 			this.labelParamMax = new System.Windows.Forms.Label();
 			this.labelParamMin = new System.Windows.Forms.Label();
 			this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
+			this.labelExample = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// numericUpDown2
+			// numericUpDownMax
 			// 
+			this.numericUpDownMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDownMax.Location = new System.Drawing.Point(69, 39);
-			this.numericUpDownMax.Name = "numericUpDown2";
+			this.numericUpDownMax.Name = "numericUpDownMax";
 			this.numericUpDownMax.Size = new System.Drawing.Size(170, 20);
 			this.numericUpDownMax.TabIndex = 11;
 			// 
@@ -61,24 +64,37 @@
 			this.labelParamMin.TabIndex = 9;
 			this.labelParamMin.Text = "Min:";
 			// 
-			// numericUpDown1
+			// numericUpDownMin
 			// 
+			this.numericUpDownMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDownMin.Location = new System.Drawing.Point(69, 7);
-			this.numericUpDownMin.Name = "numericUpDown1";
+			this.numericUpDownMin.Name = "numericUpDownMin";
 			this.numericUpDownMin.Size = new System.Drawing.Size(170, 20);
 			this.numericUpDownMin.TabIndex = 8;
+			// 
+			// labelExample
+			// 
+			this.labelExample.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelExample.Location = new System.Drawing.Point(245, 4);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(13, 67);
+			this.labelExample.TabIndex = 19;
+			this.labelExample.Text = "…";
+			this.labelExample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// IntsParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.labelExample);
 			this.Controls.Add(this.numericUpDownMax);
 			this.Controls.Add(this.labelParamMax);
 			this.Controls.Add(this.labelParamMin);
 			this.Controls.Add(this.numericUpDownMin);
 			this.Name = "IntsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 75);
+			this.Size = new System.Drawing.Size(262, 75);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).EndInit();
 			this.ResumeLayout(false);
@@ -92,5 +108,6 @@
 		private System.Windows.Forms.Label labelParamMax;
 		private System.Windows.Forms.Label labelParamMin;
 		private System.Windows.Forms.NumericUpDown numericUpDownMin;
+		private System.Windows.Forms.Label labelExample;
 	}
 }

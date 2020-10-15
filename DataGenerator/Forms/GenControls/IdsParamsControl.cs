@@ -36,6 +36,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 
 			numericUpDownStart.NumericsUpdate(-1000000, 1000000, 1);
 			numericUpDownStep.NumericsUpdate(-1000, 1000, 1);
+			
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

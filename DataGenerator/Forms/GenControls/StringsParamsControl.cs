@@ -96,6 +96,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			buttonFastExample.Click += (_, __) => FastExample();
 			groupBoxItems.Click += (_, __) => TogglePreview();
 			checkBoxLimitedStrings.CheckedChanged += (_, __) => UseLimitedStrings = checkBoxLimitedStrings.Checked;
+
+			new Exampler(labelExample, GetBaseGen);
 		}
 
 		// private
