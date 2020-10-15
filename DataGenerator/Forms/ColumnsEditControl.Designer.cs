@@ -127,7 +127,7 @@
 			this.collapsableRndSymbols.Collapsed = false;
 			this.collapsableRndSymbols.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableRndSymbols.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableRndSymbols.Location = new System.Drawing.Point(4, 776);
+			this.collapsableRndSymbols.Location = new System.Drawing.Point(4, 781);
 			this.collapsableRndSymbols.Name = "collapsableRndSymbols";
 			this.collapsableRndSymbols.Padding = new System.Windows.Forms.Padding(4);
 			this.collapsableRndSymbols.Size = new System.Drawing.Size(284, 301);
@@ -164,7 +164,7 @@
 			this.collapsableStrings.Collapsed = false;
 			this.collapsableStrings.ControlOrientation = System.Windows.Forms.Orientation.Horizontal;
 			this.collapsableStrings.Dock = System.Windows.Forms.DockStyle.Top;
-			this.collapsableStrings.Location = new System.Drawing.Point(4, 463);
+			this.collapsableStrings.Location = new System.Drawing.Point(4, 468);
 			this.collapsableStrings.Name = "collapsableStrings";
 			this.collapsableStrings.Padding = new System.Windows.Forms.Padding(4);
 			this.collapsableStrings.Size = new System.Drawing.Size(284, 313);
@@ -205,7 +205,7 @@
 			this.collapsableMaskedIds.Location = new System.Drawing.Point(4, 379);
 			this.collapsableMaskedIds.Name = "collapsableMaskedIds";
 			this.collapsableMaskedIds.Padding = new System.Windows.Forms.Padding(4);
-			this.collapsableMaskedIds.Size = new System.Drawing.Size(284, 84);
+			this.collapsableMaskedIds.Size = new System.Drawing.Size(284, 89);
 			this.collapsableMaskedIds.TabIndex = 24;
 			// 
 			// collapsableMaskedIds.WorkingArea
@@ -215,7 +215,7 @@
 			this.collapsableMaskedIds.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.collapsableMaskedIds.WorkingArea.Location = new System.Drawing.Point(4, 18);
 			this.collapsableMaskedIds.WorkingArea.Name = "WorkingArea";
-			this.collapsableMaskedIds.WorkingArea.Size = new System.Drawing.Size(274, 60);
+			this.collapsableMaskedIds.WorkingArea.Size = new System.Drawing.Size(274, 65);
 			this.collapsableMaskedIds.WorkingArea.TabIndex = 2;
 			// 
 			// maskedIdsParamsControl
@@ -224,7 +224,7 @@
 			this.maskedIdsParamsControl.Location = new System.Drawing.Point(0, 0);
 			this.maskedIdsParamsControl.Name = "maskedIdsParamsControl";
 			this.maskedIdsParamsControl.Padding = new System.Windows.Forms.Padding(4);
-			this.maskedIdsParamsControl.Size = new System.Drawing.Size(274, 60);
+			this.maskedIdsParamsControl.Size = new System.Drawing.Size(274, 65);
 			this.maskedIdsParamsControl.TabIndex = 0;
 			// 
 			// collapsableDates

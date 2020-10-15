@@ -10,7 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
 		string[] names;
-		
+
 
 		// init
 		public ColumnsEditControl()
@@ -36,7 +36,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			};
 
 			names = new[] {
-				"",
 				"Nothing",
 				"Constant",
 				"Id",
@@ -87,8 +86,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 		}
 
-
-
+		
 		// public
 		public BaseGen[] GetBaseGens() => gensListControl1.GetBaseGens();
 
@@ -115,7 +113,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			bool shift = ModifierKeys == Keys.Shift;
 
-			var gen = shift ? GetCurrentGenGetter() : GetRandomGenGetter();
+			var gen = shift ? GetRandomGenGetter() : GetCurrentGenGetter();
 
 			if (gen is IGenRandomGetter rgen)
 			{
@@ -177,7 +175,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 					c.Collapsed = true;
 			}
 
-			textBoxName.Text = names[GetPos(collapsable) + 1];
+			textBoxName.Text = names[GetPos(collapsable)];
 
 			if (null == collapsable)
 				return;
