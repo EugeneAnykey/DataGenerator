@@ -125,6 +125,7 @@
     <Compile Include="Generators\RndSymbolsGen.cs" />
     <Compile Include="IO\SchemeGen.cs" />
     <None Include="todo.md" />
+    <Compile Include="_root\Exampler.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
