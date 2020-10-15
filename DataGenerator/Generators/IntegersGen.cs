@@ -24,7 +24,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 		// Generate
-		public int Generate() => R.Next(Min, Max);
+		public int Generate() => R.Next(Min, Max + 1);
 
 		public IEnumerable<int> Generate(int count) => Fill<int>(count, () => Generate());
 

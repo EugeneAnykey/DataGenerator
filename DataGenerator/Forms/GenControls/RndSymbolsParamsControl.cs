@@ -42,11 +42,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
-			if (gen is RndSymbolsGen gen1)
+			if (gen is RndSymbolsGen g)
 			{
-				textBoxAdditionalSymbols.Text = gen1.AdditionalSymbols;
-				numericUpDownLengthMax.Value = gen1.MaxLength;
-				numericUpDownLengthMin.Value = gen1.MinLength;
+				textBoxAdditionalSymbols.Text = g.AdditionalSymbols;
+				numericUpDownLengthMax.Value = g.MaxLength;
+				numericUpDownLengthMin.Value = g.MinLength;
 			}
 		}
 
@@ -75,6 +75,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			};
 
 			listBoxDefaultSymbols.Items.AddRange(lines);
+			listBoxDefaultSymbols.SelectedIndex = 0;
 
 			numericUpDownLengthMin.NumericsUpdate(0, 100, 5);
 			numericUpDownLengthMax.NumericsUpdate(0, MaxStringLength, 50);

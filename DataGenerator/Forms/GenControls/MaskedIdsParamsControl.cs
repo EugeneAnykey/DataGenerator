@@ -10,8 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// field
 		readonly Dictionary<string, string> templates = new Dictionary<string, string>();
 		readonly Dictionary<string, string> templatesRndNames = new Dictionary<string, string>();
-		//readonly ExamplerHandler exampler;
-
+		
 		readonly ToolTip toolTip = new ToolTip();
 		readonly string help =
 			"Use chars for replacements:\n\n" +
@@ -37,10 +36,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
-			if (gen is MaskedIdsGen gen1)
+			if (gen is MaskedIdsGen g)
 			{
 				comboBoxTemplates.SelectedIndex = 0;
-				textBoxMask.Text = gen1.Mask;
+				textBoxMask.Text = g.Mask;
 			}
 		}
 
@@ -63,7 +62,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			toolTip.InitialDelay = 1000;
 			toolTip.ReshowDelay = 500;
 			toolTip.SetToolTip(this.labelHelp, help);
-			//exampler = new ExamplerHandler(labelExample, GetBaseGen);
+
 			new Exampler(labelExample, GetBaseGen);
 		}
 

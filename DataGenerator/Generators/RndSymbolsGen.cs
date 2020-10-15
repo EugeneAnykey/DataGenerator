@@ -43,7 +43,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			if (SymbolsCount == 0)
 				return string.Empty;
 
-			var len = R.Next(MinLength, MaxLength);
+			var len = R.Next(MinLength, MaxLength + 1);
 			var chars = new char[len];
 			for (int i = 0; i < len; i++)
 			{
