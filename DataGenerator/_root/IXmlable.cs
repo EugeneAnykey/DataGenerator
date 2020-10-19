@@ -2,8 +2,9 @@
 
 namespace EugeneAnykey.Project.DataGenerator
 {
-	public interface IXmlOutputer
+	public interface IXmlable
 	{
 		void WriteXmlSubtree(XmlWriter writer);
+		void ReadXmlSubtree(XmlReader reader);
 	}
 }

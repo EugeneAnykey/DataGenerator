@@ -123,9 +123,11 @@
     <Compile Include="Generators\ConstantStringsGen.cs" />
     <Compile Include="Generators\MaskedIdsGen.cs" />
     <Compile Include="Generators\RndSymbolsGen.cs" />
-    <Compile Include="IO\SchemeGen.cs" />
+    <Compile Include="IO\GeneratorsScheme.cs" />
     <None Include="todo.md" />
+    <Compile Include="_root\GenStrings.cs" />
     <Compile Include="_root\Exampler.cs" />
+    <Compile Include="_root\Helpers.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
@@ -159,7 +161,7 @@
     <Compile Include="IO\FileGen.cs" />
     <Compile Include="_root\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
-    <Compile Include="_root\IXmlOutputer.cs" />
+    <Compile Include="_root\IXmlable.cs" />
     <Compile Include="_root\IStringOutputer.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />

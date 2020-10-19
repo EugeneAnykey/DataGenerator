@@ -72,7 +72,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			pos = listBox.SelectedIndex;
 			if (Direction.Up == dir)
 			{
-				if (HelperFuncs.IsIn(pos, 1, listBox.Items.Count - 1))
+				if (Helpers.IsIn(pos, 1, listBox.Items.Count - 1))
 				{
 					pos = toTheEdge ? 0 : pos - 1;
 					return true;
@@ -80,7 +80,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 			else if (Direction.Down == dir)
 			{
-				if (HelperFuncs.IsIn(pos, 0, listBox.Items.Count - 2))
+				if (Helpers.IsIn(pos, 0, listBox.Items.Count - 2))
 				{
 					pos = toTheEdge ? listBox.Items.Count - 1 : pos + 1;
 					return true;
@@ -134,7 +134,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			UpdateCaption();
 
 			if (listBox.Items.Count > 0)
-				listBox.SelectedIndex = HelperFuncs.MakeIn(index, 0, listBox.Items.Count - 1);
+				listBox.SelectedIndex = Helpers.MakeIn(index, 0, listBox.Items.Count - 1);
 		}
 
 
@@ -150,13 +150,24 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-		// public GetBaseGens
+		#region public: GetBaseGens, SetBaseGens
 		public BaseGen[] GetBaseGens()
 		{
 			var res = new BaseGen[listBox.Items.Count];
 			listBox.Items.CopyTo(res, 0);
 			return res;
 		}
+
+		public void SetBaseGens(BaseGen[] gens)
+		{
+			foreach (var g in gens)
+			{
+				listBox.Items.Add(g);
+			}
+			listBox.SelectedIndex = 0;
+			UpdateCaption();
+		}
+		#endregion
 
 
 

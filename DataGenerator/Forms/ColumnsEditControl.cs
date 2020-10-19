@@ -89,6 +89,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		
 		// public
 		public BaseGen[] GetBaseGens() => gensListControl1.GetBaseGens();
+		public void SetBaseGens(BaseGen[] gens) => gensListControl1.SetBaseGens(gens);
 
 
 

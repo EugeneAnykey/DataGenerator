@@ -10,6 +10,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class DataGenForm : Form
 	{
+		#region const
+		const string TxtFilter = "Text file (*.txt)|*.txt|All files (*.*)|*.*";
+		const string XmlFilter = "Xml file (*.xml)|*.xml|All files (*.*)|*.*";
+		#endregion
+
 		// field
 		FileGen fileGen = new FileGen();
 		Stopwatch watch = new Stopwatch();
@@ -38,12 +43,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			menuExit.Click += (_, __) => Close();
 
 			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.GetRandom();
-			//menuRecolor.Visible = false;
 
 			// undone!
 			toolStripMenuItem1.Visible = 
 			menuFileOpen.Visible = menuFileSave.Visible =
-			menuFileOpen.Enabled = menuFileSave.Enabled = false;
+			menuFileOpen.Enabled = menuFileSave.Enabled = true;
 		}
 
 		// private: ShowElapsed.
@@ -84,7 +88,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				return null;
 			}
 
-			saveFileDialog1.FileName = string.Format(filenameMask, rowsCountControl1.RowsCountShort, cols);
+			saveFileDialog1.FileName = string.Format(filenameMask, cols, rowsCountControl1.RowsCountShort);
 
 			return DialogResult.OK == saveFileDialog1.ShowDialog() ? saveFileDialog1.FileName : string.Empty;
 		}
@@ -94,14 +98,15 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		// private: GenerateBaseGenFile
 		const string mesText_Generate = "Could not generate a file without columns.";
 		const string mesCap_Generate = "No columns";
-		const string filenameMask_Generate = "random_r{0}_c{1}.txt";
+		const string filenameMask_Generate = "random_c{0}_r{1}.txt";
 
 		const string mesText_SchemeSave = "Could not save a scheme without columns.";
 		const string mesCap_SchemeSave = "No columns";
-		const string filenameMask_SchemeSave = "scheme_r{0}_c{1}.txt";
+		const string filenameMask_SchemeSave = "scheme_c{0}.xml";
 
 		void GenerateBaseGenFile()
 		{
+			saveFileDialog1.Filter = TxtFilter;
 			GenerateBaseGenFile(ChooseFilename(mesText_Generate, mesCap_Generate, filenameMask_Generate));
 		}
 
@@ -126,30 +131,25 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void SaveScheme()
 		{
+			saveFileDialog1.Filter = XmlFilter;
 			var filename = ChooseFilename(mesText_SchemeSave, mesCap_SchemeSave, filenameMask_SchemeSave);
 
 			// save scheme:
-			// ...
-			var cols = columnsEditControl1.GetBaseGens().Length;
-			var rows = rowsCountControl1.RowsCount;
-
-			// var writer = XmlWriter.Create();
-
-
-			throw new NotImplementedException();
+			GeneratorsScheme.Save(filename, columnsEditControl1.GetBaseGens());
 		}
 
 		void OpenScheme()
 		{
+			openFileDialog1.Filter = XmlFilter;
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
 				var filename = openFileDialog1.FileName;
-
 				// open scheme...
-				// ...
+				var list = GeneratorsScheme.Load(filename);
+				columnsEditControl1.SetBaseGens(list);
 			}
 
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 	}
 }

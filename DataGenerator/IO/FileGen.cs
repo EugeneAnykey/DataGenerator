@@ -19,7 +19,7 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 		// public: GenerateBaseGenFile
 		public void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
-			var title = MakeTitle(gens);
+			var title = MakeTitleLine(gens);
 			var outputers = ConvertGensToStringOutputers(gens);
 			GenFile(filename, rows, title, outputers, progress);
 		}
@@ -77,7 +77,7 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 
 
 
-		string MakeTitle(BaseGen[] gens)
+		string MakeTitleLine(BaseGen[] gens)
 		{
 			if (gens == null)
 			{

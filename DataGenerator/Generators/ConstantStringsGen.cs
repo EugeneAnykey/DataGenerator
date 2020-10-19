@@ -3,10 +3,10 @@ using System.Xml;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class ConstantStringsGen : BaseGen, IGen<string>, IStringOutputer, IXmlOutputer
+	public class ConstantStringsGen : BaseGen, IGen<string>, IStringOutputer, IXmlable
 	{
 		// field
-		public string Constant { get; }
+		public string Constant { get; private set; }
 
 		public override string Name { get; set; } = "Constant String Gen";
 
@@ -36,12 +36,44 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 
 
-		// Xml
+		#region Xml
 		public void WriteXmlSubtree(XmlWriter writer)
 		{
-			//writer.WriteStartElement("ConstantStringsGen");
-			writer.WriteAttributeString("Constant", Constant);
-			//writer.WriteFullEndElement();
+			writer.WriteStartElement(XmlStrings.ConstantGen);
+			writer.WriteAttributeString("name", Name);
+			writer.WriteStartElement(XmlStrings.ParamsNode);
+			writer.WriteAttributeString("constant", Constant);
+			writer.WriteEndElement();
+			writer.WriteEndElement();
 		}
+
+		public void ReadXmlSubtree(XmlReader reader)
+		{
+			while (reader.Read())
+			{
+				if (reader.NodeType == XmlNodeType.Element)
+				{
+					if (reader.Name.Equals(XmlStrings.ConstantGen, Helpers.IgnoreCase))
+					{
+						if (reader.HasAttributes)
+						{
+							if (reader.MoveToAttribute("name"))
+								Name = reader.Value;
+						}
+					}
+					else if (reader.Name.Equals(XmlStrings.ParamsNode, Helpers.IgnoreCase))
+					{
+						if (reader.HasAttributes)
+						{
+							if (reader.MoveToAttribute("constant"))
+								Constant = reader.Value;
+						}
+					}
+					else
+						reader.Skip();
+				}
+			}
+		}
+		#endregion
 	}
 }
