@@ -9,8 +9,7 @@ namespace EugeneAnykey.Forms
 	/// </summary>
 	public class Colorer
 	{
-		//const
-
+		#region fields and consts
 		/// <summary>
 		/// To make pale colors set it to true
 		/// </summary>
@@ -44,7 +43,19 @@ namespace EugeneAnykey.Forms
 		/// Latest used color
 		/// </summary>
 		int latest = initial;
+		#endregion
 
+		#region init
+		/// <summary>
+		/// Initialize Color Helper
+		/// </summary>
+		public Colorer()
+		{
+			FillColors();
+		}
+		#endregion
+
+		#region public
 		/// <summary>
 		/// Returns next possible color
 		/// </summary>
@@ -73,16 +84,9 @@ namespace EugeneAnykey.Forms
 		{
 			return this[r.Next(colors.Count)];
 		}
+		#endregion
 
-
-
-		// init
-		public Colorer()
-		{
-			FillColors();
-		}
-
-		// private
+		#region private
 		/// <summary>
 		/// Returns Color by values
 		/// </summary>
@@ -104,5 +108,6 @@ namespace EugeneAnykey.Forms
 					for (byte b = 0; b < times; b++)
 						colors.Add(GetColor(colorValues[r], colorValues[g], colorValues[b]));
 		}
+		#endregion
 	}
 }
