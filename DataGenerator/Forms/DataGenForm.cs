@@ -37,7 +37,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			menuAbout.Click += FormUtils.ShowAbout;
 			menuExit.Click += (_, __) => Close();
 
-			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.Random();
+			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.GetRandom();
 			//menuRecolor.Visible = false;
 
 			// undone!
