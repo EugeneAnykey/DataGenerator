@@ -9,13 +9,15 @@ namespace EugeneAnykey.Project.DataGenerator
 	/// </summary>
 	public class Exampler
 	{
-		// field
+		#region field
 		public Control ToolTipControl;
 		public Func<BaseGen> GenFunc;
 		
 		readonly ToolTip toolTip = new ToolTip();
+		string latestExample = "";
+		#endregion
 
-		// init
+		#region init
 		public Exampler(Control toolTipControl, Func<BaseGen> gen)
 		{
 			ToolTipControl = toolTipControl;
@@ -24,8 +26,10 @@ namespace EugeneAnykey.Project.DataGenerator
 			ToolTipControl.MouseEnter += (_, __) => { UpdateExample(); };
 			ToolTipControl.MouseClick += (_, __) => { Clipboard.SetText(latestExample); };
 		}
+		#endregion
 
-		string latestExample = "";
+
+		#region private
 		void UpdateExample()
 		{
 			latestExample = GetExample(GenFunc());
@@ -42,5 +46,6 @@ namespace EugeneAnykey.Project.DataGenerator
 			var arr = (gen as IStringOutputer).Output(ExampleLines).Select(s => $"{i++}. {Shorten(s)}");
 			return string.Concat("Example:" + NewLine, string.Join(NewLine, arr));
 		}
+		#endregion
 	}
 }
