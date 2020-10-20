@@ -6,30 +6,28 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 {
 	public class DatesGen : BaseGen, IGen<DateTime>, IStringOutputer, IXmlable
 	{
+		#region const
 		/* mask
 		 yyyy-MM-dd - 2019-06-20
 		 HH:mm:ss - 18:28:38 (hh for am/pm variant: 6 pm)
 		 */
 		const string defaultFormat = "yyyy-MM-dd";
+		#endregion
 
 
-
-		// field
+		#region field
+		public override string Name { get; set; } = "Dates Gen";
 		public DateTime Min { get; private set; }
 		public DateTime Max { get; private set; }
 		public string Format { get; private set; }
 
-		readonly long dif;
-
-
-
-		public override string Name { get; set; } = "Dates Gen";
-
 		public string[] Latest { get; private set; } = new string[0];
 
+		readonly long dif;
+		#endregion
 
 
-		// init
+		#region init
 		public DatesGen(DateTime min, DateTime max) : this(min, max, defaultFormat) { }
 
 		public DatesGen(DateTime min, DateTime max, string format)
@@ -39,20 +37,18 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			Max = max;
 			dif = max.Ticks - min.Ticks;
 		}
+		#endregion
 
 
-
-		// Generate
+		#region public Generate, Output
 		public DateTime Generate() => new DateTime((long)(R.NextDouble() * dif) + Min.Ticks);
 
 		public IEnumerable<DateTime> Generate(int count) => Fill(count, () => Generate());
 
-
-
-		// Output
 		public string Output() => Generate().ToString(Format);
 
 		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => Generate().ToString(Format)) as string[];
+		#endregion
 
 
 		#region Xml

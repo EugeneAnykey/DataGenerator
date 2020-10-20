@@ -125,24 +125,58 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 						constantGen.ReadXmlSubtree(sub);
 						sub.Close();
 						list.Add(constantGen);
-					} else if (reader.Name.Equals(XmlStrings.DatesGen))
-					{
-						var datesGen = new DatesGen(DateTime.Now, DateTime.Now);
-						XmlReader sub = reader.ReadSubtree();
-						datesGen.ReadXmlSubtree(sub);
-						sub.Close();
-						list.Add(datesGen);
-					} else if (reader.Name.Equals(XmlStrings.IdsGen))
-					{
-						var idsGen = new IdsGen(1);
-						XmlReader sub = reader.ReadSubtree();
-						idsGen.ReadXmlSubtree(sub);
-						sub.Close();
-						list.Add(idsGen);
 					}
+					else if (reader.Name.Equals(XmlStrings.DatesGen))
+					{
+						list.Add(ReadGen(new DatesGen(DateTime.Now, DateTime.Now), reader));
+						//var datesGen = new DatesGen(DateTime.Now, DateTime.Now);
+						//XmlReader sub = reader.ReadSubtree();
+						//datesGen.ReadXmlSubtree(sub);
+						//sub.Close();
+						//list.Add(datesGen);
+					}
+					else if (reader.Name.Equals(XmlStrings.DoublesGen))
+					{
+						list.Add(ReadGen(new DoublesGen(0, 1, 2), reader));
+						//var datesGen = new DatesGen(DateTime.Now, DateTime.Now);
+						//XmlReader sub = reader.ReadSubtree();
+						//datesGen.ReadXmlSubtree(sub);
+						//sub.Close();
+						//list.Add(datesGen);
+					}
+					else if (reader.Name.Equals(XmlStrings.IdsGen))
+					{
+						list.Add(ReadGen(new IdsGen(1), reader));
+						//var idsGen = new IdsGen(1);
+						//XmlReader sub = reader.ReadSubtree();
+						//idsGen.ReadXmlSubtree(sub);
+						//sub.Close();
+						//list.Add(idsGen);
+					}
+					else if (reader.Name.Equals(XmlStrings.IntegersGen))
+						list.Add(ReadGen(new IntegersGen(1,2), reader));
+					else if (reader.Name.Equals(XmlStrings.MaskedIdsGen))
+						list.Add(ReadGen(new MaskedIdsGen("abc"), reader));
+					else if (reader.Name.Equals(XmlStrings.NothingGen))
+						list.Add(ReadGen(new NothingGen(), reader));
+					else if (reader.Name.Equals(XmlStrings.RndSymbolsGen))
+						list.Add(ReadGen(new RndSymbolsGen(new[] { "abc" }), reader));
+					else if (reader.Name.Equals(XmlStrings.StringsGen))
+						list.Add(ReadGen(new StringsGen(new[] { "abc" }), reader));
 				}
 			}
 			return list.ToArray();
+		}
+
+		static BaseGen ReadGen(BaseGen gen, XmlReader reader)
+		{
+			//var gen = new DatesGen(DateTime.Now, DateTime.Now);
+			XmlReader sub = reader.ReadSubtree();
+			if (gen is IXmlable g)
+				g.ReadXmlSubtree(sub);
+			sub.Close();
+			return gen;
+			//list.Add(datesGen);
 		}
 		#endregion
 	}

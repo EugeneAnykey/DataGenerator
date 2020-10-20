@@ -1,43 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Xml;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class RndSymbolsGen : BaseGen, IGen<string>, IStringOutputer
+	public class RndSymbolsGen : BaseGen, IGen<string>, IStringOutputer, IXmlable
 	{
-		// const
+		#region const
 		const int MaxPossibleLength = 65000;
-		
-		// field
-		public int MinLength { get; }
-		public int MaxLength { get; }
+		#endregion
+
+		#region field
+		public string[] Lines { get; set; }
+		public int MinLength { get; private set; }
+		public int MaxLength { get; private set; }
 		//public int AvgLength { get; }
 
-		public string[] Lines { get; set; }
-		public string AdditionalSymbols { get; }
+		public string AdditionalSymbols { get; private set; }
 		
-		public string Line { get; }
-		public int SymbolsCount { get; }
+		public string Line { get; private set; }
+		public int SymbolsCount { get; private set; }
 
 		public override string Name { get; set; } = "Random Symbols Gen";
 		public string[] Latest { get; private set; } = new string[0];
+		#endregion
 
 
-
-		// init
+		#region init
 		public RndSymbolsGen(string[] lines, int min = 0, int max = 1000)
 		{
 			MinLength = min > 0 ? min : 0;
 			MaxLength = max > 0 ? (max < MaxPossibleLength ? max : MaxPossibleLength) : 0;
 			//AvgLength = (min + max) / 2;
+			Init(lines);
+		}
+
+		void Init(string[] lines)
+		{
 			Lines = lines;
 			Line = string.Concat(lines);
 			SymbolsCount = Line.Length;
 			AdditionalSymbols = lines[lines.Length - 1];
 		}
+		#endregion
 
 
-
-		// Generate
+		#region public: Generate, Output
 		public string Generate()
 		{
 			if (SymbolsCount == 0)
@@ -55,9 +63,73 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 		public IEnumerable<string> Generate(int count) => Fill(count, () => Generate());
 
-		// Output
 		public string Output() => Generate();
 
 		public IEnumerable<string> Output(int count) => Latest = Fill(count, () => Generate()) as string[];
+		#endregion
+
+
+		#region Xml
+		public void WriteXmlSubtree(XmlWriter writer)
+		{
+			writer.WriteStartElement(XmlStrings.RndSymbolsGen);
+			writer.WriteAttributeString(XmlStrings.NameAttr, Name);
+			writer.WriteStartElement(XmlStrings.ParamsNode);
+			writer.WriteAttributeString("min", MinLength.ToString());
+			writer.WriteAttributeString("max", MaxLength.ToString());
+
+			foreach (var s in Lines)
+			{
+				writer.WriteStartElement("lines");
+				writer.WriteString(s);
+				writer.WriteEndElement(); // lines
+			}
+
+			writer.WriteEndElement();
+			writer.WriteEndElement();
+		}
+
+		public void ReadXmlSubtree(XmlReader reader)
+		{
+			while (reader.Read())
+			{
+				if (reader.NodeType == XmlNodeType.Element)
+				{
+					if (reader.Name.Equals(XmlStrings.RndSymbolsGen, Helpers.IgnoreCase))
+					{
+						if (reader.HasAttributes)
+						{
+							if (reader.MoveToAttribute(XmlStrings.NameAttr))
+								Name = reader.Value;
+						}
+					}
+					else if (reader.Name.Equals(XmlStrings.ParamsNode, Helpers.IgnoreCase))
+					{
+						if (reader.HasAttributes)
+						{
+							if (reader.MoveToAttribute("min"))
+								MinLength = Convert.ToInt32(reader.Value);
+							if (reader.MoveToAttribute("max"))
+								MaxLength = Convert.ToInt32(reader.Value);
+						}
+					}
+
+					else if (reader.Name.Equals("lines", Helpers.IgnoreCase))
+					{
+						var list = new List<string>();
+						while (reader.Read())
+						{
+							// read lines
+							if (reader.Name.Equals("line", Helpers.IgnoreCase))
+								list.Add(reader.Value);
+						}
+						Init(list.ToArray());
+					}
+					else
+						reader.Skip();
+				}
+			}
+		}
+		#endregion
 	}
 }
