@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace EugeneAnykey.Project.DataGenerator.Generators
+namespace EugeneAnykey.Project.DataGenerator.IO
 {
 	public class FileGen
 	{
-		// const
-		const int defaultRowsPortion = 2460;
+		#region const
+		const int defaultRowsPortion = 2048;
+		#endregion
 
 
-
-		// init
+		#region init
 		public FileGen() { }
+		#endregion
 
 
-
-		// public: GenerateBaseGenFile
+		#region public: GenerateBaseGenFile
 		public void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
-			var title = MakeTitle(gens);
+			var title = MakeTitleLine(gens);
 			var outputers = ConvertGensToStringOutputers(gens);
 			GenFile(filename, rows, title, outputers, progress);
 		}
+		#endregion
 
 
-
-
+		#region private
 		IStringOutputer[] ConvertGensToStringOutputers(BaseGen[] gens)
 		{
 			var outputers = new IStringOutputer[gens.Length];
@@ -36,6 +36,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			}
 			return outputers;
 		}
+
 
 		void GenFile(string filename, int totalRows, string title, IStringOutputer[] outputers, IProgress<float> progress)
 		{
@@ -60,7 +61,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		}
 
 
-
 		string MakeSingleLine(int index, IStringOutputer[] outputers)
 		{
 			const string separator = "\t";
@@ -76,8 +76,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		}
 
 
-
-		string MakeTitle(BaseGen[] gens)
+		string MakeTitleLine(BaseGen[] gens)
 		{
 			if (gens == null)
 			{
@@ -95,7 +94,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 			return string.Join(separator, res);
 		}
-
 
 
 		IEnumerable<string> MakeNewLinesPortion(int count, IStringOutputer[] outputers)
@@ -118,7 +116,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		}
 
 
-
 		void GenerateNewPortion(int count, IStringOutputer[] outputers)
 		{
 			for (int i = 0; i < outputers.Length; i++)
@@ -126,5 +123,6 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 				outputers[i].Output(count);
 			}
 		}
+		#endregion
 	}
 }

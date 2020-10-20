@@ -32,7 +32,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		{
 			InitializeComponent();
 
-			textBoxConstant.Text = "";
+			textBoxConstant.Text = "~";
+
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

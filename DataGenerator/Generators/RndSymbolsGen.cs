@@ -4,45 +4,62 @@ using System.Xml;
 
 namespace EugeneAnykey.Project.DataGenerator.Generators
 {
-	public class StringsGen : BaseGen, IGen<string>, IStringOutputer, IXmlable
+	public class RndSymbolsGen : BaseGen, IGen<string>, IStringOutputer, IXmlable
 	{
-		#region field
-		public override string Name { get; set; }
-		public string[] Lines { get; private set; }
-		public int StringLengthLimit { get; private set; }
-		public bool Limited { get; private set; }
-		int linesCount;
+		#region const
+		const int MaxPossibleLength = 65000;
+		#endregion
 
+		#region field
+		public string[] Lines { get; set; }
+		public int MinLength { get; private set; }
+		public int MaxLength { get; private set; }
+		//public int AvgLength { get; }
+
+		public string AdditionalSymbols { get; private set; }
+		
+		public string Line { get; private set; }
+		public int SymbolsCount { get; private set; }
+
+		public override string Name { get; set; } = "Random Symbols Gen";
 		public string[] Latest { get; private set; } = new string[0];
 		#endregion
 
 
 		#region init
-		public StringsGen(string[] lines) : this(lines, 0) { }
-
-		public StringsGen(string[] lines, int lengthLimit)
+		public RndSymbolsGen(string[] lines, int min = 0, int max = 1000)
 		{
+			MinLength = min > 0 ? min : 0;
+			MaxLength = max > 0 ? (max < MaxPossibleLength ? max : MaxPossibleLength) : 0;
+			//AvgLength = (min + max) / 2;
 			Init(lines);
-			StringLengthLimit = lengthLimit > 0 ? lengthLimit : 0;
-			Limited = StringLengthLimit > 0;
-			Name = Limited ? "Limited Strings Gen" : "Strings Gen";
 		}
 
 		void Init(string[] lines)
 		{
 			Lines = lines;
-			linesCount = lines.Length;
+			Line = string.Concat(lines);
+			SymbolsCount = Line.Length;
+			AdditionalSymbols = lines[lines.Length - 1];
 		}
 		#endregion
 
 
-		#region private: GetLimited
-		string GetLimited(string s) => s.Length <= StringLengthLimit ? s : s.Substring(0, StringLengthLimit);
-		#endregion
-
-
 		#region public: Generate, Output
-		public string Generate() => Limited ? GetLimited(Lines[R.Next(linesCount)]) : Lines[R.Next(linesCount)];
+		public string Generate()
+		{
+			if (SymbolsCount == 0)
+				return string.Empty;
+
+			var len = R.Next(MinLength, MaxLength + 1);
+			var chars = new char[len];
+			for (int i = 0; i < len; i++)
+			{
+				chars[i] = Line[R.Next(SymbolsCount)];
+			}
+			string res = new string(chars);
+			return res;
+		}
 
 		public IEnumerable<string> Generate(int count) => Fill(count, () => Generate());
 
@@ -55,18 +72,19 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		#region Xml
 		public void WriteXmlSubtree(XmlWriter writer)
 		{
-			writer.WriteStartElement(XmlStrings.StringsGen);
+			writer.WriteStartElement(XmlStrings.RndSymbolsGen);
 			writer.WriteAttributeString(XmlStrings.NameAttr, Name);
 			writer.WriteStartElement(XmlStrings.ParamsNode);
-			
-			writer.WriteAttributeString("length_limited", StringLengthLimit.ToString());
+			writer.WriteAttributeString("min", MinLength.ToString());
+			writer.WriteAttributeString("max", MaxLength.ToString());
+
 			foreach (var s in Lines)
 			{
 				writer.WriteStartElement("lines");
 				writer.WriteString(s);
 				writer.WriteEndElement(); // lines
 			}
-			
+
 			writer.WriteEndElement();
 			writer.WriteEndElement();
 		}
@@ -78,7 +96,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 			{
 				if (reader.NodeType == XmlNodeType.Element)
 				{
-					if (reader.Name.Equals(XmlStrings.StringsGen, Helpers.IgnoreCase))
+					if (reader.Name.Equals(XmlStrings.RndSymbolsGen, Helpers.IgnoreCase))
 					{
 						if (reader.HasAttributes)
 						{
@@ -90,11 +108,10 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 					{
 						if (reader.HasAttributes)
 						{
-							if (reader.MoveToAttribute("length_limited"))
-							{
-								StringLengthLimit = Convert.ToInt32(reader.Value);
-								Limited = StringLengthLimit > 0;
-							}
+							if (reader.MoveToAttribute("min"))
+								MinLength = Convert.ToInt32(reader.Value);
+							if (reader.MoveToAttribute("max"))
+								MaxLength = Convert.ToInt32(reader.Value);
 						}
 					}
 					else if (reader.Name.Equals("lines", Helpers.IgnoreCase))

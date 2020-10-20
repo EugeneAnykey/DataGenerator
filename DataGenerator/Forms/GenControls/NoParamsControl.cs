@@ -23,6 +23,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		public NoParamsControl()
 		{
 			InitializeComponent();
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

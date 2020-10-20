@@ -56,6 +56,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EugeneAnykey\Forms\Controls\CollapsableControl.cs">
@@ -94,6 +95,12 @@
     <Compile Include="Forms\GenControls\ConstantsParamsControl.Designer.cs">
       <DependentUpon>ConstantsParamsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GenControls\RndSymbolsParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GenControls\RndSymbolsParamsControl.Designer.cs">
+      <DependentUpon>RndSymbolsParamsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\GensListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +122,12 @@
     <Compile Include="Generators\DatesGen.cs" />
     <Compile Include="Generators\ConstantStringsGen.cs" />
     <Compile Include="Generators\MaskedIdsGen.cs" />
+    <Compile Include="Generators\RndSymbolsGen.cs" />
+    <Compile Include="IO\GeneratorsScheme.cs" />
+    <None Include="todo.md" />
+    <Compile Include="_root\XmlStrings.cs" />
+    <Compile Include="_root\Exampler.cs" />
+    <Compile Include="_root\Helpers.cs" />
     <Compile Include="_root\IGenRandomGetter.cs" />
     <Compile Include="_root\IGenSetter.cs" />
     <Compile Include="_root\IGenGetter.cs" />
@@ -145,15 +158,16 @@
     <Compile Include="Generators\DoublesGen.cs" />
     <Compile Include="Generators\IdsGen.cs" />
     <Compile Include="_root\IGen.cs" />
-    <Compile Include="Generators\FileGen.cs" />
+    <Compile Include="IO\FileGen.cs" />
     <Compile Include="_root\BaseGen.cs" />
     <Compile Include="Generators\NothingGen.cs" />
+    <Compile Include="_root\IXmlable.cs" />
     <Compile Include="_root\IStringOutputer.cs" />
     <Compile Include="Generators\StringsGen.cs" />
     <Compile Include="Generators\IntegersGen.cs" />
     <Compile Include="EugeneAnykey\Forms\FormUtils.cs" />
     <Compile Include="_root\GenItemEventHandler.cs" />
-    <Compile Include="_root\HelperFuncs.cs" />
+    <Compile Include="_root\MaskHolder.cs" />
     <Compile Include="_root\Randomizer.cs" />
     <Compile Include="_empty.cs" />
     <Compile Include="_root\SeparatorItem.cs" />
@@ -183,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GenControls\ConstantsParamsControl.resx">
       <DependentUpon>ConstantsParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenControls\RndSymbolsParamsControl.resx">
+      <DependentUpon>RndSymbolsParamsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GensListControl.resx">
       <DependentUpon>GensListControl.cs</DependentUpon>
@@ -223,5 +240,6 @@
     <Content Include="_data\datagen-icon.ico" />
     <EmbeddedResource Include="_data\engWords.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,6 +34,7 @@
 			this.numericUpDownMin = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDownDecimals = new System.Windows.Forms.NumericUpDown();
 			this.labelDecimals = new System.Windows.Forms.Label();
+			this.labelExample = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownDecimals)).BeginInit();
@@ -41,6 +42,8 @@
 			// 
 			// numericUpDownMax
 			// 
+			this.numericUpDownMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDownMax.Location = new System.Drawing.Point(69, 39);
 			this.numericUpDownMax.Name = "numericUpDownMax";
 			this.numericUpDownMax.Size = new System.Drawing.Size(170, 20);
@@ -66,6 +69,8 @@
 			// 
 			// numericUpDownMin
 			// 
+			this.numericUpDownMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDownMin.Location = new System.Drawing.Point(69, 7);
 			this.numericUpDownMin.Name = "numericUpDownMin";
 			this.numericUpDownMin.Size = new System.Drawing.Size(170, 20);
@@ -73,6 +78,8 @@
 			// 
 			// numericUpDownDecimals
 			// 
+			this.numericUpDownDecimals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.numericUpDownDecimals.Location = new System.Drawing.Point(69, 73);
 			this.numericUpDownDecimals.Name = "numericUpDownDecimals";
 			this.numericUpDownDecimals.Size = new System.Drawing.Size(170, 20);
@@ -87,10 +94,21 @@
 			this.labelDecimals.TabIndex = 12;
 			this.labelDecimals.Text = "Decimals:";
 			// 
+			// labelExample
+			// 
+			this.labelExample.Dock = System.Windows.Forms.DockStyle.Right;
+			this.labelExample.Location = new System.Drawing.Point(249, 4);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(13, 98);
+			this.labelExample.TabIndex = 20;
+			this.labelExample.Text = "…";
+			this.labelExample.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// DoublesParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.labelExample);
 			this.Controls.Add(this.numericUpDownDecimals);
 			this.Controls.Add(this.labelDecimals);
 			this.Controls.Add(this.numericUpDownMax);
@@ -99,7 +117,7 @@
 			this.Controls.Add(this.numericUpDownMin);
 			this.Name = "DoublesParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(251, 106);
+			this.Size = new System.Drawing.Size(266, 106);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownMin)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownDecimals)).EndInit();
@@ -116,5 +134,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDownMin;
 		private System.Windows.Forms.NumericUpDown numericUpDownDecimals;
 		private System.Windows.Forms.Label labelDecimals;
+		private System.Windows.Forms.Label labelExample;
 	}
 }

@@ -39,6 +39,7 @@
 			this.listBoxPreview = new System.Windows.Forms.ListBox();
 			this.textBoxItems = new System.Windows.Forms.TextBox();
 			this.checkBoxLimitedStrings = new System.Windows.Forms.CheckBox();
+			this.labelExample = new System.Windows.Forms.Label();
 			this.panelMaxLength.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFixed)).BeginInit();
 			this.panelSeparators.SuspendLayout();
@@ -52,7 +53,7 @@
 			this.panelMaxLength.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelMaxLength.Location = new System.Drawing.Point(4, 21);
 			this.panelMaxLength.Name = "panelMaxLength";
-			this.panelMaxLength.Size = new System.Drawing.Size(263, 40);
+			this.panelMaxLength.Size = new System.Drawing.Size(268, 40);
 			this.panelMaxLength.TabIndex = 14;
 			// 
 			// labelParamFixed
@@ -79,7 +80,7 @@
 			this.panelSeparators.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelSeparators.Location = new System.Drawing.Point(4, 61);
 			this.panelSeparators.Name = "panelSeparators";
-			this.panelSeparators.Size = new System.Drawing.Size(263, 68);
+			this.panelSeparators.Size = new System.Drawing.Size(268, 68);
 			this.panelSeparators.TabIndex = 15;
 			// 
 			// buttonFastExample
@@ -115,7 +116,7 @@
 			this.groupBoxItems.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.groupBoxItems.Location = new System.Drawing.Point(4, 129);
 			this.groupBoxItems.Name = "groupBoxItems";
-			this.groupBoxItems.Size = new System.Drawing.Size(263, 155);
+			this.groupBoxItems.Size = new System.Drawing.Size(268, 155);
 			this.groupBoxItems.TabIndex = 16;
 			this.groupBoxItems.TabStop = false;
 			this.groupBoxItems.Text = "Items:";
@@ -134,7 +135,7 @@
 			this.textBoxItems.Location = new System.Drawing.Point(3, 16);
 			this.textBoxItems.Multiline = true;
 			this.textBoxItems.Name = "textBoxItems";
-			this.textBoxItems.Size = new System.Drawing.Size(257, 136);
+			this.textBoxItems.Size = new System.Drawing.Size(262, 136);
 			this.textBoxItems.TabIndex = 3;
 			// 
 			// checkBoxLimitedStrings
@@ -143,22 +144,33 @@
 			this.checkBoxLimitedStrings.Dock = System.Windows.Forms.DockStyle.Top;
 			this.checkBoxLimitedStrings.Location = new System.Drawing.Point(4, 4);
 			this.checkBoxLimitedStrings.Name = "checkBoxLimitedStrings";
-			this.checkBoxLimitedStrings.Size = new System.Drawing.Size(263, 17);
+			this.checkBoxLimitedStrings.Size = new System.Drawing.Size(268, 17);
 			this.checkBoxLimitedStrings.TabIndex = 17;
 			this.checkBoxLimitedStrings.Text = "Limited Strings";
 			this.checkBoxLimitedStrings.UseVisualStyleBackColor = true;
 			// 
-			// LimitedStringsParamsControl
+			// labelExample
+			// 
+			this.labelExample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelExample.AutoSize = true;
+			this.labelExample.Location = new System.Drawing.Point(256, 5);
+			this.labelExample.Name = "labelExample";
+			this.labelExample.Size = new System.Drawing.Size(13, 13);
+			this.labelExample.TabIndex = 23;
+			this.labelExample.Text = "…";
+			// 
+			// StringsParamsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.labelExample);
 			this.Controls.Add(this.groupBoxItems);
 			this.Controls.Add(this.panelSeparators);
 			this.Controls.Add(this.panelMaxLength);
 			this.Controls.Add(this.checkBoxLimitedStrings);
-			this.Name = "LimitedStringsParamsControl";
+			this.Name = "StringsParamsControl";
 			this.Padding = new System.Windows.Forms.Padding(4);
-			this.Size = new System.Drawing.Size(271, 288);
+			this.Size = new System.Drawing.Size(276, 288);
 			this.panelMaxLength.ResumeLayout(false);
 			this.panelMaxLength.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownFixed)).EndInit();
@@ -184,5 +196,6 @@
 		private System.Windows.Forms.TextBox textBoxItems;
 		private System.Windows.Forms.ListBox listBoxPreview;
 		private System.Windows.Forms.CheckBox checkBoxLimitedStrings;
+		private System.Windows.Forms.Label labelExample;
 	}
 }

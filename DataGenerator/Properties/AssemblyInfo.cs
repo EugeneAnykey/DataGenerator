@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Data Generator ( . Y . )")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Eugene Anykey Software")]
-[assembly: AssemblyCopyright("Copyright © 2019 Eugene Anykey Software")]
+[assembly: AssemblyCopyright("Copyright © 2019-2020 Eugene Anykey Software")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номер сборки и номер редакции по умолчанию.
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.15")]
-[assembly: AssemblyFileVersion("1.1.15")]
+[assembly: AssemblyVersion("1.1.19")]
+[assembly: AssemblyFileVersion("1.1.19")]

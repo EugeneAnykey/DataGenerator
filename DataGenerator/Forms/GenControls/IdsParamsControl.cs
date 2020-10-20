@@ -13,29 +13,30 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		public BaseGen GetRandomBaseGen()
 		{
 			string[] rndNames = new[] { "Id", "Num", "Position", "Pos" };
-			var min = Randomizer.R.Next(1, 10000);
-			var max = Randomizer.R.Next(10);
-			return new IdsGen(min, max) { Name = Randomizer.OneOf(rndNames) };
+			var start = Randomizer.R.Next(1, 10000);
+			var step = Randomizer.R.Next(10);
+			return new IdsGen(start, step) { Name = Randomizer.OneOf(rndNames) };
 		}
 
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
-			if (gen is IdsGen gen1)
+			if (gen is IdsGen g)
 			{
-				numericUpDownStart.Value = gen1.Start;
-				numericUpDownStep.Value = gen1.Step;
+				numericUpDownStart.Value = g.Start;
+				numericUpDownStep.Value = g.Step;
 			}
 		}
 
-
-
+		// init
 		public IdsParamsControl()
 		{
 			InitializeComponent();
 
 			numericUpDownStart.NumericsUpdate(-1000000, 1000000, 1);
 			numericUpDownStep.NumericsUpdate(-1000, 1000, 1);
+			
+			new Exampler(labelExample, GetBaseGen);
 		}
 	}
 }

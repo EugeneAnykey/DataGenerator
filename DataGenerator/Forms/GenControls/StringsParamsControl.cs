@@ -9,21 +9,23 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenGetter
 		public BaseGen GetBaseGen() => new StringsGen(Separate(), useLimitedStrings ? (int)numericUpDownFixed.Value : 0);
 
+		readonly string[][] lines = new[] {
+			new[] { "a", "bc", "def", "uvwx" },
+			LinesHolder.AlphabetLatin1,
+			LinesHolder.AlphabetLatin2,
+			LinesHolder.AlphabetLatin3,
+			LinesHolder.Colors,
+			LinesHolder.EngWords,
+			LinesHolder.LongEngWords,
+			LinesHolder.EngParticles,
+		};
+
 		// IGenRandomGetter
 		public BaseGen GetRandomBaseGen()
 		{
-			string[] Names = new[] { "Colors", "Latin (1 letter)", "Latin (2 letters)", "Latin (3 letters)", "Words", "LongWords", "Particles" };
-			string[][] lines = new[] {
-				LinesHolder.Colors,
-				LinesHolder.AlphabetLatin1,
-				LinesHolder.AlphabetLatin2,
-				LinesHolder.AlphabetLatin3,
-				LinesHolder.EngWords,
-				LinesHolder.LongEngWords,
-				LinesHolder.EngParticles
-			};
+			string[] Names = new[] { "misc", "Latin_1", "Latin_2", "Latin_3", "Colors", "Words", "LongWords", "Particles" };
 
-			var possibleLimit = Randomizer.R.Next(6);
+			var possibleLimit = Randomizer.R.Next(lines.Length - 1);
 			var limited = possibleLimit > 2;
 			var linesId = Randomizer.R.Next(lines.Length);
 
@@ -33,12 +35,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		// IGenSetter
 		public void SetBaseGen(BaseGen gen)
 		{
-			if (gen is StringsGen gen1)
+			if (gen is StringsGen g)
 			{
-				numericUpDownFixed.Value = gen1.StringLengthLimit;
+				numericUpDownFixed.Value = g.StringLengthLimit;
 				comboBoxItemsSeparator.SelectedItem = commaSeparator;
-				checkBoxLimitedStrings.Checked = gen1.Limited;
-				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), gen1.Lines);
+				checkBoxLimitedStrings.Checked = g.Limited;
+				textBoxItems.Text = string.Join(commaSeparator.Separators?[0].ToString(), g.Lines);
 			}
 
 			TogglePreview(showPreview);
@@ -51,10 +53,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 		static readonly SeparatorItem spaceSeparator = new SeparatorItem("Space — [ ]", ' ');
 		static readonly SeparatorItem defaultSeparator = spaceSeparator;
 
-
-
 		// field
-		SeparatorItem[] separators;
+		readonly SeparatorItem[] separators;
 
 		bool useLimitedStrings;
 		public bool UseLimitedStrings
@@ -69,8 +69,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 					numericUpDownFixed.Value = 0;
 			}
 		}
-
-
 
 		// init
 		public StringsParamsControl()
@@ -100,11 +98,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			buttonFastExample.Click += (_, __) => FastExample();
 			groupBoxItems.Click += (_, __) => TogglePreview();
 			checkBoxLimitedStrings.CheckedChanged += (_, __) => UseLimitedStrings = checkBoxLimitedStrings.Checked;
+
+			new Exampler(labelExample, GetBaseGen);
+
+			FastExample();
 		}
 
-
-
-		// private: Preview
+		// private
 		bool showPreview = false;
 		void TogglePreview() => TogglePreview(showPreview = !showPreview);
 
@@ -122,9 +122,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			groupBoxItems.Text = show ? $"Preview Items {listBoxPreview.Items.Count}:" : "Items:";
 		}
 
-
-
-		// private: Separate
 		string[] Separate()
 		{
 			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? defaultSeparator;
@@ -132,17 +129,12 @@ namespace EugeneAnykey.Project.DataGenerator.Forms.GenControls
 			return textBoxItems.Text.Split(sep.Separators);
 		}
 
-
-
-		// private: FastExample
 		void FastExample()
 		{
 			comboBoxItemsSeparator.SelectedItem = commaSeparator;
 			var sep = (comboBoxItemsSeparator.SelectedItem as SeparatorItem) ?? commaSeparator;
 
-			var example = new[] { "a", "bc", "def", "uvwx" };
-
-			textBoxItems.Text = string.Join(sep.Separators[0].ToString(), example);
+			textBoxItems.Text = string.Join(sep.Separators[0].ToString(), Randomizer.OneOf(lines));
 		}
 	}
 }

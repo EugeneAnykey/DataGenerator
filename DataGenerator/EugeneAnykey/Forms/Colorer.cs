@@ -4,36 +4,67 @@ using System.Drawing;
 
 namespace EugeneAnykey.Forms
 {
+	/// <summary>
+	/// Color helper
+	/// </summary>
 	public class Colorer
 	{
-		// const
+		#region fields and consts
+		/// <summary>
+		/// To make pale colors set it to true
+		/// </summary>
 		const bool pale = true;
 
-		const int max = 245;
-		const int bright = pale ? 220 : 192;
-		const int semi = (max + bright) / 2;
+		/// <summary>
+		/// Maximum color value
+		/// </summary>
+		const byte max = 245;
 
-
+		/// <summary>
+		/// Minimum color value
+		/// </summary>
+		const byte bright = pale ? 220 : 192;
 
 		// field
 		readonly Random r = new Random((int)DateTime.Now.Millisecond);
+		readonly List<Color> colors = new List<Color>();
 
-		List<Color> colors = new List<Color>();
+		/// <summary>
+		/// Possible colors values
+		/// </summary>
+		readonly byte[] colorValues = new byte[] { max, (max + bright) / 2, bright };
 
-		readonly int[] colorValues = new[] { max, semi, bright };
-		readonly int colorsGraduationCount;
+		/// <summary>
+		/// Color to start from
+		/// </summary>
+		const byte initial = 0;
 
+		/// <summary>
+		/// Latest used color
+		/// </summary>
+		int latest = initial;
+		#endregion
 
+		#region init
+		/// <summary>
+		/// Initialize Color Helper
+		/// </summary>
+		public Colorer()
+		{
+			FillColors();
+		}
+		#endregion
 
-		// current
-		const int initial = 0;
-		int current = initial;
-
+		#region public
+		/// <summary>
+		/// Returns next possible color
+		/// </summary>
+		/// <returns>Next possible color</returns>
 		public Color GetNext() {
-			current++;
-			if (current >= colors.Count)
-				current = initial;
-			return colors[current];
+			latest++;
+			if (latest >= colors.Count)
+				latest = initial;
+			return colors[latest];
 		}
 
 		// inderxer
@@ -45,47 +76,38 @@ namespace EugeneAnykey.Forms
 			}
 		}
 
-		public Color Random()
+		/// <summary>
+		/// Returns random possible color
+		/// </summary>
+		/// <returns>Random possible color</returns>
+		public Color GetRandom()
 		{
 			return this[r.Next(colors.Count)];
 		}
+		#endregion
 
+		#region private
+		/// <summary>
+		/// Returns Color by values
+		/// </summary>
+		/// <param name="r">Red</param>
+		/// <param name="g">Green</param>
+		/// <param name="b">Blue</param>
+		/// <returns>Color</returns>
+		Color GetColor(byte r, byte g, byte b) => Color.FromArgb(r, g, b);
 
-
-		// init
-		public Colorer()
-		{
-			colorsGraduationCount = colorValues.Length;
-			FillColors();
-		}
-
-
-
-		// private
-		Color SetColor(int r, int g, int b) => Color.FromArgb(r, g, b);
-
+		/// <summary>
+		/// Generates colors
+		/// </summary>
 		void FillColors()
 		{
 			int times = colorValues.Length;
 
-			int r = 0;
-			while (r < times)
-			{
-				int g = 0;
-				while (g < times)
-				{
-					int b = 0;
-					while (b < times)
-					{
-						//if (b == g && b == r)
-						//	continue;
-						colors.Add(SetColor(colorValues[r], colorValues[g], colorValues[b]));
-						b++;
-					}
-					g++;
-				}
-				r++;
-			}
+			for (byte r = 0; r < times; r++)
+				for (byte g = 0; g < times; g++)
+					for (byte b = 0; b < times; b++)
+						colors.Add(GetColor(colorValues[r], colorValues[g], colorValues[b]));
 		}
+		#endregion
 	}
 }

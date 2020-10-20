@@ -10,7 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
 		string[] names;
-		
+
 
 		// init
 		public ColumnsEditControl()
@@ -32,10 +32,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				collapsableDates,
 				collapsableMaskedIds,
 				collapsableStrings,
+				collapsableRndSymbols,
 			};
 
 			names = new[] {
-				"",
 				"Nothing",
 				"Constant",
 				"Id",
@@ -44,6 +44,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				"Date",
 				"Masked Id",
 				"String",
+				"RndSymbols",
 			};
 
 			ugens = new UserControl[] {
@@ -55,6 +56,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				datesParamsControl,
 				maskedIdsParamsControl,
 				stringsParamsControl,
+				rndSymbolsParamsControl,
 			};
 
 			Recolor();
@@ -84,10 +86,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 		}
 
-
-
+		
 		// public
 		public BaseGen[] GetBaseGens() => gensListControl1.GetBaseGens();
+		public void SetBaseGens(BaseGen[] gens) => gensListControl1.SetBaseGens(gens);
 
 
 
@@ -112,7 +114,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			bool shift = ModifierKeys == Keys.Shift;
 
-			var gen = shift ? GetCurrentGenGetter() : GetRandomGenGetter();
+			var gen = shift ? GetRandomGenGetter() : GetCurrentGenGetter();
 
 			if (gen is IGenRandomGetter rgen)
 			{
@@ -149,6 +151,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				gen is DatesGen ? 5 :
 				gen is MaskedIdsGen ? 6 :
 				gen is StringsGen ? 7 :
+				gen is RndSymbolsGen ? 8 :
 				-1;
 
 			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
@@ -173,7 +176,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 					c.Collapsed = true;
 			}
 
-			textBoxName.Text = names[GetPos(collapsable) + 1];
+			textBoxName.Text = names[GetPos(collapsable)];
 
 			if (null == collapsable)
 				return;
