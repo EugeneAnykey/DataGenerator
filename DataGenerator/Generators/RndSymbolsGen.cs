@@ -91,6 +91,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 		public void ReadXmlSubtree(XmlReader reader)
 		{
+			var list = new List<string>();
 			while (reader.Read())
 			{
 				if (reader.NodeType == XmlNodeType.Element)
@@ -113,22 +114,20 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 								MaxLength = Convert.ToInt32(reader.Value);
 						}
 					}
-
 					else if (reader.Name.Equals("lines", Helpers.IgnoreCase))
 					{
-						var list = new List<string>();
-						while (reader.Read())
+						if (reader.Read())
 						{
-							// read lines
-							if (reader.Name.Equals("line", Helpers.IgnoreCase))
+							if (reader.NodeType == XmlNodeType.Text)
 								list.Add(reader.Value);
+							else list.Add("");
 						}
-						Init(list.ToArray());
 					}
 					else
 						reader.Skip();
 				}
 			}
+			Init(list.ToArray());
 		}
 		#endregion
 	}

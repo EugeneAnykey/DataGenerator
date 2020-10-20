@@ -83,34 +83,8 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 		}
 		#endregion
 
-		#region undone, bad
-		delegate BaseGen ReadGenFromXml(XmlReader reader);
-		struct GenXmlReader {
-			readonly string Name;
-			readonly ReadGenFromXml ReadFunc;
 
-			public GenXmlReader(string name, ReadGenFromXml readFunc)
-			{
-				Name = name;
-				ReadFunc = readFunc;
-			}
-
-			public BaseGen TryRead(string name, XmlReader reader)
-			{
-				if (Name.Equals(name))
-					return ReadFunc(reader);
-				else return null;
-			}
-		}
-
-		/* bad
-		static GenXmlReader[] readers = new GenXmlReader[] {
-			new GenXmlReader("Constant", (new ConstantStringsGen("") as IXmlable).ReadXmlSubtree),
-		};
-		*/
-		#endregion
-
-		#region private
+		#region private: ReadGenerators, ReadGen
 		static BaseGen[] ReadGenerators(XmlReader reader) 
 		{
 			var list = new List<BaseGen>();
@@ -119,40 +93,13 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 				if (reader.NodeType == XmlNodeType.Element)
 				{
 					if (reader.Name.Equals(XmlStrings.ConstantGen))
-					{
-						var constantGen = new ConstantStringsGen("");
-						XmlReader sub = reader.ReadSubtree();
-						constantGen.ReadXmlSubtree(sub);
-						sub.Close();
-						list.Add(constantGen);
-					}
+						list.Add(ReadGen(new ConstantStringsGen(""), reader));
 					else if (reader.Name.Equals(XmlStrings.DatesGen))
-					{
 						list.Add(ReadGen(new DatesGen(DateTime.Now, DateTime.Now), reader));
-						//var datesGen = new DatesGen(DateTime.Now, DateTime.Now);
-						//XmlReader sub = reader.ReadSubtree();
-						//datesGen.ReadXmlSubtree(sub);
-						//sub.Close();
-						//list.Add(datesGen);
-					}
 					else if (reader.Name.Equals(XmlStrings.DoublesGen))
-					{
 						list.Add(ReadGen(new DoublesGen(0, 1, 2), reader));
-						//var datesGen = new DatesGen(DateTime.Now, DateTime.Now);
-						//XmlReader sub = reader.ReadSubtree();
-						//datesGen.ReadXmlSubtree(sub);
-						//sub.Close();
-						//list.Add(datesGen);
-					}
 					else if (reader.Name.Equals(XmlStrings.IdsGen))
-					{
 						list.Add(ReadGen(new IdsGen(1), reader));
-						//var idsGen = new IdsGen(1);
-						//XmlReader sub = reader.ReadSubtree();
-						//idsGen.ReadXmlSubtree(sub);
-						//sub.Close();
-						//list.Add(idsGen);
-					}
 					else if (reader.Name.Equals(XmlStrings.IntegersGen))
 						list.Add(ReadGen(new IntegersGen(1,2), reader));
 					else if (reader.Name.Equals(XmlStrings.MaskedIdsGen))
@@ -170,13 +117,11 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 
 		static BaseGen ReadGen(BaseGen gen, XmlReader reader)
 		{
-			//var gen = new DatesGen(DateTime.Now, DateTime.Now);
 			XmlReader sub = reader.ReadSubtree();
 			if (gen is IXmlable g)
 				g.ReadXmlSubtree(sub);
 			sub.Close();
 			return gen;
-			//list.Add(datesGen);
 		}
 		#endregion
 	}
