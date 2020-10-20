@@ -6,27 +6,27 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 {
 	public class FileGen
 	{
-		// const
-		const int defaultRowsPortion = 2460;
+		#region const
+		const int defaultRowsPortion = 2048;
+		#endregion
 
 
-
-		// init
+		#region init
 		public FileGen() { }
+		#endregion
 
 
-
-		// public: GenerateBaseGenFile
+		#region public: GenerateBaseGenFile
 		public void GenerateBaseGenFile(string filename, int rows, BaseGen[] gens, IProgress<float> progress)
 		{
 			var title = MakeTitleLine(gens);
 			var outputers = ConvertGensToStringOutputers(gens);
 			GenFile(filename, rows, title, outputers, progress);
 		}
+		#endregion
 
 
-
-
+		#region private
 		IStringOutputer[] ConvertGensToStringOutputers(BaseGen[] gens)
 		{
 			var outputers = new IStringOutputer[gens.Length];
@@ -36,6 +36,7 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 			}
 			return outputers;
 		}
+
 
 		void GenFile(string filename, int totalRows, string title, IStringOutputer[] outputers, IProgress<float> progress)
 		{
@@ -60,7 +61,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 		}
 
 
-
 		string MakeSingleLine(int index, IStringOutputer[] outputers)
 		{
 			const string separator = "\t";
@@ -74,7 +74,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 
 			return string.Join(separator, res);
 		}
-
 
 
 		string MakeTitleLine(BaseGen[] gens)
@@ -97,7 +96,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 		}
 
 
-
 		IEnumerable<string> MakeNewLinesPortion(int count, IStringOutputer[] outputers)
 		{
 			if (outputers == null)
@@ -118,7 +116,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 		}
 
 
-
 		void GenerateNewPortion(int count, IStringOutputer[] outputers)
 		{
 			for (int i = 0; i < outputers.Length; i++)
@@ -126,5 +123,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 				outputers[i].Output(count);
 			}
 		}
+		#endregion
 	}
 }

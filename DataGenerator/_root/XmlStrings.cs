@@ -19,8 +19,4 @@
 
 		public const string NameAttr = "name";
 	}
-
-	public static class GenStrings
-	{
-	}
 }
