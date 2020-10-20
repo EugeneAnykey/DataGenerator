@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg3072"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="New document 2">
+  <defs
+     id="defs3074">
+    <filter
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Darkens the edge with an inner blur and adds a flexible glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Dark and Glow"
+       color-interpolation-filters="sRGB"
+       id="filter3192">
+      <feGaussianBlur
+         stdDeviation="5"
+         result="result6"
+         id="feGaussianBlur3194" />
+      <feComposite
+         result="result8"
+         in="SourceGraphic"
+         operator="atop"
+         in2="result6"
+         id="feComposite3196" />
+      <feComposite
+         result="result9"
+         operator="over"
+         in2="SourceAlpha"
+         in="result8"
+         id="feComposite3198" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result10"
+         id="feColorMatrix3200" />
+      <feBlend
+         in="result10"
+         mode="normal"
+         in2="result6"
+         id="feBlend3202" />
+    </filter>
+    <filter
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Darkens the edge with an inner blur and adds a flexible glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Dark and Glow"
+       color-interpolation-filters="sRGB"
+       id="filter3154">
+      <feGaussianBlur
+         stdDeviation="5"
+         result="result6"
+         id="feGaussianBlur3156" />
+      <feComposite
+         result="result8"
+         in="SourceGraphic"
+         operator="atop"
+         in2="result6"
+         id="feComposite3158" />
+      <feComposite
+         result="result9"
+         operator="over"
+         in2="SourceAlpha"
+         in="result8"
+         id="feComposite3160" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result10"
+         id="feColorMatrix3162" />
+      <feBlend
+         in="result10"
+         mode="normal"
+         in2="result6"
+         id="feBlend3164" />
+    </filter>
+    <filter
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Darkens the edge with an inner blur and adds a flexible glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Dark and Glow"
+       color-interpolation-filters="sRGB"
+       id="filter3116">
+      <feGaussianBlur
+         stdDeviation="5"
+         result="result6"
+         id="feGaussianBlur3118" />
+      <feComposite
+         result="result8"
+         in="SourceGraphic"
+         operator="atop"
+         in2="result6"
+         id="feComposite3120" />
+      <feComposite
+         result="result9"
+         operator="over"
+         in2="SourceAlpha"
+         in="result8"
+         id="feComposite3122" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result10"
+         id="feColorMatrix3124" />
+      <feBlend
+         in="result10"
+         mode="normal"
+         in2="result6"
+         id="feBlend3126" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="469"
+     inkscape:window-height="425"
+     inkscape:window-x="104"
+     inkscape:window-y="104"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3077">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.75399172;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3240"
+       width="200.28827"
+       height="200.28827"
+       x="369.03821"
+       y="216.37756"
+       inkscape:export-filename="J:\!prg\!_icons\(PHD) describer\i_plus2.png"
+       inkscape:export-xdpi="28.64781"
+       inkscape:export-ydpi="28.64781" />
+    <rect
+       style="fill:#ff0000;stroke:#000000;stroke-width:0.829;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3116)"
+       id="rect3004"
+       width="183.84776"
+       height="33.335033"
+       x="109.2722"
+       y="298.4256"
+       inkscape:export-filename="J:\!prg\!_icons\(PHD)D~1\i_minus.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
+    <path
+       style="fill:#00ff00;stroke:#000000;stroke-width:0.829;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3154)"
+       d="m 453.23349,224.9785 0,75.24999 -75.24999,0 0,33.34375 75.24999,0 0,75.24995 33.34375,0 0,-75.24995 75.25001,0 0,-33.34375 -75.25001,0 0,-75.24999 -33.34375,0 z"
+       id="rect3004-1-7"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="J:\!prg\!_icons\(PHD)D~1\i_plus.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
+    <path
+       style="fill:#00ffff;stroke:#000000;stroke-width:0.829;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3192)"
+       d="m 475.98222,604.74044 c -43.20828,43.34039 -86.52196,86.64695 -129.875,130 l 23.5625,23.5625 106.375,-106.375 106.375,106.375 23.5625,-23.5625 c -43.44132,-43.26476 -86.60066,-86.72567 -129.875,-130 l -0.0625,0.0625 z"
+       id="rect3004-1-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="J:\!prg\!_icons\(PHD)D~1\i_up.png"
+       inkscape:export-xdpi="60"
+       inkscape:export-ydpi="60" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.00044751;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3240-6"
+       width="265.7561"
+       height="265.7561"
+       x="343.16663"
+       y="548.64368"
+       inkscape:export-filename="J:\!prg\!_icons\(PHD) describer\i_up2.png"
+       inkscape:export-xdpi="21.67"
+       inkscape:export-ydpi="21.67" />
+  </g>
+</svg>
