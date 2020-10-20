@@ -34,15 +34,19 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void Init()
 		{
+			buttonNothing.Visible = false;
 			UpdateCaption();
 		}
 
 		void InitEvent()
 		{
 			buttonAdd.Click += (_, __) => AddItem();
-			buttonGenerateRandom.Click += (_, __) => AddRandomItem();
+			buttonAddRandom.Click += (_, __) => AddRandomItem();
+			//buttonAddMiscRandom.Click += (_, __) => AddRandomItem();
+			buttonAddMiscRandom.Visible = false;
 			buttonUp.Click += (_, __) => MoveItem(Direction.Up);
 			buttonDown.Click += (_, __) => MoveItem(Direction.Down);
+			buttonReplace.Click += (_, __) => ReplaceItem();
 			buttonRemove.Click += (_, __) => RemoveItem();
 
 			listBox.SelectedIndexChanged += (_, __) => SelectedItem();
@@ -91,7 +95,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 
 
-		// Add
+		#region private Add
 		void AddItem()
 		{
 			var args = new GenItemEventArgs(null);
@@ -120,10 +124,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			AddItem(args.Gen);
 		}
+		#endregion
 
 
-
-		// Remove
+		#region private Remove, Replace
 		void RemoveItem()
 		{
 			if (!(listBox.SelectedItem is BaseGen selected))
@@ -137,9 +141,27 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				listBox.SelectedIndex = Helpers.MakeIn(index, 0, listBox.Items.Count - 1);
 		}
 
+		void ReplaceItem()
+		{
+			if (!(listBox.SelectedItem is BaseGen selected))
+				return;
+
+			var args = new GenItemEventArgs(null);
+			OnAddingItem(args);
+
+			if (args.Gen == null)
+				return;
+
+			var index = listBox.Items.IndexOf(selected);
+			listBox.Items.Remove(selected);
+			listBox.Items.Insert(index, args.Gen);
+			listBox.SetSelected(index, true);
+			UpdateCaption();
+		}
+		#endregion
 
 
-		// SelectedItem
+		#region private SelectedItem
 		void SelectedItem()
 		{
 			if (!(listBox.SelectedItem is BaseGen selected))
@@ -147,7 +169,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			OnItemSelected(new GenItemEventArgs(selected));
 		}
-
+		#endregion
 
 
 		#region public: GetBaseGens, SetBaseGens

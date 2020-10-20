@@ -22,7 +22,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		Colorer colorer = new Colorer();
 
-		// init
+		#region init
 		public DataGenForm()
 		{
 			InitializeComponent();
@@ -43,14 +43,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			menuExit.Click += (_, __) => Close();
 
 			menuRecolor.Click += (_,__) => rowsCountControl1.BackColor = columnsEditControl1.BackColor = colorer.GetRandom();
-
-			// undone!
-			toolStripMenuItem1.Visible = 
-			menuFileOpen.Visible = menuFileSave.Visible =
-			menuFileOpen.Enabled = menuFileSave.Enabled = true;
 		}
+		#endregion
 
-		// private: ShowElapsed.
+
+		#region private: ShowElapsed.
 		void ShowElapsed()
 		{
 			const string mesDone = "Done by: {0}";
@@ -74,40 +71,45 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 			toolStripProgressBar.Value = (int)(100 * percents);
 		}
+		#endregion
 
 
-
-		// private: ChooseFilename
-		string ChooseFilename(string messageText, string messageCaption, string filenameMask)
+		#region private: CheckColumns, ChooseFilename
+		bool CheckColumns()
 		{
 			var cols = columnsEditControl1.GetBaseGens().Length;
-			
+
+			const string messageText = "Could not make file without columns.";
+			const string messageCaption = "No columns";
+
 			if (cols == 0)
 			{
 				MessageBox.Show(messageText, messageCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return null;
+				return false;
 			}
-
+			return true;
+		}
+		
+		string ChooseFilename(string filenameMask)
+		{
+			var cols = columnsEditControl1.GetBaseGens().Length;
+			
 			saveFileDialog1.FileName = string.Format(filenameMask, cols, rowsCountControl1.RowsCountShort);
 
 			return DialogResult.OK == saveFileDialog1.ShowDialog() ? saveFileDialog1.FileName : string.Empty;
 		}
+		#endregion
 
 
-
-		// private: GenerateBaseGenFile
-		const string mesText_Generate = "Could not generate a file without columns.";
-		const string mesCap_Generate = "No columns";
-		const string filenameMask_Generate = "random_c{0}_r{1}.txt";
-
-		const string mesText_SchemeSave = "Could not save a scheme without columns.";
-		const string mesCap_SchemeSave = "No columns";
-		const string filenameMask_SchemeSave = "scheme_c{0}.xml";
-
+		#region private: GenerateBaseGenFile
 		void GenerateBaseGenFile()
 		{
+			if (!CheckColumns())
+				return;
+
 			saveFileDialog1.Filter = TxtFilter;
-			GenerateBaseGenFile(ChooseFilename(mesText_Generate, mesCap_Generate, filenameMask_Generate));
+			const string filenameMask_Generate = "random_c{0}_r{1}.txt";
+			GenerateBaseGenFile(ChooseFilename(filenameMask_Generate));
 		}
 
 		async void GenerateBaseGenFile(string filename)
@@ -128,13 +130,19 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			watch.Stop();
 			ShowElapsed();
 		}
+		#endregion
 
+
+		#region Scheme
 		void SaveScheme()
 		{
-			saveFileDialog1.Filter = XmlFilter;
-			var filename = ChooseFilename(mesText_SchemeSave, mesCap_SchemeSave, filenameMask_SchemeSave);
+			if (!CheckColumns())
+				return;
 
-			// save scheme:
+			saveFileDialog1.Filter = XmlFilter;
+			const string filenameMask_SchemeSave = "scheme_c{0}.xml";
+			var filename = ChooseFilename(filenameMask_SchemeSave);
+
 			GeneratorsScheme.Save(filename, columnsEditControl1.GetBaseGens());
 		}
 
@@ -144,12 +152,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			if (openFileDialog1.ShowDialog() == DialogResult.OK)
 			{
 				var filename = openFileDialog1.FileName;
-				// open scheme...
 				var list = GeneratorsScheme.Load(filename);
 				columnsEditControl1.SetBaseGens(list);
 			}
-
 			//throw new NotImplementedException();
 		}
+		#endregion
 	}
 }

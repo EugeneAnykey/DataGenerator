@@ -46,7 +46,6 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 			}
 
 			return list;
-			//throw new NotImplementedException();
 		}
 
 		public static void Save(string filename, BaseGen[] gens)
