@@ -6,10 +6,24 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class ColumnsEditControl : UserControl
 	{
+		#region struct GeneratorUnit
+		struct GeneratorUnit {
+			public UserControl GenControl { get; }
+			public CollapsableControl Collapsable { get; }
+			public string DisplayName { get; }
+
+			public GeneratorUnit(UserControl genControl, CollapsableControl collapsableControl, string displayName)
+			{
+				GenControl = genControl;
+				Collapsable = collapsableControl;
+				DisplayName = displayName;
+			}
+		}
+		#endregion
+
+
 		#region field
-		UserControl[] ugens;
-		CollapsableControl[] collapsables;
-		string[] names;
+		GeneratorUnit[] genUnits;
 		#endregion
 
 
@@ -24,40 +38,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void Init()
 		{
-			collapsables = new[] {
-				collapsableNothing,
-				collapsableConstant,
-				collapsableIds,
-				collapsableInts,
-				collapsableDoubles,
-				collapsableDates,
-				collapsableMaskedIds,
-				collapsableStrings,
-				collapsableRndSymbols,
-			};
-
-			names = new[] {
-				"Nothing",
-				"Constant",
-				"Id",
-				"Int",
-				"Double",
-				"Date",
-				"Masked Id",
-				"String",
-				"RndSymbols",
-			};
-
-			ugens = new UserControl[] {
-				noParamsControl,
-				constantsParamsControl,
-				idsParamsControl,
-				intsParamsControl,
-				doublesParamsControl,
-				datesParamsControl,
-				maskedIdsParamsControl,
-				stringsParamsControl,
-				rndSymbolsParamsControl,
+			genUnits = new[] {
+				new GeneratorUnit(noParamsControl, collapsableNothing, "Nothing"),
+				new GeneratorUnit(constantsParamsControl, collapsableConstant, "Constant"),
+				new GeneratorUnit(idsParamsControl, collapsableIds, "Id"),
+				new GeneratorUnit(intsParamsControl, collapsableInts, "Int"),
+				new GeneratorUnit(doublesParamsControl, collapsableDoubles, "Double"),
+				new GeneratorUnit(datesParamsControl, collapsableDates, "Date"),
+				new GeneratorUnit(maskedIdsParamsControl, collapsableMaskedIds, "Masked_Id"),
+				new GeneratorUnit(stringsParamsControl, collapsableStrings, "String"),
+				new GeneratorUnit(rndSymbolsParamsControl, collapsableRndSymbols, "RndSymbols"),
 			};
 
 			Recolor();
@@ -69,9 +59,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			var colorer = new EugeneAnykey.Forms.Colorer();
 
-			foreach (var item in collapsables)
+			foreach (var item in genUnits)
 			{
-				item.BaseColor = item.BackColor = colorer.GetNext();
+				item.Collapsable.BaseColor = item.Collapsable.BackColor = colorer.GetNext();
 			}
 		}
 
@@ -82,9 +72,9 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			gensListControl1.AddingMiscRandomItem += (_, gen) => AddingMiscRandomItem(gen);
 			gensListControl1.ItemSelected += (_, gen) => SelectingItem(gen);
 
-			foreach (var col in collapsables)
+			foreach (var item in genUnits)
 			{
-				col.CollapseStateChanged += (_, __) => ShowOnly(col);
+				item.Collapsable.CollapseStateChanged += (_, __) => ShowOnly(item.Collapsable);
 			}
 		}
 		#endregion
@@ -96,15 +86,20 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
-		#region private Random: GetCurrentGenGetter, AddingRandomItem, AddingMiscRandomItem
+		#region private: GetCurrentGenGetter
 		IGenGetter GetCurrentGenGetter()
 		{
-			for (int i = 0; i < collapsables.Length; i++)
-				if (!collapsables[i].Collapsed)
-					return ugens[i] as IGenGetter;
+			foreach (var item in genUnits)
+			{
+				if (!item.Collapsable.Collapsed)
+					return item.GenControl as IGenGetter;
+			}
 			return null;
 		}
+		#endregion
 
+
+		#region private Random: GetCurrentGenGetter, AddingRandomItem, AddingMiscRandomItem
 		void AddingRandomItem(GenItemEventArgs genItemArgs)
 		{
 			if (GetCurrentGenGetter() is IGenRandomGetter rgen)
@@ -113,8 +108,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 		void AddingMiscRandomItem(GenItemEventArgs genItemArgs)
 		{
-			var index = Randomizer.R.Next(ugens.Length);
-			var gen = ugens[index] as IGenGetter;
+			var index = Randomizer.R.Next(genUnits.Length);
+			var gen = genUnits[index].GenControl as IGenGetter;
 			if (gen is IGenRandomGetter rgen)
 				genItemArgs.Gen = rgen.GetRandomBaseGen();
 		}
@@ -141,22 +136,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#region private: GetPos, SelectingItem, ShowOnly
 		int GetPos(CollapsableControl collapsable)
 		{
-			for (int i = 0; i < collapsables.Length; i++)
-				if (collapsables[i] == collapsable)
+			for (int i = 0; i < genUnits.Length; i++) {
+				if (genUnits[i].Collapsable == collapsable)
 					return i;
-
+			}
 			return -1;
 		}
 
-		void SelectingItem(GenItemEventArgs genItemArgs)
+		int GetPos(BaseGen gen)
 		{
-			ShowOnly(genItemArgs.Gen);
-		}
-
-		void ShowOnly(BaseGen gen)
-		{
-			int index =
-				gen is NothingGen ? 0 :
+			return gen is NothingGen ? 0 :
 				gen is ConstantStringsGen ? 1 :
 				gen is IdsGen ? 2 :
 				gen is IntegersGen ? 3 :
@@ -166,19 +155,29 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				gen is StringsGen ? 7 :
 				gen is RndSymbolsGen ? 8 :
 				-1;
+		}
 
-			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
+		void SelectingItem(GenItemEventArgs genItemArgs)
+		{
+			ShowOnly(genItemArgs.Gen);
+		}
+
+		void ShowOnly(BaseGen gen)
+		{
+			int index = GetPos(gen);
+			ActivateGen(genUnits[index].Collapsable, genUnits[index].GenControl as IGenSetter, gen);
 		}
 
 		void ShowOnly(CollapsableControl collapsable)
 		{
-			foreach (var c in collapsables)
+			foreach (var item in genUnits)
 			{
+				var c = item.Collapsable;
 				if (!c.Collapsed && c != collapsable)
 					c.Collapsed = true;
 			}
-
-			textBoxName.Text = names[GetPos(collapsable)];
+			
+			textBoxName.Text = genUnits[GetPos(collapsable)].DisplayName;
 
 			if (null == collapsable)
 				return;
