@@ -5,7 +5,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class GensListControl : UserControl
 	{
-		// events
+		#region events
 		public event EventHandler PassingItemToAdd;
 		void OnPassingItemToAdd() => PassingItemToAdd?.Invoke(this, EventArgs.Empty);
 
@@ -18,12 +18,22 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		public event GenItemEventHandler AddingRandomItem;
 		void OnAddingRandomItem(GenItemEventArgs args) => AddingRandomItem?.Invoke(this, args);
 
+		public event GenItemEventHandler AddingMiscRandomItem;
+		void OnAddingMiscRandomItem(GenItemEventArgs args) => AddingMiscRandomItem?.Invoke(this, args);
+
 		public event EventHandler RemovingItem;
 		void OnRemovingItem() => RemovingItem?.Invoke(this, EventArgs.Empty);
+		#endregion
 
 
+		#region enum: Direction, RandomType
+		enum Direction { Up, Down }
 
-		// init
+		enum RandomType { Current, Misc }
+		#endregion
+
+
+		#region init
 		public GensListControl()
 		{
 			InitializeComponent();
@@ -41,9 +51,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		void InitEvent()
 		{
 			buttonAdd.Click += (_, __) => AddItem();
-			buttonAddRandom.Click += (_, __) => AddRandomItem();
-			//buttonAddMiscRandom.Click += (_, __) => AddRandomItem();
-			buttonAddMiscRandom.Visible = false;
+			buttonAddRandom.Click += (_, __) => AddRandomItem(RandomType.Current);
+			buttonAddMiscRandom.Click += (_, __) => AddRandomItem(RandomType.Misc);
 			buttonUp.Click += (_, __) => MoveItem(Direction.Up);
 			buttonDown.Click += (_, __) => MoveItem(Direction.Down);
 			buttonReplace.Click += (_, __) => ReplaceItem();
@@ -51,12 +60,30 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			listBox.SelectedIndexChanged += (_, __) => SelectedItem();
 		}
+		#endregion
 
 
+		#region public: GetBaseGens, SetBaseGens
+		public BaseGen[] GetBaseGens()
+		{
+			var res = new BaseGen[listBox.Items.Count];
+			listBox.Items.CopyTo(res, 0);
+			return res;
+		}
 
-		// MoveItem
-		enum Direction { Up, Down }
+		public void SetBaseGens(BaseGen[] gens)
+		{
+			foreach (var g in gens)
+			{
+				listBox.Items.Add(g);
+			}
+			listBox.SelectedIndex = 0;
+			UpdateCaption();
+		}
+		#endregion
 
+
+		#region private: MoveItem, NeedToMove
 		void MoveItem(Direction dir, bool toTheEdge = false)
 		{
 			if (listBox.SelectedItem == null || listBox.SelectedIndex < 0)
@@ -92,10 +119,10 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			}
 			return false;
 		}
+		#endregion
 
 
-
-		#region private Add
+		#region private: AddItem, AddRandomItem
 		void AddItem()
 		{
 			var args = new GenItemEventArgs(null);
@@ -114,10 +141,20 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			UpdateCaption();
 		}
 
-		void AddRandomItem()
+		void AddRandomItem(RandomType type)
 		{
 			var args = new GenItemEventArgs(null);
-			OnAddingRandomItem(args);
+			switch (type)
+			{
+				case RandomType.Current:
+					OnAddingRandomItem(args);
+					break;
+				case RandomType.Misc:
+					OnAddingMiscRandomItem(args);
+					break;
+				default:
+					break;
+			}
 
 			if (args.Gen == null)
 				return;
@@ -127,7 +164,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
-		#region private Remove, Replace
+		#region private: RemoveItem, ReplaceItem
 		void RemoveItem()
 		{
 			if (!(listBox.SelectedItem is BaseGen selected))
@@ -161,7 +198,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
-		#region private SelectedItem
+		#region private: SelectedItem, UpdateCaption
 		void SelectedItem()
 		{
 			if (!(listBox.SelectedItem is BaseGen selected))
@@ -169,31 +206,8 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			OnItemSelected(new GenItemEventArgs(selected));
 		}
-		#endregion
 
-
-		#region public: GetBaseGens, SetBaseGens
-		public BaseGen[] GetBaseGens()
-		{
-			var res = new BaseGen[listBox.Items.Count];
-			listBox.Items.CopyTo(res, 0);
-			return res;
-		}
-
-		public void SetBaseGens(BaseGen[] gens)
-		{
-			foreach (var g in gens)
-			{
-				listBox.Items.Add(g);
-			}
-			listBox.SelectedIndex = 0;
-			UpdateCaption();
-		}
-		#endregion
-
-
-
-		// UpdateCaption
 		void UpdateCaption() => groupBoxMain.Text = $"Count: {listBox.Items.Count}.";
+		#endregion
 	}
 }

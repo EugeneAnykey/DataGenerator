@@ -33,15 +33,15 @@
 			this.groupBoxMain = new System.Windows.Forms.GroupBox();
 			this.listBox = new System.Windows.Forms.ListBox();
 			this.panelSide = new System.Windows.Forms.Panel();
-			this.buttonAddRandom = new System.Windows.Forms.Button();
+			this.buttonNothing = new System.Windows.Forms.Button();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.buttonAddMiscRandom = new System.Windows.Forms.Button();
+			this.buttonReplace = new System.Windows.Forms.Button();
+			this.buttonAddRandom = new System.Windows.Forms.Button();
 			this.buttonAdd = new System.Windows.Forms.Button();
 			this.buttonDown = new System.Windows.Forms.Button();
 			this.buttonUp = new System.Windows.Forms.Button();
 			this.buttonRemove = new System.Windows.Forms.Button();
-			this.buttonReplace = new System.Windows.Forms.Button();
-			this.buttonAddMiscRandom = new System.Windows.Forms.Button();
-			this.buttonNothing = new System.Windows.Forms.Button();
 			this.groupBoxMain.SuspendLayout();
 			this.panelSide.SuspendLayout();
 			this.SuspendLayout();
@@ -83,17 +83,16 @@
 			this.panelSide.Size = new System.Drawing.Size(42, 401);
 			this.panelSide.TabIndex = 5;
 			// 
-			// buttonAddCurrentRandom
+			// buttonNothing
 			// 
-			this.buttonAddRandom.FlatAppearance.BorderSize = 0;
-			this.buttonAddRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonAddRandom.ImageIndex = 4;
-			this.buttonAddRandom.ImageList = this.imageList1;
-			this.buttonAddRandom.Location = new System.Drawing.Point(6, 12);
-			this.buttonAddRandom.Name = "buttonAddCurrentRandom";
-			this.buttonAddRandom.Size = new System.Drawing.Size(32, 32);
-			this.buttonAddRandom.TabIndex = 6;
-			this.buttonAddRandom.UseVisualStyleBackColor = true;
+			this.buttonNothing.FlatAppearance.BorderSize = 0;
+			this.buttonNothing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonNothing.ImageList = this.imageList1;
+			this.buttonNothing.Location = new System.Drawing.Point(6, 240);
+			this.buttonNothing.Name = "buttonNothing";
+			this.buttonNothing.Size = new System.Drawing.Size(32, 32);
+			this.buttonNothing.TabIndex = 9;
+			this.buttonNothing.UseVisualStyleBackColor = true;
 			// 
 			// imageList1
 			// 
@@ -101,11 +100,47 @@
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "add.png");
 			this.imageList1.Images.SetKeyName(1, "remove.png");
-			this.imageList1.Images.SetKeyName(2, "direction_up.png");
-			this.imageList1.Images.SetKeyName(3, "direction_down.png");
+			this.imageList1.Images.SetKeyName(2, "up.png");
+			this.imageList1.Images.SetKeyName(3, "down.png");
 			this.imageList1.Images.SetKeyName(4, "question.png");
 			this.imageList1.Images.SetKeyName(5, "questions.png");
-			this.imageList1.Images.SetKeyName(6, "action_round.png");
+			this.imageList1.Images.SetKeyName(6, "replace.png");
+			// 
+			// buttonAddMiscRandom
+			// 
+			this.buttonAddMiscRandom.FlatAppearance.BorderSize = 0;
+			this.buttonAddMiscRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddMiscRandom.ImageIndex = 5;
+			this.buttonAddMiscRandom.ImageList = this.imageList1;
+			this.buttonAddMiscRandom.Location = new System.Drawing.Point(6, 50);
+			this.buttonAddMiscRandom.Name = "buttonAddMiscRandom";
+			this.buttonAddMiscRandom.Size = new System.Drawing.Size(32, 32);
+			this.buttonAddMiscRandom.TabIndex = 8;
+			this.buttonAddMiscRandom.UseVisualStyleBackColor = true;
+			// 
+			// buttonReplace
+			// 
+			this.buttonReplace.FlatAppearance.BorderSize = 0;
+			this.buttonReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonReplace.ImageIndex = 6;
+			this.buttonReplace.ImageList = this.imageList1;
+			this.buttonReplace.Location = new System.Drawing.Point(6, 202);
+			this.buttonReplace.Name = "buttonReplace";
+			this.buttonReplace.Size = new System.Drawing.Size(32, 32);
+			this.buttonReplace.TabIndex = 7;
+			this.buttonReplace.UseVisualStyleBackColor = true;
+			// 
+			// buttonAddRandom
+			// 
+			this.buttonAddRandom.FlatAppearance.BorderSize = 0;
+			this.buttonAddRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonAddRandom.ImageIndex = 4;
+			this.buttonAddRandom.ImageList = this.imageList1;
+			this.buttonAddRandom.Location = new System.Drawing.Point(6, 12);
+			this.buttonAddRandom.Name = "buttonAddRandom";
+			this.buttonAddRandom.Size = new System.Drawing.Size(32, 32);
+			this.buttonAddRandom.TabIndex = 6;
+			this.buttonAddRandom.UseVisualStyleBackColor = true;
 			// 
 			// buttonAdd
 			// 
@@ -154,41 +189,6 @@
 			this.buttonRemove.Size = new System.Drawing.Size(32, 32);
 			this.buttonRemove.TabIndex = 2;
 			this.buttonRemove.UseVisualStyleBackColor = true;
-			// 
-			// buttonModify
-			// 
-			this.buttonReplace.FlatAppearance.BorderSize = 0;
-			this.buttonReplace.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonReplace.ImageIndex = 6;
-			this.buttonReplace.ImageList = this.imageList1;
-			this.buttonReplace.Location = new System.Drawing.Point(6, 202);
-			this.buttonReplace.Name = "buttonModify";
-			this.buttonReplace.Size = new System.Drawing.Size(32, 32);
-			this.buttonReplace.TabIndex = 7;
-			this.buttonReplace.UseVisualStyleBackColor = true;
-			// 
-			// buttonAddMiscRandom
-			// 
-			this.buttonAddMiscRandom.FlatAppearance.BorderSize = 0;
-			this.buttonAddMiscRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonAddMiscRandom.ImageIndex = 5;
-			this.buttonAddMiscRandom.ImageList = this.imageList1;
-			this.buttonAddMiscRandom.Location = new System.Drawing.Point(6, 50);
-			this.buttonAddMiscRandom.Name = "buttonAddMiscRandom";
-			this.buttonAddMiscRandom.Size = new System.Drawing.Size(32, 32);
-			this.buttonAddMiscRandom.TabIndex = 8;
-			this.buttonAddMiscRandom.UseVisualStyleBackColor = true;
-			// 
-			// buttonNothing
-			// 
-			this.buttonNothing.FlatAppearance.BorderSize = 0;
-			this.buttonNothing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonNothing.ImageList = this.imageList1;
-			this.buttonNothing.Location = new System.Drawing.Point(6, 240);
-			this.buttonNothing.Name = "buttonNothing";
-			this.buttonNothing.Size = new System.Drawing.Size(32, 32);
-			this.buttonNothing.TabIndex = 9;
-			this.buttonNothing.UseVisualStyleBackColor = true;
 			// 
 			// GensListControl
 			// 

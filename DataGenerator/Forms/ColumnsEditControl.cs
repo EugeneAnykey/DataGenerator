@@ -1,18 +1,19 @@
 ﻿using System.Windows.Forms;
-using EugeneAnykey.Project.DataGenerator.Generators;
 using EugeneAnykey.Forms.Controls;
+using EugeneAnykey.Project.DataGenerator.Generators;
 
 namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class ColumnsEditControl : UserControl
 	{
-		// field
+		#region field
 		UserControl[] ugens;
 		CollapsableControl[] collapsables;
 		string[] names;
+		#endregion
 
 
-		// init
+		#region init
 		public ColumnsEditControl()
 		{
 			InitializeComponent();
@@ -78,6 +79,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			gensListControl1.AddingItem += (_, gen) => AddingItem(gen);
 			gensListControl1.AddingRandomItem += (_, gen) => AddingRandomItem(gen);
+			gensListControl1.AddingMiscRandomItem += (_, gen) => AddingMiscRandomItem(gen);
 			gensListControl1.ItemSelected += (_, gen) => SelectingItem(gen);
 
 			foreach (var col in collapsables)
@@ -85,21 +87,16 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 				col.CollapseStateChanged += (_, __) => ShowOnly(col);
 			}
 		}
+		#endregion
 
-		
-		// public
+
+		#region public: GetBaseGens, SetBaseGens
 		public BaseGen[] GetBaseGens() => gensListControl1.GetBaseGens();
 		public void SetBaseGens(BaseGen[] gens) => gensListControl1.SetBaseGens(gens);
+		#endregion
 
 
-
-		// private
-		IGenGetter GetRandomGenGetter()
-		{
-			var index = Randomizer.R.Next(ugens.Length);
-			return ugens[index] as IGenGetter;
-		}
-
+		#region private Random: GetCurrentGenGetter, AddingRandomItem, AddingMiscRandomItem
 		IGenGetter GetCurrentGenGetter()
 		{
 			for (int i = 0; i < collapsables.Length; i++)
@@ -108,21 +105,29 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			return null;
 		}
 
-
-
 		void AddingRandomItem(GenItemEventArgs genItemArgs)
 		{
-			bool shift = ModifierKeys == Keys.Shift;
-
-			var gen = shift ? GetRandomGenGetter() : GetCurrentGenGetter();
-
-			if (gen is IGenRandomGetter rgen)
-			{
+			if (GetCurrentGenGetter() is IGenRandomGetter rgen)
 				genItemArgs.Gen = rgen.GetRandomBaseGen();
-			}
 		}
 
+		void AddingMiscRandomItem(GenItemEventArgs genItemArgs)
+		{
+			var index = Randomizer.R.Next(ugens.Length);
+			var gen = ugens[index] as IGenGetter;
+			if (gen is IGenRandomGetter rgen)
+				genItemArgs.Gen = rgen.GetRandomBaseGen();
+		}
+		#endregion
 
+
+		#region private: ActivateGen, AddingItem
+		void ActivateGen(CollapsableControl control, IGenSetter igen, BaseGen gen)
+		{
+			ShowOnly(control);
+			igen.SetBaseGen(gen);
+			textBoxName.Text = gen.Name;
+		}
 
 		void AddingItem(GenItemEventArgs genItemArgs)
 		{
@@ -130,15 +135,23 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			if (genItemArgs.Gen != null)
 				genItemArgs.Gen.Name = textBoxName.Text;
 		}
+		#endregion
 
 
+		#region private: GetPos, SelectingItem, ShowOnly
+		int GetPos(CollapsableControl collapsable)
+		{
+			for (int i = 0; i < collapsables.Length; i++)
+				if (collapsables[i] == collapsable)
+					return i;
+
+			return -1;
+		}
 
 		void SelectingItem(GenItemEventArgs genItemArgs)
 		{
 			ShowOnly(genItemArgs.Gen);
 		}
-
-
 
 		void ShowOnly(BaseGen gen)
 		{
@@ -157,17 +170,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			ActivateGen(collapsables[index], ugens[index] as IGenSetter, gen);
 		}
 
-
-
-		void ActivateGen(CollapsableControl control, IGenSetter igen, BaseGen gen)
-		{
-			ShowOnly(control);
-			igen.SetBaseGen(gen);
-			textBoxName.Text = gen.Name;
-		}
-
-
-
 		void ShowOnly(CollapsableControl collapsable)
 		{
 			foreach (var c in collapsables)
@@ -184,16 +186,6 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 			if (collapsable.Collapsed)
 				collapsable.Collapsed = false;
 		}
-
-
-
-		int GetPos(CollapsableControl collapsable)
-		{
-			for (int i = 0; i < collapsables.Length; i++)
-				if (collapsables[i] == collapsable)
-					return i;
-
-			return -1;
-		}
+		#endregion
 	}
 }
