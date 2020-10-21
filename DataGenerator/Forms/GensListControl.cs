@@ -33,6 +33,11 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
+		#region field
+		readonly ToolTip tip = new ToolTip();
+		#endregion
+
+
 		#region init
 		public GensListControl()
 		{
@@ -46,6 +51,15 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		{
 			buttonNothing.Visible = false;
 			UpdateCaption();
+
+			// tips
+			tip.SetToolTip(buttonAdd, "Add current generator");
+			tip.SetToolTip(buttonAddMiscRandom, "Add misc random generator");
+			tip.SetToolTip(buttonAddRandom, "Add current random generator");
+			tip.SetToolTip(buttonUp, "Move generator up");
+			tip.SetToolTip(buttonDown, "Move generator down");
+			tip.SetToolTip(buttonRemove, "Remove current generator");
+			tip.SetToolTip(buttonReplace, "Replace current generator");
 		}
 
 		void InitEvent()
