@@ -10,6 +10,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 		const int MaxPossibleLength = 65000;
 		#endregion
 
+
 		#region field
 		public string[] Lines { get; set; }
 		public int MinLength { get; private set; }

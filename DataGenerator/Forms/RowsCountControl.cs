@@ -5,25 +5,25 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 {
 	public partial class RowsCountControl : UserControl
 	{
-		// const
+		#region const
 		readonly double[] mults = new[] { 1, 1e3, 1e6 };
 		readonly string[] multsNames = new[] { "", "k", "M" };
+		#endregion
 
 
-
-		// events
+		#region events: GenerateFile
 		public event EventHandler GenerateFile;
 		void OnGenerateFile() => GenerateFile?.Invoke(this, EventArgs.Empty);
+		#endregion
 
 
-
-		// field
+		#region field: RowsCount, RowsCountShort
 		public int RowsCount { get; private set; }
 		public string RowsCountShort => GetRowsCountShort();
+		#endregion
 
 
-
-		// init
+		#region init
 		public RowsCountControl()
 		{
 			InitializeComponent();
@@ -42,11 +42,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 
 			CalcRowsCount();
 		}
+		#endregion
 
 
-
+		#region private: CalcRowsCount, GetRowsCountShort
 		void CalcRowsCount() => RowsCount = (int)numericUpDownRows.Value * (int)mults[buttonMult.ValuePosition];
 
 		string GetRowsCountShort() => $"{(int)numericUpDownRows.Value}{buttonMult.Text}";
+		#endregion
 	}
 }

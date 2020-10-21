@@ -8,9 +8,10 @@ namespace EugeneAnykey.Project.DataGenerator.IO
 {
 	public static class GeneratorsScheme
 	{
-		#region event
+		#region event: FileNotExists
 		public static event EventHandler FileNotExists;
 		#endregion
+
 
 		#region public: Load, Save
 		public static BaseGen[] Load(string filename)

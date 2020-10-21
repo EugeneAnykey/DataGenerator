@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 using EugeneAnykey.Forms;
 using EugeneAnykey.Project.DataGenerator.IO;
 
@@ -15,12 +14,13 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		const string XmlFilter = "Xml file (*.xml)|*.xml|All files (*.*)|*.*";
 		#endregion
 
-		// field
+
+		#region field
 		FileGen fileGen = new FileGen();
 		Stopwatch watch = new Stopwatch();
-
-
 		Colorer colorer = new Colorer();
+		#endregion
+
 
 		#region init
 		public DataGenForm()
@@ -47,7 +47,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
-		#region private: ShowElapsed.
+		#region private: ShowElapsed
 		void ShowElapsed()
 		{
 			const string mesDone = "Done by: {0}";
@@ -133,7 +133,7 @@ namespace EugeneAnykey.Project.DataGenerator.Forms
 		#endregion
 
 
-		#region Scheme
+		#region private: OpenScheme, SaveScheme
 		void SaveScheme()
 		{
 			if (!CheckColumns())
