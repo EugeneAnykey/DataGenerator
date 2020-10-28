@@ -23,7 +23,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 
 		public string[] Latest { get; private set; } = new string[0];
 
-		readonly long dif;
+		long dif;
 		#endregion
 
 
@@ -94,6 +94,7 @@ namespace EugeneAnykey.Project.DataGenerator.Generators
 						reader.Skip();
 				}
 			}
+			dif = Max.Ticks - Min.Ticks;
 		}
 		#endregion
 	}
