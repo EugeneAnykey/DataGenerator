@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <Title>Block Lines</Title>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <Version>0.5.1</Version>
+    <Authors>$(AssemblyName)</Authors>
+    <Product>Block Lines</Product>
+    <Company>Eugene Anykey Software</Company>
+    <Copyright>2023 Eugene Anykey Software</Copyright>
+  </PropertyGroup>
+
+</Project>
